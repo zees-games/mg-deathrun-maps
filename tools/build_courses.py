@@ -311,6 +311,32 @@ class Course:
         self.point(0.0, self.z - 1.2, jump=True)
         self.z -= 2.0
 
+    def hops(self, count=6, step=4.0, size=1.6, look="spikes", tint=None, swing=1.2):
+        """A bunny-hop stretch: small platforms over a pit, side to side, a running jump apart.
+
+        Not a trap -- nothing here moves. Each gap (step - size, 2.4 m at the defaults) is inside
+        a running jump at the run speed (about 4.8 m at 7 m/s, 1.2 m high, gravity 20), so a
+        careful runner clears it one landing at a time; what it is built for is the rhythm:
+        jumping again the moment you land, steering into the next platform in the air, which
+        auto_bunny_hop makes holding a key and the air strafing makes a skill. The swing from
+        side to side is what makes the steering matter.
+        """
+        z0 = self.z
+        length = step * count + 1.0
+        if look == "liquid":
+            self.kill(z0, z0 - length, "liquid", y=POOL_TOP - 1.0, height=2.0, tint=tint)
+        else:
+            self.kill(z0, z0 - length, look, tint=tint)
+        for i in range(count):
+            z = z0 - 0.5 - size / 2 - step * i
+            x = -swing if i % 2 == 0 else swing
+            self.box(x, -0.25, z, size, 0.5, size)
+            self.point(x, z, jump=True, reach=0.5)
+        self.z -= length
+        self.floor(self.z, self.z - 2.0)
+        self.point(0.0, self.z - 1.2, jump=True)
+        self.z -= 2.0
+
     def floes(self, tid, name, count=4, tint=None):
         """Slabs of ice in a pool: they sink when the button goes, and so does whoever is on one."""
         z0 = self.z
@@ -424,6 +450,8 @@ def ice_works():
     c.falling("ice_icicles", "Icicles")
     c.run(2.0)
     c.blocks("ice_blocks", "Falling blocks", count=4)
+    c.hops(count=6, tint=SNOW)
+    c.run(2.0)
     c.spike_walls("ice_last_wall", "Last wall", sides="right")
     c.finish(ice_arena)
     return c
@@ -452,6 +480,8 @@ def foundry():
     c.roll("fd_bridge", "Tipping bridge", look="liquid", tint=lava)
     c.run(3.0)
     c.blocks("fd_steps", "Slag steps", count=3, look="liquid", tint=lava)
+    c.run(2.0)
+    c.hops(count=5, look="liquid", tint=lava)
     c.floor_spikes("fd_grate", "The grate", depth=4.0)
     c.run(2.0)
     c.spike_walls("fd_walls", "Closing walls", sides="both")
