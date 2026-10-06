@@ -1,0 +1,32 @@
+# Tag it (v*) and the courses are attached to the GitHub Release as
+# mg-deathrun-maps-<version>-pack.zip, which website-city's release sync publishes and signs
+# as gamemann/mg-deathrun-maps. mg-deathrun names that pack under server_dependencies, so a
+# server mounts it beside the game and a player never downloads it.
+#
+# It signs nothing and publishes nothing itself; see modcommunity/dot-ci.
+name: Release
+
+on:
+    push:
+        tags: ['v*']
+
+jobs:
+    check:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-python@v5
+              with:
+                  python-version: '3.12'
+            - run: python3 tools/build_courses.py --check
+
+    release:
+        needs: check
+        uses: modcommunity/dot-ci/.github/workflows/release.yml@v1.2.4
+        permissions:
+            contents: write
+        with:
+            pack: true
+            # Data, with no scripts and no addons: there is no requires.json to compare
+            # against a server's addons.
+            server-compat: false

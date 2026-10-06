@@ -1,0 +1,12 @@
+; mg-deathrun-maps is data, not a game: the courses mg-deathrun reads. It is a
+; Godot project only so dot-ci's release can import it and attach the -pack.zip the site
+; publishes as gamemann/mg-deathrun-maps — the pack mg-deathrun's game.yml names under
+; server_dependencies, mounted on servers and never sent to a player.
+
+config_version=5
+
+[application]
+
+config/name="mg-deathrun-maps"
+config/description="Courses for mg-deathrun, as JSON documents."
+config/features=PackedStringArray("4.7")
