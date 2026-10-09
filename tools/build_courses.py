@@ -40,6 +40,10 @@ POOL_TOP = -0.6       # the top of a pool under ice floes
 # only darkens -- the first render had a field of green snowmen.
 SNOW = [0.95, 0.97, 1.0]
 
+# The Temple's: weathered stone, and the bronze its blades are made of.
+STONE = [0.78, 0.74, 0.62]
+BRONZE = [0.80, 0.55, 0.25]
+
 
 def r(v):
     return round(v, 3)
@@ -93,7 +97,7 @@ class Course:
         p.update(flags)
         self.route.append(p)
 
-    def trap(self, tid, name, z, parts, timing, victim, cooldown=0.0):
+    def trap(self, tid, name, z, parts, timing, victim, cooldown=0.0, spared=None):
         trap = {
             "id": tid, "name": name,
             "button": {"at": v3(BUTTON_X, WALK_Y, z), "yaw": 90.0},
@@ -101,6 +105,8 @@ class Course:
         }
         if cooldown > 0:
             trap["cooldown"] = cooldown
+        if spared is not None:
+            trap["spared"] = spared
         for other in self.traps:
             gap = abs(other["button"]["at"][2] - z)
             if gap < 2.6:
@@ -373,6 +379,38 @@ class Course:
         self.z = z1
         self.point(0.0, z1 - 0.5)
 
+    def swing(self, tid, name, depth=3.0, length=2.75, axle_y=3.6, tint=None):
+        """A blade hung from an axle over the corridor, swung down through it and back up.
+
+        The first trap whose killer TURNS rather than slides, and the first that is DODGED, not
+        jumped. At rest the blade lies level along the axle's left, over the corridor at 3.6 m,
+        above a jump (a runner's head peaks about 3 m up); the button swings it 180 degrees
+        through the bottom of its arc to the right, holds, and swings it back, so it crosses
+        twice. At the bottom it reaches 0.85 m off the floor down the corridor's middle, where
+        every route runs.
+
+        [b]Short, on a low axle, and the arithmetic is the whole design.[/b] A blade's tip draws
+        a circle, so how low it reaches in the middle and how high it passes at the walls are
+        one number: the first version (5.6 m on an axle 6.4 m up) came down through head
+        height everywhere in the corridor, which the course suite's `spared` runner found the
+        first time it stood against a wall. With length L on an axle L + 0.85 up, the tip is
+        above a standing head (1.8 m) wherever x > sqrt(L^2 - (L - 0.95)^2); at 2.75 m that is
+        2.45 m from the middle, so a runner pressed to either wall (their capsule from 2.5 m
+        out) is passed over and one in the middle is not.
+        """
+        z0 = self.z
+        self.floor(z0, z0 - depth - 2.0)
+        mid = z0 - 1.0 - depth / 2
+        self.box(0.0, axle_y + 0.35, mid, 0.4, 0.5, 0.4, "pillar")
+        part = {"at": v3(-length / 2, axle_y, mid), "size": v3(length, 0.3, depth - 0.6), "look": "block",
+                "lethal": True, "turn": {"axis": "z", "degrees": 180.0, "pivot": v3(0.0, axle_y, mid)}}
+        if tint:
+            part["tint"] = tint
+        self.trap(tid, name, mid, [part], {"out": 0.7, "hold": 0.4, "back": 0.9}, v3(0.0, 0.0, mid),
+                  spared=v3(-2.85, 0.0, mid))
+        self.z -= depth + 2.0
+        self.point(0.0, self.z + 1.0)
+
 
 # --- Decoration ------------------------------------------------------------------
 
@@ -423,6 +461,25 @@ def foundry_arena(course, z0):
     course.doc["end"] = {
         "runners": {"at": v3(-7.0, 0.0, z0 - 2.5), "size": v3(8.0, 3.0, 3.0), "yaw": 0.0},
         "activators": {"at": v3(7.0, 0.0, z0 - size + 2.5), "size": v3(8.0, 3.0, 3.0), "yaw": 180.0},
+    }
+
+
+def temple_arena(course, z0):
+    """A sunken court round a stepped altar: the altar is the high ground and the only cover."""
+    size = 24.0
+    mid = z0 - size / 2
+    course.box(0.0, -0.5, mid, size, 1.0, size)
+    for x, z, sx, sz in ((-size / 2 - 0.25, mid, 0.5, size), (size / 2 + 0.25, mid, 0.5, size),
+                         (0.0, z0 + 0.25, size + 1.0, 0.5), (0.0, z0 - size - 0.25, size + 1.0, 0.5)):
+        course.box(x, 2.5, z, sx, 5.0, sz, "pillar")
+    # The altar: three steps, each one a jump (0.6 m) and never a walk.
+    for w, h in ((8.0, 0.6), (5.0, 1.2), (2.4, 1.8)):
+        course.box(0.0, h / 2, mid, w, h, w, "deck", tint=STONE)
+    for x, z in ((-8, -5), (8, -5), (-8, -19), (8, -19)):
+        course.box(x, 2.0, z0 + z, 1.4, 4.0, 1.4, "pillar")
+    course.doc["end"] = {
+        "runners": {"at": v3(0.0, 0.0, z0 - 2.5), "size": v3(10.0, 3.0, 3.0), "yaw": 0.0},
+        "activators": {"at": v3(0.0, 0.0, z0 - size + 2.5), "size": v3(10.0, 3.0, 3.0), "yaw": 180.0},
     }
 
 
@@ -489,12 +546,41 @@ def foundry():
     return c
 
 
+def temple():
+    c = Course(
+        "dr_temple", "The Temple",
+        "Stone halls where the blades swing instead of fall: stay off the middle, and jump the rest.",
+        {"sky": [0.50, 0.66, 0.56], "horizon": [0.84, 0.90, 0.76], "void": [0.04, 0.12, 0.06],
+         "deck": STONE, "sun": [1.0, 0.94, 0.80], "fog": 0.007},
+    )
+    c.run(8.0)
+    c.swing("tp_first_blade", "First blade", tint=BRONZE)
+    c.run(3.0)
+    c.trapdoor("tp_pit", "The pit")
+    c.run(3.0)
+    c.floor_spikes("tp_spikes", "Floor spikes", depth=4.0)
+    c.run(2.0)
+    c.swing("tp_second_blade", "Second blade", depth=4.0, tint=BRONZE)
+    c.run(2.0)
+    c.blocks("tp_stones", "Stepping stones", count=4, look="liquid", tint=[0.10, 0.45, 0.30])
+    c.run(2.0)
+    c.crusher("tp_ceiling", "The ceiling", depth=4.0)
+    c.run(2.0)
+    c.hops(count=5, look="spikes", tint=STONE)
+    c.swing("tp_last_blade", "Last blade", tint=BRONZE)
+    c.run(2.0)
+    c.spike_walls("tp_walls", "Closing walls", sides="left")
+    c.finish(temple_arena)
+    return c
+
+
+
 def main():
     root = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "courses")
     check = "--check" in sys.argv
     stale = []
 
-    for build in (ice_works, foundry):
+    for build in (ice_works, foundry, temple):
         path, text = build().write(root)
 
         if check:

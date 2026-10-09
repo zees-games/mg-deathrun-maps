@@ -11,6 +11,7 @@ Every course is a **JSON document**, not a scene. A server reads the documents i
 | --- | --- |
 | `dr_ice_works` (Ice Works) | A long corridor of ice: walls that close, a bridge that rolls, floes that sink and a mouth full of teeth |
 | `dr_foundry` (The Foundry) | Fire, saws and a press, over a floor of lava that the activator can open |
+| `dr_temple` (The Temple) | Stone halls where the blades swing instead of fall: stay off the middle, and jump the rest |
 
 ## How they are made
 

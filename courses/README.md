@@ -78,6 +78,7 @@ Any piece takes `role` (`deck`, `pillar`, `cannon`, `arena`, `hazard`, `safe` �
 - `cooldown`: 0 is once a round. Otherwise the seconds from one press until the next — and never while the trap is still out.
 - `timing`: after the press the trap waits `delay`, goes out over `out`, stays out for `hold`, and comes back over `back`. A negative `hold` stays out for the rest of the round: a floor that falls and does not return.
 - `victim`: where a runner stands to be caught by it. Nothing in a round reads it; `examples/headless_courses` stands somebody there, presses, and fails the trap if they live — or if they die before the press. Give every trap one.
+- `spared` (optional): where a runner stands to be MISSED by it, for a trap that is dodged rather than jumped (a swinging blade misses the walls). `headless_courses` stands somebody there too and fails the trap if they die. A trap that sweeps the whole corridor has none.
 - `zone`? (`{at, size}`): where somebody has to be for the trap to matter, for stand-in activators. Without it, the box every part sweeps, grown by a metre.
 
 ### Parts
