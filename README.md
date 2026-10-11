@@ -1,4 +1,4 @@
-The courses for [**mg-deathrun**](https://github.com/gamemann/mg-deathrun): long corridors of traps, a walkway beside each with a button for every trap, and an end arena. Two courses to start with, plus the practice course built into the game.
+The courses for [**mg-deathrun**](https://github.com/zees-games/mg-deathrun): long corridors of traps, a walkway beside each with a button for every trap, and an end arena. Two courses to start with, plus the practice course built into the game.
 
 Every course is a **JSON document**, not a scene. A server reads the documents in its course directory and sends the one it is playing to every client as the round begins, so players need no course files at all and a new course is one file dropped into a directory. [`courses/README.md`](courses/README.md) is the format.
 
