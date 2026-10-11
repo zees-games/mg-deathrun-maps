@@ -490,7 +490,7 @@ def ice_works():
         "dr_ice_works", "Ice Works",
         "A long corridor of ice: walls that close, a bridge that rolls, floes that sink and a mouth full of teeth.",
         {"sky": [0.62, 0.74, 0.88], "horizon": [0.86, 0.91, 0.96], "void": [0.18, 0.24, 0.32],
-         "deck": [0.52, 0.64, 0.80], "fog": 0.006},
+         "deck": [0.52, 0.64, 0.80]},
     )
     c.run(8.0)
     c.spike_walls("ice_walls", "Closing walls", sides="both")
@@ -520,7 +520,7 @@ def foundry():
         "dr_foundry", "The Foundry",
         "Fire, saws and a press, over a floor of lava that the activator can open.",
         {"sky": [0.46, 0.32, 0.28], "horizon": [0.86, 0.62, 0.42], "void": [0.35, 0.10, 0.02],
-         "deck": [0.80, 0.70, 0.62], "sun": [1.0, 0.86, 0.70], "fog": 0.008},
+         "deck": [0.80, 0.70, 0.62], "sun": [1.0, 0.86, 0.70]},
     )
     c.run(8.0)
     c.fire("fd_jets", "Fire jets")
@@ -551,7 +551,7 @@ def temple():
         "dr_temple", "The Temple",
         "Stone halls where the blades swing instead of fall: stay off the middle, and jump the rest.",
         {"sky": [0.50, 0.66, 0.56], "horizon": [0.84, 0.90, 0.76], "void": [0.04, 0.12, 0.06],
-         "deck": STONE, "sun": [1.0, 0.94, 0.80], "fog": 0.007},
+         "deck": STONE, "sun": [1.0, 0.94, 0.80]},
     )
     c.run(8.0)
     c.swing("tp_first_blade", "First blade", tint=BRONZE)

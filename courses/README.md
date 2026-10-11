@@ -19,7 +19,7 @@ Every length is metres, every angle degrees, every time seconds. A position is `
 	"kill_height": -10.0,
 	"round_seconds": 0,
 	"theme": {"sky": [0.6, 0.7, 0.9], "horizon": [0.9, 0.9, 1.0], "void": [0.1, 0.1, 0.2],
-		"sun": [1, 1, 1], "deck": [0.5, 0.6, 0.8], "fog": 0.006},
+		"sun": [1, 1, 1], "deck": [0.5, 0.6, 0.8]},
 	"start": {"at": [0, 0, 5], "size": [6.5, 3, 6], "yaw": 0},
 	"activators": {"at": [6.25, 3, 5], "size": [4, 3, 4], "yaw": 0},
 	"finish": {"at": [0, 0, -98], "size": [6.5, 3, 3], "yaw": 0},
@@ -37,6 +37,7 @@ Every length is metres, every angle degrees, every time seconds. A position is `
 - `kill_height`: anybody below it is out. Put it under every pit.
 - `round_seconds`: the most a round on this course lasts; 0 is the server's own (`dr_round_seconds`), and the server's is always the ceiling.
 - `theme.deck` tints the ground and every trap floor, so a trapdoor looks like floor.
+- `theme.horizon` is also the colour of the distance fog, which starts 120 m out so no trap a runner must read is hidden in it; how far is the game's, not the course's. A `fog` density in the theme, from the old exponential fog, is accepted and ignored.
 - **Areas** (`start`, `activators`, `finish`, and both ends of `end`): `at` is the middle of the area's FLOOR, `size` is width, height and depth, `yaw` is which way somebody put there faces (0 is -Z). The runners' start gets a gate across its front (its -Z edge) that holds them through the countdown. Crossing into `finish` sends a runner to `end.runners`; the first one also sends every activator to `end.activators`.
 
 ## Pieces
