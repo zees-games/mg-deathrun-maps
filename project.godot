@@ -1,7 +1,10 @@
-; mg-deathrun-maps is data, not a game: the courses mg-deathrun reads. It is a
-; Godot project only so dot-ci's release can import it and attach the -pack.zip the site
-; publishes as gamemann/mg-deathrun-maps — the pack mg-deathrun's game.yml names under
-; server_dependencies, mounted on servers and never sent to a player.
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
 
 config_version=5
 
