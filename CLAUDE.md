@@ -16,6 +16,10 @@ A level is **a course that plays differently from every other**, or a section ki
 2. **A new section kind in the builder**, made of existing part motions (move/turn/spin, solid or lethal), used in at least one course.
 3. **A new course** — only with a blurb that says what makes it different, every trap sprung on its victim in `mg-deathrun/examples/headless_courses.tscn`, and a render (`mg-deathrun/tools/shot.sh`).
 
+## Toys
+
+`Course.toy()` puts one of dot-props' loose toys on the floor: a football in every start room (`_start`) and a pair in each end arena (balls on the ice, barrels on the foundry's banks, a ball each side of the altar), written as the document's `toys`. Loose only: a trampoline would be a way past a trap and anything solid cover in the showdown. mg-deathrun's `headless_courses` checks each stands clear and stays put.
+
 ## Publishing
 
 **This repository is a pack of its own, mounted on the server alone.** mg-deathrun's `game.yml` names it under `server_dependencies`; a server mounts it at `res://dot_cloud/<owner>/mg-deathrun-maps/<version>/` and the game adds that mount's `courses/` to its catalogue (`DrModule._add_delivered_courses`). It is never in a client's content sync: a client is sent the one document being played. `.github/workflows/release.yml` runs `build_courses.py --check` and then dot-ci's release with `pack: true` (and `server-compat: false`, because there is no code in it to check).

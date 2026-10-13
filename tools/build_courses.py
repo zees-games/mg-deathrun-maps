@@ -64,6 +64,8 @@ class Course:
         self.pieces = []
         self.traps = []
         self.route = []
+        # dot-props' loose toys: a ball in the start room and a few in the arena (see toy()).
+        self.toys = []
         # The front of what has been built: the next section starts here and runs toward -Z.
         self.z = 2.0
         self._start()
@@ -119,10 +121,22 @@ class Course:
     def _start(self):
         # The start room: z +8 .. +2, the gate across its front at +1.8.
         self.floor(8.0, 2.0)
+        # A ball to kick about while the gate is shut.
+        self.toy("football", 2.2, 7.0)
         self.box(0.0, WALL_TOP / 2, 8.25, 2 * HALF + 2 * WALL, WALL_TOP, 0.5, "pillar")
         self.doc["start"] = {"at": v3(0.0, 0.0, 5.0), "size": v3(2 * HALF, 3.0, 6.0), "yaw": 0.0}
         self.doc["activators"] = {"at": v3((WALK_X0 + WALK_X1) / 2, WALK_Y, 5.0),
                                   "size": v3(4.0, 3.0, 4.0), "yaw": 0.0}
+
+    def toy(self, tid, x, z, yaw=0.0, y=0.0):
+        """One of dot-props' loose toys (a ball, a tyre) standing on the floor at y. Loose only:
+        a runner walks through it and pushes it, a trap sends it flying, a shot down the same
+        ray pushes it and goes on, so it is never a step past a trap or cover in the arena.
+        mg-deathrun's headless_courses checks it stands clear and stays put."""
+        t = {"toy": tid, "at": v3(x, y, z)}
+        if yaw:
+            t["yaw"] = yaw
+        self.toys.append(t)
 
     def run(self, length, role="deck"):
         """Plain floor."""
@@ -162,6 +176,8 @@ class Course:
         self.doc["pieces"] = self.pieces
         self.doc["traps"] = self.traps
         self.doc["route"] = self.route
+        if self.toys:
+            self.doc["toys"] = self.toys
         path = os.path.join(directory, self.doc["id"] + ".json")
         return path, json.dumps(self.doc, indent="\t") + "\n"
 
@@ -436,6 +452,9 @@ def ice_arena(course, z0):
         course.box(x, 2.5, z, sx, 5.0, sz, "pillar")
     for x, z in ((-6, -7), (6, -7), (0, -12), (-6, -17), (6, -17), (-2.5, -9.5), (2.5, -14.5)):
         course.box(x, 0.75, z0 + z, 2.2, 1.5, 2.2, tint=SNOW)
+    # Balls to send skidding across the ice.
+    course.toy("beach_ball", -9.0, z0 - 12.0)
+    course.toy("beach_ball", 9.0, z0 - 12.0)
     course.doc["end"] = {
         "runners": {"at": v3(0.0, 0.0, z0 - 2.5), "size": v3(10.0, 3.0, 3.0), "yaw": 0.0},
         "activators": {"at": v3(0.0, 0.0, z0 - size + 2.5), "size": v3(10.0, 3.0, 3.0), "yaw": 180.0},
@@ -458,6 +477,9 @@ def foundry_arena(course, z0):
         course.box(x, 2.5, z, sx, 5.0, sz, "pillar")
     for x, z in ((-6, -9), (6, -9), (-6, -15), (6, -15), (-9.5, -12), (9.5, -12)):
         course.box(x, 0.9, z0 + z, 1.8, 1.8, 1.8, "pillar")
+    # Barrels on either bank, to roll into the lava.
+    course.toy("barrel", -4.0, z0 - 12.0)
+    course.toy("barrel", 4.0, z0 - 12.0, yaw=30.0)
     course.doc["end"] = {
         "runners": {"at": v3(-7.0, 0.0, z0 - 2.5), "size": v3(8.0, 3.0, 3.0), "yaw": 0.0},
         "activators": {"at": v3(7.0, 0.0, z0 - size + 2.5), "size": v3(8.0, 3.0, 3.0), "yaw": 180.0},
@@ -477,6 +499,9 @@ def temple_arena(course, z0):
         course.box(0.0, h / 2, mid, w, h, w, "deck", tint=STONE)
     for x, z in ((-8, -5), (8, -5), (-8, -19), (8, -19)):
         course.box(x, 2.0, z0 + z, 1.4, 4.0, 1.4, "pillar")
+    # A ball each side of the altar.
+    course.toy("football", -8.0, z0 - 12.0)
+    course.toy("beach_ball", 8.0, z0 - 12.0)
     course.doc["end"] = {
         "runners": {"at": v3(0.0, 0.0, z0 - 2.5), "size": v3(10.0, 3.0, 3.0), "yaw": 0.0},
         "activators": {"at": v3(0.0, 0.0, z0 - size + 2.5), "size": v3(10.0, 3.0, 3.0), "yaw": 180.0},
