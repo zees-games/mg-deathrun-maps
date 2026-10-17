@@ -175,8 +175,7 @@
 		{
 			"button": "*19",
 			"id": "t19",
-			"name": "Trap 19",
-			"skip": "its beams hang 3.3 m up here, out of reach of a runner"
+			"name": "Trap 19"
 		},
 		{
 			"button": "*20",
@@ -187,37 +186,51 @@
 			"button": "*23",
 			"id": "t23",
 			"name": "Trap 23",
-			"skip": "a ceiling crusher: the kill is a separate always-on trigger_hurt, not tied to the button"
+			"victim": [
+				-288,
+				2540,
+				128
+			]
 		},
 		{
 			"button": "*25",
 			"id": "t25",
 			"name": "Trap 25",
-			"skip": "a sliding wall: the kill is a separate trigger_hurt"
+			"victim": [
+				-250,
+				3188,
+				128
+			],
+			"lethal_walls": true
 		},
 		{
 			"button": "*27",
 			"id": "t27",
 			"name": "Trap 27",
-			"skip": "a sliding wall: the kill is a separate trigger_hurt"
+			"victim": [
+				-250,
+				3852,
+				128
+			],
+			"lethal_walls": true
 		},
 		{
 			"button": "*30",
 			"id": "t30",
 			"name": "Trap 30",
-			"skip": "fan and push triggers only (a conveyor wind)"
+			"skip": "a fan whose only effect is wind (trigger_push sideways or down, no push part in the game); the blades are not solid and do not reach the corridor"
 		},
 		{
 			"button": "*32",
 			"id": "t32",
 			"name": "Trap 32",
-			"skip": "a fan: wind (trigger_push) and horizontal blades are not portable"
+			"skip": "a fan whose only effect is wind (trigger_push sideways or down, no push part in the game); the blades are not solid and do not reach the corridor"
 		},
 		{
 			"button": "*33",
 			"id": "t33",
 			"name": "Trap 33",
-			"skip": "a fan: wind (trigger_push) and horizontal blades are not portable"
+			"skip": "a fan whose only effect is wind (trigger_push sideways or down, no push part in the game); the blades are not solid and do not reach the corridor"
 		},
 		{
 			"button": "*37",

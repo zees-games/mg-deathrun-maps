@@ -388,12 +388,25 @@ class Importer:
                     dist = float(e.get("movedistance", 100))
                     mvg = [r(d[0] * dist * S), r(d[2] * dist * S), r(-d[1] * dist * S)]
                     lethal = self.lethal(e)
+                    # a crusher: blockdamage > 0, or the spec says the wall is lethal where it sweeps. Its
+                    # trigger_hurt children (parentname) ride with it, so they are lethal parts on the same
+                    # move; the body is lethal too, since the game has no "blocked" damage.
+                    lethal = lethal or float(e.get("blockdamage", 0)) > 0 or ts.get("lethal_walls", False)
                     for b in self.model_boxes_godot(e):
                         b.update({"move": mvg, "lethal": lethal})
+                        if lethal:
+                            b["look"] = "block"
                         parts.append(b)
+                    for kid in self.bsp.entities:
+                        if kid.get("parentname") == target and kid["classname"] == "trigger_hurt":
+                            for b in self.model_boxes_godot(kid):
+                                b.update({"move": mvg, "lethal": True, "look": "block"})
+                                parts.append(b)
                     t = dist / (float(e.get("speed", 100)) or 100)
                     timing.setdefault("out", r(t))
                     timing.setdefault("back", r(t))
+                    if closes:
+                        timing.setdefault("hold", max(0.5, min(closes) - delay - t))
                 elif cls == "func_breakable":
                     # a floor that breaks: here it drops away and comes back for the next round
                     for b in self.model_boxes_godot(e):
@@ -448,8 +461,12 @@ class Importer:
                     ln = math.dist(o, tp)
                     dx, dy = tp[0] - o[0], tp[1] - o[1]
                     yaw = math.degrees(math.atan2(dy, dx))
-                    b = {"at": self.gv(mid), "size": [r(ln * S), r(0.3), r(0.3)], "yaw": r(yaw), "lethal": True,
-                         "look": "fire"}
+                    if abs(dx) < 1 and abs(dy) < 1:
+                        # a vertical beam (a laser curtain from ceiling to floor)
+                        b = {"at": self.gv(mid), "size": [r(0.3), r(ln * S), r(0.3)], "lethal": True, "look": "fire"}
+                    else:
+                        b = {"at": self.gv(mid), "size": [r(ln * S), r(0.3), r(0.3)], "yaw": r(yaw), "lethal": True,
+                             "look": "fire"}
                     parts.append(b)
                     if closes:
                         timing.setdefault("hold", min(closes) - delay)
