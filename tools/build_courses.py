@@ -43,6 +43,7 @@ SNOW = [0.95, 0.97, 1.0]
 # The Temple's: weathered stone, and the bronze its blades are made of.
 STONE = [0.78, 0.74, 0.62]
 BRONZE = [0.80, 0.55, 0.25]
+SAND = [0.84, 0.74, 0.58]
 
 
 def r(v):
@@ -508,6 +509,28 @@ def temple_arena(course, z0):
     }
 
 
+def quarry_arena(course, z0):
+    """A quarry floor: two stacked rock ledges across the middle, cover with a jump between them."""
+    size = 24.0
+    mid = z0 - size / 2
+    course.box(0.0, -0.5, mid, size, 1.0, size)
+    for x, z, sx, sz in ((-size / 2 - 0.25, mid, 0.5, size), (size / 2 + 0.25, mid, 0.5, size),
+                         (0.0, z0 + 0.25, size + 1.0, 0.5), (0.0, z0 - size - 0.25, size + 1.0, 0.5)):
+        course.box(x, 2.5, z, sx, 5.0, sz, "pillar")
+    # Two ledges, each a jump (0.9 m) high with a walk-round gap of 6 m at the middle.
+    for x in (-7.5, 7.5):
+        course.box(x, 0.45, mid, 9.0, 0.9, 3.0, "deck", tint=SAND)
+        course.box(x, 1.35, mid, 4.0, 0.9, 3.0, "deck", tint=SAND)
+    for x, z in ((-9, -6), (9, -6), (-9, -18), (9, -18), (0, -12)):
+        course.box(x, 0.8, z0 + z, 1.6, 1.6, 1.6, "pillar")
+    course.toy("football", -3.0, z0 - 8.0)
+    course.toy("barrel", 3.0, z0 - 16.0, yaw=20.0)
+    course.doc["end"] = {
+        "runners": {"at": v3(0.0, 0.0, z0 - 2.5), "size": v3(10.0, 3.0, 3.0), "yaw": 0.0},
+        "activators": {"at": v3(0.0, 0.0, z0 - size + 2.5), "size": v3(10.0, 3.0, 3.0), "yaw": 180.0},
+    }
+
+
 # --- The courses -----------------------------------------------------------------
 
 def ice_works():
@@ -600,12 +623,38 @@ def temple():
 
 
 
+def quarry():
+    c = Course(
+        "dr_quarry", "The Quarry",
+        "Two rolling bridges and a rockfall between them, then a blade over the last hops: the rhythm never lets up.",
+        {"sky": [0.70, 0.78, 0.86], "horizon": [0.92, 0.86, 0.74], "void": [0.22, 0.17, 0.12],
+         "deck": SAND, "sun": [1.0, 0.92, 0.76]},
+    )
+    c.run(8.0)
+    c.roll("qr_first_bridge", "First bridge", length=7.0)
+    c.run(2.0)
+    c.falling("qr_rockfall", "Rockfall", depth=5.0, count=4)
+    c.run(2.0)
+    c.roll("qr_second_bridge", "Second bridge", length=9.0)
+    c.run(3.0)
+    c.floor_spikes("qr_spikes", "Drill spikes", depth=4.0)
+    c.run(2.0)
+    c.hops(count=4, look="spikes", tint=SAND)
+    c.swing("qr_blade", "Crane blade", tint=BRONZE)
+    c.run(2.0)
+    c.blocks("qr_ledges", "Falling ledges", count=3, tint=SAND)
+    c.run(2.0)
+    c.spike_walls("qr_walls", "Closing walls", sides="both")
+    c.finish(quarry_arena)
+    return c
+
+
 def main():
     root = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "courses")
     check = "--check" in sys.argv
     stale = []
 
-    for build in (ice_works, foundry, temple):
+    for build in (ice_works, foundry, temple, quarry):
         path, text = build().write(root)
 
         if check:
