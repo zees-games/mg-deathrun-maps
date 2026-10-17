@@ -40,6 +40,8 @@ Every length is metres, every angle degrees, every time seconds. A position is `
 - `theme.horizon` is also the colour of the distance fog, which starts 120 m out so no trap a runner must read is hidden in it; how far is the game's, not the course's. A `fog` density in the theme, from the old exponential fog, is accepted and ignored.
 - **Areas** (`start`, `activators`, `finish`, and both ends of `end`): `at` is the middle of the area's FLOOR, `size` is width, height and depth, `yaw` is which way somebody put there faces (0 is -Z). The runners' start gets a gate across its front (its -Z edge) that holds them through the countdown. Crossing into `finish` sends a runner to `end.runners`; the first one also sends every activator to `end.activators`.
 
+Optional `attribution` (string): the credit line of a converted community map (author, page, licence, removal on request); the game ignores it (the in-game credit is `author`, which a converted map sets to the author line); it is for people reading the repository.
+
 ## Pieces
 
 Still things, and the two kinds that move on their own:

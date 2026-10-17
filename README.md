@@ -13,6 +13,13 @@ Every course is a **JSON document**, not a scene. A server reads the documents i
 | `dr_foundry` (The Foundry) | Fire, saws and a press, over a floor of lava that the activator can open |
 | `dr_temple` (The Temple) | Stone halls where the blades swing instead of fall: stay off the middle, and jump the rest |
 | `dr_quarry` (The Quarry) | Two rolling bridges and a rockfall between them, then a blade over the last hops: the rhythm never lets up |
+| `dr_sections` (Sections) | Converted from the community map `deathrun_sections_fix` (see below): six rooms in a row, lasers, a falling floor and a sinking floor, a very long run |
+
+### Converted community maps
+
+`tools/bsp_to_course.py <map.bsp> tools/imports/<id>.json` rebuilds a Source 1 deathrun map (VBSP 19/20) as a course document: world brushes become boxes, and a `func_button` plus what its outputs reach (`func_door`, `func_movelinear`, `func_door_rotating`, `func_rotating`, `trigger_hurt`, `env_laser`, a `func_breakable` floor) becomes a trap. The spec in `tools/imports/` is the per-map judgement (start, finish, route, victims, which buttons are skipped and why). Textures, models and sounds are never carried: the pieces are drawn in the game's own prototype grid. What cannot be ported (wind, fans, physics props, fire and steam effects, kills that are a separate always-on `trigger_hurt`) is printed by the importer and listed in the spec as a `skip` with its reason.
+
+Each converted course carries an `attribution` line (author, source page, the licence as listed there, and that the map is removed on request). The `.bsp` is not in this repository.
 
 ## How they are made
 

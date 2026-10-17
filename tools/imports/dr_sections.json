@@ -1,0 +1,336 @@
+{
+	"id": "dr_sections",
+	"name": "Sections",
+	"author_line": "-[Element]- (map deathrun_sections_fix), from the Deathrun MapPack 2008",
+	"attribution": "Converted from deathrun_sections_fix.bsp by -[Element]-, in the Deathrun MapPack 2008 (https://gamebanana.com/mods/124076, CC BY-NC-ND 4.0 as listed there). Geometry only: boxes and traps rebuilt from the map brushes and entities, none of the author textures, models or sounds. Shipped on the strength of credit and removal on request: tell the repository owner and the map is taken out.",
+	"blurb": "Six rooms in a row: lasers, falling floors, fans and sliding walls, one button per trap.",
+	"origin": [
+		-288,
+		-800,
+		127
+	],
+	"kill_z": 60,
+	"theme": {
+		"sky": [
+			0.55,
+			0.68,
+			0.85
+		],
+		"horizon": [
+			0.86,
+			0.9,
+			0.95
+		],
+		"void": [
+			0.08,
+			0.1,
+			0.16
+		],
+		"sun": [
+			1.0,
+			0.95,
+			0.85
+		],
+		"deck": [
+			0.74,
+			0.78,
+			0.86
+		]
+	},
+	"start": {
+		"at": [
+			-288,
+			-760,
+			127
+		],
+		"size": [
+			9,
+			3,
+			8
+		],
+		"face_toward": [
+			-288,
+			0,
+			127
+		]
+	},
+	"activators": {
+		"at": [
+			-620,
+			-530,
+			127
+		],
+		"size": [
+			9,
+			3,
+			6
+		],
+		"face_toward": [
+			-544,
+			500,
+			127
+		]
+	},
+	"finish": {
+		"at": [
+			-288,
+			9300,
+			128
+		],
+		"size": [
+			2.6,
+			3,
+			3
+		],
+		"yaw": 0
+	},
+	"end": {
+		"runners": {
+			"at": [
+				-300,
+				9400,
+				128
+			],
+			"size": [
+				3,
+				3,
+				8
+			],
+			"yaw": 180
+		},
+		"activators": {
+			"at": [
+				-500,
+				9400,
+				128
+			],
+			"size": [
+				3,
+				3,
+				8
+			],
+			"yaw": 0
+		}
+	},
+	"route": [
+		{
+			"at": [
+				-288,
+				-300,
+				127
+			]
+		},
+		{
+			"at": [
+				-288,
+				2000,
+				127
+			]
+		},
+		{
+			"at": [
+				-288,
+				5000,
+				127
+			]
+		},
+		{
+			"at": [
+				-288,
+				8000,
+				127
+			]
+		},
+		{
+			"at": [
+				-288,
+				9360,
+				128
+			]
+		}
+	],
+	"traps": [
+		{
+			"button": "*13",
+			"id": "t13",
+			"name": "Trap 13"
+		},
+		{
+			"button": "*14",
+			"id": "t14",
+			"name": "Trap 14",
+			"skip": "fire and fall-through effects only"
+		},
+		{
+			"button": "*16",
+			"id": "t16",
+			"name": "Trap 16",
+			"skip": "spawns physics props, which the game has none of"
+		},
+		{
+			"button": "*17",
+			"id": "t17",
+			"name": "Trap 17"
+		},
+		{
+			"button": "*19",
+			"id": "t19",
+			"name": "Trap 19",
+			"skip": "its beams hang 3.3 m up here, out of reach of a runner"
+		},
+		{
+			"button": "*20",
+			"id": "t20",
+			"name": "Trap 20"
+		},
+		{
+			"button": "*23",
+			"id": "t23",
+			"name": "Trap 23",
+			"skip": "a ceiling crusher: the kill is a separate always-on trigger_hurt, not tied to the button"
+		},
+		{
+			"button": "*25",
+			"id": "t25",
+			"name": "Trap 25",
+			"skip": "a sliding wall: the kill is a separate trigger_hurt"
+		},
+		{
+			"button": "*27",
+			"id": "t27",
+			"name": "Trap 27",
+			"skip": "a sliding wall: the kill is a separate trigger_hurt"
+		},
+		{
+			"button": "*30",
+			"id": "t30",
+			"name": "Trap 30",
+			"skip": "fan and push triggers only (a conveyor wind)"
+		},
+		{
+			"button": "*32",
+			"id": "t32",
+			"name": "Trap 32",
+			"skip": "a fan: wind (trigger_push) and horizontal blades are not portable"
+		},
+		{
+			"button": "*33",
+			"id": "t33",
+			"name": "Trap 33",
+			"skip": "a fan: wind (trigger_push) and horizontal blades are not portable"
+		},
+		{
+			"button": "*37",
+			"id": "t37",
+			"name": "Trap 37"
+		},
+		{
+			"button": "*38",
+			"id": "t38",
+			"name": "Trap 38",
+			"skip": "a rising block with no lethal edge"
+		},
+		{
+			"button": "*40",
+			"id": "t40",
+			"name": "Trap 40",
+			"skip": "a spinning floor bar: a rider is carried round and never falls"
+		},
+		{
+			"button": "*48",
+			"id": "t48",
+			"name": "Trap 48",
+			"skip": "opens the exit door, not a trap"
+		},
+		{
+			"button": "*54",
+			"id": "t54",
+			"name": "Trap 54",
+			"skip": "spawns physics props"
+		},
+		{
+			"button": "*55",
+			"id": "t55",
+			"name": "Trap 55",
+			"skip": "spawns physics props"
+		},
+		{
+			"button": "*56",
+			"id": "t56",
+			"name": "Trap 56",
+			"skip": "spawns physics props"
+		}
+	],
+	"static": [
+		"room1",
+		"room2",
+		"room3",
+		"room4",
+		"room5",
+		"room6",
+		"s6-t2",
+		"s6-t3"
+	],
+	"fill": [
+		[
+			-430,
+			-146,
+			4991,
+			5187,
+			128,
+			4
+		],
+		[
+			-430,
+			-146,
+			5507,
+			5695,
+			128,
+			4
+		],
+		[
+			-430,
+			-146,
+			8862,
+			9184,
+			128,
+			4
+		],
+		[
+			-347,
+			-229,
+			9292,
+			9308,
+			277,
+			47,
+			"ghost"
+		]
+	],
+	"toys": [
+		{
+			"toy": "football",
+			"at": [
+				-200,
+				-950,
+				128
+			]
+		},
+		{
+			"toy": "football",
+			"at": [
+				-290,
+				9330,
+				128
+			]
+		},
+		{
+			"toy": "barrel",
+			"at": [
+				-570,
+				9330,
+				128
+			],
+			"yaw": 20
+		}
+	]
+}

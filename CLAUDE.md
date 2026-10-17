@@ -16,6 +16,10 @@ A level is **a course that plays differently from every other**, or a section ki
 2. **A new section kind in the builder**, made of existing part motions (move/turn/spin, solid or lethal), used in at least one course.
 3. **A new course** — only with a blurb that says what makes it different, every trap sprung on its victim in `mg-deathrun/examples/headless_courses.tscn`, and a render (`mg-deathrun/tools/shot.sh`).
 
+## Converted community maps
+
+`tools/bsp_to_course.py` (reader: `tools/bsp_read.py`; both derived from mg-prop-hunt-maps' importer) turns a Source 1 .bsp plus `tools/imports/<id>.json` into `courses/<id>.json`; `build_courses.py --check` ignores these. Rules: a map's `attribution` credits the author, names the page and licence as listed, and says it is removed on request; no author texture, model or sound is carried. Download into a fresh empty scratch dir, never into the repo. A map whose floors are `prop_static` models (Source `death_run`) has nothing the importer sees: pick brush-floored maps. Brush entities (func_breakable floors) that are only floor go in the spec's `static`; shafts whose fan/wind trap is not portable get a `fill` patch. Every skipped trap says why in the spec.
+
 ## Toys
 
 `Course.toy()` puts one of dot-props' loose toys on the floor: a football in every start room (`_start`) and a pair in each end arena (balls on the ice, barrels on the foundry's banks, a ball each side of the altar), written as the document's `toys`. Loose only: a trampoline would be a way past a trap and anything solid cover in the showdown. mg-deathrun's `headless_courses` checks each stands clear and stays put.
