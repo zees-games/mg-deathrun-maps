@@ -4,39 +4,332 @@
  "author_line": "Icepick (map death_run), from the Deathrun MapPack 2008 compiled by -[Element]-",
  "attribution": "Converted from death_run.bsp by Icepick, in the Deathrun MapPack 2008 by -[Element]- (https://gamebanana.com/mods/124076, CC BY-NC-ND 4.0 as listed there). Geometry only: boxes and traps rebuilt from the map's brushes and entities, none of the author's textures, models or sounds. Shipped on the strength of credit and removal on request: tell the repository owner and the map is taken out.",
  "blurb": "The classic: a ring of floors that flip, blades that swing and a crusher, with the activator watching from the middle.",
- "origin": [1500, 30, 192],
+ "origin": [
+  1500,
+  30,
+  192
+ ],
  "kill_z": 127,
- "theme": {"sky": [0.55, 0.68, 0.85], "horizon": [0.86, 0.9, 0.95], "void": [0.08, 0.1, 0.16], "sun": [1.0, 0.95, 0.85], "deck": [0.74, 0.78, 0.86]},
- "start": {"at": [1450, 30, 192], "size": [9, 3, 8], "face_toward": [1100, 30, 192]},
- "activators": {"at": [620, -640, 450], "size": [9, 3, 6], "face_toward": [1170, -1350, 192]},
- "finish": {"at": [1170, -1350, 157], "size": [9, 3, 3], "yaw": 270},
+ "theme": {
+  "sky": [
+   0.55,
+   0.68,
+   0.85
+  ],
+  "horizon": [
+   0.86,
+   0.9,
+   0.95
+  ],
+  "void": [
+   0.08,
+   0.1,
+   0.16
+  ],
+  "sun": [
+   1.0,
+   0.95,
+   0.85
+  ],
+  "deck": [
+   0.74,
+   0.78,
+   0.86
+  ]
+ },
+ "start": {
+  "at": [
+   1450,
+   30,
+   192
+  ],
+  "size": [
+   9,
+   3,
+   8
+  ],
+  "face_toward": [
+   1100,
+   30,
+   192
+  ]
+ },
+ "activators": {
+  "at": [
+   620,
+   -640,
+   450
+  ],
+  "size": [
+   9,
+   3,
+   6
+  ],
+  "face_toward": [
+   1170,
+   -1350,
+   192
+  ]
+ },
+ "finish": {
+  "at": [
+   1170,
+   -1350,
+   157
+  ],
+  "size": [
+   3.2,
+   3,
+   3
+  ],
+  "yaw": 270
+ },
  "end": {
-  "runners": {"at": [1280, -1000, 450], "size": [3, 3, 8], "yaw": 180},
-  "activators": {"at": [900, -640, 450], "size": [3, 3, 8], "yaw": 0}
+  "runners": {
+   "at": [
+    1280,
+    -1000,
+    450
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ],
+   "yaw": 180
+  },
+  "activators": {
+   "at": [
+    900,
+    -640,
+    450
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ],
+   "yaw": 0
+  }
  },
  "route": [
-  {"at": [1300, 30, 192]}, {"at": [1100, 30, 192]}, {"at": [-300, 30, 192]},
-  {"at": [-300, -1300, 157]}, {"at": [1150, -1300, 157]}
+  {
+   "at": [
+    1300,
+    30,
+    192
+   ]
+  },
+  {
+   "at": [
+    1100,
+    30,
+    192
+   ]
+  },
+  {
+   "at": [
+    300,
+    30,
+    192
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    -300,
+    30,
+    192
+   ]
+  },
+  {
+   "at": [
+    -300,
+    -1300,
+    157
+   ]
+  },
+  {
+   "at": [
+    1150,
+    -1300,
+    157
+   ]
+  }
+ ],
+ "fill": [
+  [
+   1216,
+   1800,
+   -243,
+   320,
+   192,
+   8
+  ]
  ],
  "traps": [
-  {"button": "*5", "id": "crusher", "name": "Crusher", "victim": [1088, 0, 193]},
-  {"button": "*6", "id": "flipper", "name": "Flipper", "victim": [740, 0, 193]},
-  {"button": "*7", "id": "spinner", "name": "Spinner", "skip": "spinning floor bar: a rider is carried round and never falls"},
-  {"button": "*11", "id": "hatch", "name": "Hatch", "victim": [-383, -255, 193]},
-  {"button": "*12", "id": "slider", "name": "Slider", "victim": [-460, -640, 193]},
-  {"button": "*24", "id": "lowering_floor", "name": "Lowering floor"},
-  {"button": "*25", "id": "pits", "name": "Pits"},
-  {"button": "*26", "id": "steam", "name": "Steam", "skip": "steam, shake and explosion effects only"},
-  {"button": "*41", "id": "jaws", "name": "Jaws"},
-  {"button": "*42", "id": "lasers", "name": "Lasers"},
-  {"button": "*43", "id": "ladder", "name": "Electric ladder", "skip": "an electrified ladder: the game has no ladders"},
-  {"button": "*45", "id": "blades", "name": "Blades"},
-  {"button": "*46", "id": "slicer", "name": "Slicer"},
-  {"button": "*47", "id": "drop", "name": "Drop"},
-  {"button": "*48", "id": "knockers", "name": "Knockers"},
-  {"button": "*50", "id": "entry_button", "name": "Entry", "skip": "opens the doors into the weapon tower: the game's end arena replaces them"},
-  {"button": "*57", "id": "end_button", "name": "End", "skip": "opens the end door: replaced by the game's finish"},
-  {"button": "*60", "id": "magnet", "name": "Magnet", "skip": "a lift that toggles; kills nobody"},
-  {"button": "*61", "id": "music", "name": "Music", "skip": "plays a sound"}
+  {
+   "button": "*5",
+   "id": "crusher",
+   "name": "Crusher",
+   "victim": [
+    1088,
+    0,
+    193
+   ]
+  },
+  {
+   "button": "*6",
+   "id": "flipper",
+   "name": "Flipper",
+   "victim": [
+    740,
+    0,
+    193
+   ]
+  },
+  {
+   "button": "*7",
+   "id": "spinner",
+   "name": "Spinner",
+   "skip": "spinning floor bar: a rider is carried round and never falls"
+  },
+  {
+   "button": "*11",
+   "id": "hatch",
+   "name": "Hatch",
+   "victim": [
+    -383,
+    -255,
+    193
+   ]
+  },
+  {
+   "button": "*12",
+   "id": "slider",
+   "name": "Slider",
+   "victim": [
+    -460,
+    -640,
+    193
+   ]
+  },
+  {
+   "button": "*24",
+   "id": "lowering_floor",
+   "name": "Lowering floor"
+  },
+  {
+   "button": "*25",
+   "id": "pits",
+   "name": "Pits"
+  },
+  {
+   "button": "*26",
+   "id": "steam",
+   "name": "Steam",
+   "skip": "steam, shake and explosion effects only"
+  },
+  {
+   "button": "*41",
+   "id": "jaws",
+   "name": "Jaws",
+   "victim": [
+    -320,
+    -1216,
+    451
+   ]
+  },
+  {
+   "button": "*42",
+   "id": "lasers",
+   "name": "Lasers"
+  },
+  {
+   "button": "*43",
+   "id": "ladder",
+   "name": "Electric ladder",
+   "skip": "an electrified ladder: the game has no ladders"
+  },
+  {
+   "button": "*45",
+   "id": "blades",
+   "name": "Blades"
+  },
+  {
+   "button": "*46",
+   "id": "slicer",
+   "name": "Slicer",
+   "victim": [
+    134,
+    -1346,
+    451
+   ]
+  },
+  {
+   "button": "*47",
+   "id": "drop",
+   "name": "Drop"
+  },
+  {
+   "button": "*48",
+   "id": "knockers",
+   "name": "Knockers"
+  },
+  {
+   "button": "*50",
+   "id": "entry_button",
+   "name": "Entry",
+   "skip": "opens the doors into the weapon tower: the game's end arena replaces them"
+  },
+  {
+   "button": "*57",
+   "id": "end_button",
+   "name": "End",
+   "skip": "opens the end door: replaced by the game's finish"
+  },
+  {
+   "button": "*60",
+   "id": "magnet",
+   "name": "Magnet",
+   "skip": "a lift that toggles; kills nobody"
+  },
+  {
+   "button": "*61",
+   "id": "music",
+   "name": "Music",
+   "skip": "plays a sound"
+  }
+ ],
+ "static": [
+  "spinner",
+  "conayor"
+ ],
+ "toys": [
+  {
+   "toy": "football",
+   "at": [
+    1400,
+    -60,
+    193
+   ]
+  },
+  {
+   "toy": "football",
+   "at": [
+    1270,
+    -1030,
+    451
+   ]
+  },
+  {
+   "toy": "barrel",
+   "at": [
+    1290,
+    -960,
+    451
+   ],
+   "yaw": 20
+  }
  ]
 }
