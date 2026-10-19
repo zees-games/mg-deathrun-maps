@@ -90,14 +90,15 @@ Every part is a box (`at`, `size`, `yaw`?, `pitch`?) that moves, at full extensi
 
 - `move`: `[x, y, z]`, added to its position;
 - `turn`: `{axis: "x" | "y" | "z", degrees, pivot}`, a rotation about `pivot`;
-- `spin`: degrees a second about its own up axis, while the trap is running.
+- `spin`: degrees a second about its own up axis, while the trap is running;
+- `push`: `[x, y, z]` metres a second, world axes: a **push zone** (a fan, a wind tunnel). Not solid and not lethal; while the trap is out, a player whose body centre is in the box is moved by that much each second. Use `"look": "wind"`.
 
 And is one of:
 
 - **solid** (the default for a part that does not kill): a floor. Whoever stands on it is carried with it — off a trapdoor that swings down, round a log that rolls, into the pool with a floe that sinks;
 - **lethal** (`"lethal": true`, not solid unless `"solid": true` is given — and it should not be): anybody whose body touches the box dies. A lethal part that does not move is OFF until the trap runs and ON while it is out, and is only drawn then — fire.
 
-`look` is how the box is drawn: `block` (default), `spikes` (points along `face`: `up`, `down`, `forward`, `back`, `left`, `right`), `blade` (a toothed disc — give it a `spin`), `fire`, `liquid`. The box is always what collides and kills; the look is only the picture. A part that is not lethal is drawn as floor unless given a `role`, because a trapdoor painted as a trapdoor is one every runner walks round.
+`look` is how the box is drawn: `block` (default), `spikes` (points along `face`: `up`, `down`, `forward`, `back`, `left`, `right`), `blade` (a toothed disc — give it a `spin`), `fire`, `liquid`, `wind` (a faint glow). The box is always what collides and kills; the look is only the picture. A part that is not lethal is drawn as floor unless given a `role`, because a trapdoor painted as a trapdoor is one every runner walks round.
 
 ## Route
 
