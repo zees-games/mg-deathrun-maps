@@ -19,8 +19,8 @@ What it does, and why:
 - Textures are NOT carried. A piece is drawn in the game's own prototype grid under a pastel
   (Kenney's grid, DrTextures): MATERIAL_TINTS says which pastel, by the author's material name.
 - A trap is a func_button and what its OnPressed outputs reach: func_door (a move),
-  func_door_rotating (a turn), func_rotating (a spin), a trigger_hurt (a lethal box) and an
-  env_laser (a lethal beam). `dmg` > 0 on a door or rotator makes its brushes lethal. Anything
+  func_door_rotating (a turn), func_rotating (a spin), a trigger_hurt (a lethal box), a
+  trigger_push (a push zone: `push` in m/s, drawn as wind) and an env_laser (a lethal beam). `dmg` > 0 on a door or rotator makes its brushes lethal. Anything
   else a button reaches (steam, sparks, explosions, sound, a conveyor, a physbox) is reported
   under `not portable` and left out. The game has ONE timeline per trap, so a button that fires
   the same door three times, or several doors on different delays, becomes one simultaneous
@@ -444,6 +444,18 @@ class Importer:
                         timing.setdefault("hold", min(closes) - delay)
                     timing.setdefault("out", 0.3)
                     timing.setdefault("back", 0.3)
+                elif cls == "trigger_push":
+                    # a fan's wind (or a launcher): a push zone, m/s along pushdir. Source's pushdir is an
+                    # angle triple like movedir (pitch -90 is up). `push_scale` in the spec tames a wind
+                    # that would hurl somebody through a ceiling.
+                    d = self.move_dir(dict(e, movedir=e.get("pushdir", "0 0 0")))
+                    sp = float(e.get("speed", 100)) * S * ts.get("push_scale", 1.0)
+                    pv = [r(d[0] * sp), r(d[2] * sp), r(-d[1] * sp)]
+                    for b in self.model_boxes_godot(e):
+                        b.update({"push": pv, "look": "wind"})
+                        parts.append(b)
+                    if closes:
+                        timing.setdefault("hold", max(0.5, min(closes) - delay))
                 elif cls == "trigger_hurt":
                     for b in self.model_boxes_godot(e):
                         b.update({"lethal": True, "look": "fire" if ts.get("look") == "fire" else "block"})

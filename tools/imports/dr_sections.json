@@ -218,19 +218,23 @@
 			"button": "*30",
 			"id": "t30",
 			"name": "Trap 30",
-			"skip": "a fan whose only effect is wind (trigger_push sideways or down, no push part in the game); the blades are not solid and do not reach the corridor"
+			"victim": [
+				-288,
+				4692,
+				128
+			]
 		},
 		{
 			"button": "*32",
 			"id": "t32",
 			"name": "Trap 32",
-			"skip": "a fan whose only effect is wind (trigger_push sideways or down, no push part in the game); the blades are not solid and do not reach the corridor"
+			"skip": "a fan over a shaft this import fills with floor: its wind (down, or up) has nothing under it to throw a runner off, so no victim; the shaft is the one place the original needed a fan on"
 		},
 		{
 			"button": "*33",
 			"id": "t33",
 			"name": "Trap 33",
-			"skip": "a fan whose only effect is wind (trigger_push sideways or down, no push part in the game); the blades are not solid and do not reach the corridor"
+			"skip": "a fan over a shaft this import fills with floor: its wind (down, or up) has nothing under it to throw a runner off, so no victim; the shaft is the one place the original needed a fan on"
 		},
 		{
 			"button": "*37",
