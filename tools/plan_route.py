@@ -49,7 +49,7 @@ class Grid:
     def __init__(self, doc, kill_y):
         boxes = []
         for p in doc["pieces"]:
-            if p.get("kind") == "box":
+            if p.get("kind") in ("box", "teleport"):
                 boxes.append((p["at"], p["size"], p.get("yaw", 0.0), False))
         for t in doc["traps"]:
             for pt in t["parts"]:
@@ -93,6 +93,20 @@ class Grid:
                 for sg in (1, -1):
                     edge |= ~np.roll(nd, sg * sh, axis=ax)
         self.edge = self.node & edge
+        # teleport pads: a node on one has a single way out, to where the pad sends it (stepping on it is
+        # being sent). A pad for the other side is only a floor, so each side has its own mask
+        self.padmask = {False: np.zeros(occ.shape, dtype=np.int16), True: np.zeros(occ.shape, dtype=np.int16)}
+        self.pad_dest = []
+        for i, p in enumerate(q for q in doc["pieces"] if q.get("kind") == "teleport"):
+            top = p["at"][1] + p["size"][1] / 2
+            zone = np.zeros_like(occ)
+            self._raster(zone, (p["at"][0], top + 0.35, p["at"][2]), (p["size"][0], 1.3, p["size"][2]), p.get("yaw", 0.0), True)
+            side = p.get("for", "")
+            for walk_only in (False, True):
+                if side == "" or side == ("activators" if walk_only else "runners"):
+                    self.padmask[walk_only][zone & self.node] = i + 1
+            self.pad_dest.append(p["to"])
+        self.pad_nodes = {}
         # the head's room matters above a drop's landing too: `occ` itself is kept for that
 
     def _raster(self, arr, at, size, yaw, val, grow=0.0):
@@ -157,7 +171,23 @@ class Grid:
         ys = np.nonzero(self.node[x, z, lo:hi + 1])[0]
         return None if len(ys) == 0 else int(ys[0] + lo)
 
+    def pad_target(self, n, walk_only):
+        k = int(self.padmask[walk_only][n[0], n[1], n[2]])
+        if not k:
+            return None
+        if k not in self.pad_nodes:
+            to = self.pad_dest[k - 1]
+            self.pad_nodes[k] = self.nearest((to[0], to[1] + 0.1, to[2]))
+        return self.pad_nodes[k]
+
     def edges(self, n, walk_only):
+        pad = self.pad_target(n, walk_only)
+        if pad is not None:
+            yield pad, 0.5, 3
+            return
+        yield from self._edges(n, walk_only)
+
+    def _edges(self, n, walk_only):
         x, z, y = n
         for dx, dz in DIRS:
             x2, z2 = x + dx, z + dz
@@ -259,6 +289,13 @@ def compress(grid, path, max_leg=9.0):
     n = len(path)
     while i < n:
         node, kind = path[i]
+        if kind == 3:
+            # a teleport: the pad is a point to reach, then the landing a point to carry on from
+            if not pts or pts[-1][0] != path[i - 1][0]:
+                pts.append((path[i - 1][0], False))
+            pts.append((node, False))
+            i += 1
+            continue
         if kind:
             # the landing of a jump (the take-off was the previous point)
             if not pts or pts[-1][0] != path[i - 1][0]:

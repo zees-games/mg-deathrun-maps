@@ -36,6 +36,7 @@ Spec keys beyond the basics (each exists because a real map needed it):
   remove / remove_sheets   world boxes deleted by source rectangle, or every one-unit doorway sheet
   fill                     [x0,x1,y0,y1,top,thickness(,"ghost")]: a floor patch, or an invisible collider
   stairs                   [sx,sy,ex,ey,top_from,top_to,width]: a flight along one axis where the map teleports
+  teleports                [{"model": "*7"} | {"rect": [x0,x1,y0,y1], "to": [x,y,z], "yaw": a}, "top", "thickness"]: a pad that sends on, as the map's trigger_teleport does
   kill_boxes / kill_hurts  kill volumes; hurts of 50 or more that are always on become kill pieces
 tools/plan_route.py fills `route`, `walkway` and `unwalkable` from the converted geometry.
 """
@@ -687,6 +688,38 @@ class Importer:
             x0, x1, y0, y1, z0, z1 = kb
             pieces.append({"kind": "kill", "at": self.gv(((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2)),
                            "size": [r((x1 - x0) * S), r((z1 - z0) * S), r((y1 - y0) * S)], "look": spec.get("kill_look", "none")})
+        for tp in spec.get("teleports", []):
+            # a pad where the map hands people on by teleport: {"model": "*7"} (the trigger's brush model; its
+            # `target` names the destination) or {"rect": [x0,x1,y0,y1]} with "to" [x,y,z] and "yaw" in source units.
+            # "top" is the pad's surface in source z (default the trigger's floor); "thickness" in units
+            e = None
+            if "model" in tp:
+                e = next(x for x in self.bsp.entities if x["classname"] == "trigger_teleport" and x.get("model") == tp["model"])
+                _mi, mins, maxs, _og = self.model_info(e)
+                x0, x1, y0, y1 = mins[0] + _og[0], maxs[0] + _og[0], mins[1] + _og[1], maxs[1] + _og[1]
+                floor = mins[2] + _og[2]
+            else:
+                x0, x1, y0, y1 = tp["rect"]
+                floor = tp.get("top", 0.0)
+            top = tp.get("top", floor)
+            # a trigger the map walks through is a thin wall: a pad wants a stride's width
+            if x1 - x0 < 48:
+                x0, x1 = (x0 + x1) / 2 - 24, (x0 + x1) / 2 + 24
+            if y1 - y0 < 48:
+                y0, y1 = (y0 + y1) / 2 - 24, (y0 + y1) / 2 + 24
+            th = tp.get("thickness", 6.0)
+            to, yaw_src = tp.get("to"), tp.get("yaw")
+            if to is None:
+                d = next(x for x in self.bsp.entities if x["classname"] == "info_teleport_destination" and x.get("targetname") == e["target"])
+                to = vec(d["origin"])
+                if yaw_src is None:
+                    yaw_src = vec(d["angles"])[1] if "angles" in d else 0.0
+            yaw_src = 0.0 if yaw_src is None else yaw_src
+            pad = {"kind": "teleport", "at": self.gv(((x0 + x1) / 2, (y0 + y1) / 2, top - th / 2)),
+                   "size": [r((x1 - x0) * S), r(th * S), r((y1 - y0) * S)], "to": self.gv((to[0], to[1], to[2])),
+                   **({"for": tp["for"]} if tp.get("for") else {}),
+                   "heading": r(math.degrees(math.atan2(-math.cos(math.radians(yaw_src)), math.sin(math.radians(yaw_src)))))}
+            pieces.append(pad)
         traps = []
         for ts in spec["traps"]:
             if ts.get("skip"):
