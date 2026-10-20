@@ -33,6 +33,7 @@ Spec keys beyond the basics (each exists because a real map needed it):
   skip_targets/skip_why    per trap, targets left out (a wall shut over the finish until the last button)
   lethal_all               per trap, every part lethal (a swinging blade)
   nodraw_floors            [x0,x1,y0,y1] source rectangles: all-nodraw brushes centred inside are invisible floors, kept
+  min_box_m                drop every box whose longest side is under this many metres (rubble, carved blocks), to stay under the piece cap
   remove / remove_sheets   world boxes deleted by source rectangle, or every one-unit doorway sheet
   fill                     [x0,x1,y0,y1,top,thickness(,"ghost")]: a floor patch, or an invisible collider
   stairs                   [sx,sy,ex,ey,top_from,top_to,width]: a flight along one axis where the map teleports
@@ -658,6 +659,13 @@ class Importer:
         boxes = [b for b in boxes if not panel(b)]
         if n0 != len(boxes):
             self.notes["dropped"].append("%d small brushes of the button panels" % (n0 - len(boxes)))
+        # `min_box_m`: a box whose longest side is under this goes. A temple map's carved blocks and rubble are
+        # thousands of one-metre brushes, and a document is capped at MAX_PIECES; nothing walks on them.
+        mb = spec.get("min_box_m", 0)
+        if mb:
+            n1 = len(boxes)
+            boxes = [b for b in boxes if max(b["size"]) >= mb]
+            self.notes["dropped"].append("%d decoration boxes under %.2f m" % (n1 - len(boxes), mb))
         pieces = []
         for b in boxes:
             p = {"kind": "box", "at": b["at"], "size": b["size"]}

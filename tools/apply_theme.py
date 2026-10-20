@@ -22,6 +22,8 @@ THEMES = {
                       sun=[0.95, 0.72, 0.56], deck=[0.62, 0.56, 0.58], surface="manor"),
     "dr_aztecan": dict(sky=[0.55, 0.72, 0.9], horizon=[0.95, 0.88, 0.74], void=[0.14, 0.1, 0.06],
                        sun=[1.0, 0.92, 0.74], deck=[0.95, 0.88, 0.76], surface="sand"),
+    "dr_ramesses": dict(sky=[0.5, 0.68, 0.88], horizon=[0.96, 0.84, 0.66], void=[0.1, 0.07, 0.05],
+                        sun=[1.0, 0.86, 0.62], deck=[0.9, 0.78, 0.6], surface="sand"),
 }
 
 if __name__ == "__main__":

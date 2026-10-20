@@ -216,7 +216,9 @@ class Grid:
                 continue
             # jump up
             up = self.column_node(x2, z2, y + STEP + 1, y + JUMP_UP)
-            if up is not None and not self.occ[x2, z2, y + 1:y + HEAD + 1].any():
+            # headroom is checked above the landing, not from the runner's feet: a solid step's own face fills y+1..up, and that
+            # is a wall to climb, not a ceiling (Ramesses' 0.94 m stairs were never climbable before)
+            if up is not None and not self.occ[x2, z2, up + 1:max(up + 1, y + HEAD + 1)].any():
                 yield (x2, z2, up), dist + 3.0, 1
                 continue
             # drop: the column free from the ledge's head height down to the landing
@@ -226,7 +228,9 @@ class Grid:
                 land = int(ys[-1] + lo)
                 if not self.occ[x2, z2, land:y + HEAD].any():
                     yield (x2, z2, land), dist + 1.0 + (y - land) * V * 0.8, 0
-                    continue
+                    # no `continue`: a pit with a floor far below (a lava room whose stepping stones are the way across) is
+                    # also a drop, and the jump over the gap must stay an edge or the stones are never reached
+                    # (Ramesses stalled at the first lava room for exactly this once `max_drop_m` let the pit floor count)
             # a running jump over a gap, in the same direction. Straight only: the stand-in aims at the landing's
             # middle, and a diagonal jump across a corner lands on the rim and falls (found on Percolate Oreo)
             if diag:
@@ -360,8 +364,9 @@ def main(argv):
     bsp = bsp_read.Bsp(args[0]).load()
     spec_path = args[1]
     spec = json.load(open(spec_path))
-    global DROP, WALK_DROPS
+    global DROP, WALK_DROPS, GAP
     DROP = int(spec.get("max_drop_m", DROP * V) / V)
+    GAP = int(round(spec.get("max_gap_m", GAP * H) / H))      # a spec's `max_gap_m`: a running jump the map demands (up to ~4.8 m)
     WALK_DROPS = bool(spec.get("walkway_drops", False))
     imp = C.Importer(bsp, spec)
     doc = imp.build()
