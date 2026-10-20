@@ -1,0 +1,394 @@
+{
+ "id": "dr_iceworld",
+ "name": "Ice World",
+ "author_line": "metz10 (GameBanana)",
+ "attribution": "Converted from deathrun_iceworld_v2fix.bsp by metz10 (https://gamebanana.com/mods/127005, CC BY-NC-ND 4.0 as listed there). Geometry only: boxes and traps rebuilt from the map's brushes and entities, none of the author's textures, models or sounds. Shipped on the strength of credit and removal on request: tell the repository owner and the map is taken out.",
+ "blurb": "A classic deathrun: a course of traps, and the activator watching them.",
+ "origin": [
+  0,
+  -325,
+  1
+ ],
+ "kill_z": -200.0,
+ "kill_hurts": true,
+ "theme": {
+  "sky": [
+   0.55,
+   0.68,
+   0.85
+  ],
+  "horizon": [
+   0.86,
+   0.9,
+   0.95
+  ],
+  "void": [
+   0.08,
+   0.1,
+   0.16
+  ],
+  "sun": [
+   1.0,
+   0.95,
+   0.85
+  ],
+  "deck": [
+   0.74,
+   0.78,
+   0.86
+  ]
+ },
+ "start": {
+  "at": [
+   0,
+   -325,
+   1
+  ],
+  "size": [
+   9,
+   3,
+   8
+  ],
+  "face_toward": [
+   0.4,
+   391.0,
+   4.7
+  ]
+ },
+ "activators": {
+  "at": [
+   176,
+   -16,
+   1
+  ],
+  "size": [
+   9,
+   3,
+   6
+  ],
+  "face_toward": [
+   0.0,
+   2520.0,
+   0.0
+  ]
+ },
+ "finish": {
+  "at": [
+   0.0,
+   2520.0,
+   0.0
+  ],
+  "size": [
+   4,
+   3,
+   4
+  ],
+  "yaw": 0
+ },
+ "end": {
+  "runners": {
+   "at": [
+    0.0,
+    2520.0,
+    0.0
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ],
+   "yaw": 180
+  },
+  "activators": {
+   "at": [
+    0.0,
+    2520.0,
+    0.0
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ],
+   "yaw": 0
+  }
+ },
+ "route": [
+  {
+   "at": [
+    0.4,
+    24.9,
+    4.7
+   ]
+  },
+  {
+   "at": [
+    0.4,
+    391.0,
+    4.7
+   ]
+  },
+  {
+   "at": [
+    0.4,
+    757.2,
+    4.7
+   ]
+  },
+  {
+   "at": [
+    0.4,
+    1123.3,
+    4.7
+   ]
+  },
+  {
+   "at": [
+    0.4,
+    1489.4,
+    4.7
+   ]
+  },
+  {
+   "at": [
+    0.4,
+    1855.6,
+    4.7
+   ]
+  },
+  {
+   "at": [
+    0.4,
+    2221.7,
+    4.7
+   ]
+  },
+  {
+   "at": [
+    0.4,
+    2517.0,
+    4.7
+   ]
+  }
+ ],
+ "traps": [
+  {
+   "button": "*104",
+   "id": "t104",
+   "name": "Trap 1",
+   "skip": "does not kill, or has no floor to stand on, once rebuilt from brushes (the map scripts it)",
+   "keep": true
+  },
+  {
+   "button": "*105",
+   "id": "t105",
+   "name": "Trap 2"
+  },
+  {
+   "button": "*114",
+   "id": "t114",
+   "name": "Trap 3"
+  },
+  {
+   "button": "*129",
+   "id": "t129",
+   "name": "Trap 4",
+   "skip": "does not kill, or has no floor to stand on, once rebuilt from brushes (the map scripts it)",
+   "keep": true
+  },
+  {
+   "button": "*133",
+   "id": "t133",
+   "name": "Trap 5",
+   "skip": "does not kill, or has no floor to stand on, once rebuilt from brushes (the map scripts it)",
+   "keep": true
+  },
+  {
+   "button": "*152",
+   "id": "t152",
+   "name": "Trap 6",
+   "skip": "does not kill, or has no floor to stand on, once rebuilt from brushes (the map scripts it)",
+   "keep": true
+  },
+  {
+   "button": "*158",
+   "id": "t158",
+   "name": "Trap 7",
+   "skip": "does not kill, or has no floor to stand on, once rebuilt from brushes (the map scripts it)",
+   "keep": true
+  },
+  {
+   "button": "*178",
+   "id": "t178",
+   "name": "Trap 8",
+   "skip": "does not kill, or has no floor to stand on, once rebuilt from brushes (the map scripts it)",
+   "keep": true
+  },
+  {
+   "button": "*180",
+   "id": "t180",
+   "name": "Trap 9"
+  },
+  {
+   "button": "*206",
+   "id": "t206",
+   "name": "Trap 10",
+   "skip": "does not kill, or has no floor to stand on, once rebuilt from brushes (the map scripts it)",
+   "keep": true
+  },
+  {
+   "button": "*211",
+   "id": "t211",
+   "name": "Trap 11",
+   "skip": "does not kill, or has no floor to stand on, once rebuilt from brushes (the map scripts it)",
+   "keep": true
+  },
+  {
+   "button": "*217",
+   "id": "t217",
+   "name": "Trap 12",
+   "skip": "button stands where the activator cannot walk to on foot",
+   "keep": true
+  },
+  {
+   "button": "*223",
+   "id": "t223",
+   "name": "Trap 13",
+   "skip": "button stands where the activator cannot walk to on foot",
+   "keep": true
+  },
+  {
+   "button": "*226",
+   "id": "t226",
+   "name": "Trap 14"
+  },
+  {
+   "button": "*227",
+   "id": "t227",
+   "name": "Trap 15"
+  },
+  {
+   "button": "*228",
+   "id": "t228",
+   "name": "Trap 16"
+  },
+  {
+   "button": "*229",
+   "id": "t229",
+   "name": "Trap 17"
+  },
+  {
+   "button": "*271",
+   "id": "t271",
+   "name": "Trap 18"
+  },
+  {
+   "button": "*272",
+   "id": "t272",
+   "name": "Trap 19"
+  },
+  {
+   "button": "*273",
+   "id": "t273",
+   "name": "Trap 20"
+  },
+  {
+   "button": "*281",
+   "id": "t281",
+   "name": "Trap 21",
+   "skip": "button stands where the activator cannot walk to on foot",
+   "keep": true
+  }
+ ],
+ "toys": [
+  {
+   "toy": "football",
+   "at": [
+    50,
+    -325,
+    1
+   ]
+  },
+  {
+   "toy": "football",
+   "at": [
+    40.0,
+    2520.0,
+    0.0
+   ]
+  },
+  {
+   "toy": "football",
+   "at": [
+    -40.0,
+    2520.0,
+    0.0
+   ]
+  }
+ ],
+ "walkway": [
+  {
+   "at": [
+    177.6,
+    225.7,
+    4.7
+   ]
+  },
+  {
+   "at": [
+    177.6,
+    473.7,
+    4.7
+   ]
+  },
+  {
+   "at": [
+    177.6,
+    721.7,
+    4.7
+   ]
+  },
+  {
+   "at": [
+    177.6,
+    969.8,
+    4.7
+   ]
+  },
+  {
+   "at": [
+    118.5,
+    1182.4,
+    4.7
+   ],
+   "button": "t105"
+  },
+  {
+   "at": [
+    154.0,
+    1406.8,
+    4.7
+   ]
+  },
+  {
+   "at": [
+    154.0,
+    1654.8,
+    4.7
+   ]
+  },
+  {
+   "at": [
+    118.5,
+    1891.0,
+    4.7
+   ],
+   "button": "t114"
+  }
+ ],
+ "unwalkable": [
+  "t217",
+  "t223",
+  "t281"
+ ]
+}

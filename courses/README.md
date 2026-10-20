@@ -102,7 +102,7 @@ And is one of:
 
 ## Route
 
-The points a stand-in runner follows, in order. `{"at": [x, y, z]}` is a point to run to; `"jump": true` makes it a **landing** — the stand-in runs toward it and jumps wherever the floor ahead ends. `reach` (1.2) is how close counts as there, `walk` and `crouch` hold those keys on the way. Stand-in activators need no route: they walk straight along the walkway, so keep the walkway straight.
+The points a stand-in runner follows, in order. `{"at": [x, y, z]}` is a point to run to; `"jump": true` makes it a **landing** — the stand-in runs toward it and jumps wherever the floor ahead ends. `reach` (1.2) is how close counts as there, `walk` and `crouch` hold those keys on the way. Stand-in activators need no route when the walkway is straight. A course whose activators must wind through rooms (a converted map) gives a `walkway`: a list of `{"at": [x, y, z]}` points, the last one before a button carrying `"button": "<trap id>"`; the stand-in walks them in order and presses each button on arrival, and a bot activator picks the trap its route-progress rule says is next. A document holds at most 2400 pieces. `tools/plan_route.py <bsp> <spec>` writes `route` and `walkway` for a converted map from its geometry.
 
 ## Checking it
 

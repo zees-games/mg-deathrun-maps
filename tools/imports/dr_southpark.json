@@ -1,0 +1,482 @@
+{
+ "id": "dr_southpark",
+ "name": "South Park",
+ "author_line": "Linoxi (GameBanana)",
+ "attribution": "Converted from Deathrun_Southpark_V3.bsp by Linoxi (https://gamebanana.com/mods/127198, CC BY-NC-ND 4.0 as listed there). Geometry only: boxes and traps rebuilt from the map's brushes and entities, none of the author's textures, models or sounds. Shipped on the strength of credit and removal on request: tell the repository owner and the map is taken out.",
+ "blurb": "A classic deathrun: a course of traps, and the activator watching them.",
+ "origin": [
+  -47,
+  2389,
+  73
+ ],
+ "kill_z": 0.0,
+ "kill_hurts": true,
+ "theme": {
+  "sky": [
+   0.55,
+   0.68,
+   0.85
+  ],
+  "horizon": [
+   0.86,
+   0.9,
+   0.95
+  ],
+  "void": [
+   0.08,
+   0.1,
+   0.16
+  ],
+  "sun": [
+   1.0,
+   0.95,
+   0.85
+  ],
+  "deck": [
+   0.74,
+   0.78,
+   0.86
+  ]
+ },
+ "start": {
+  "at": [
+   -47,
+   2389,
+   73
+  ],
+  "size": [
+   9,
+   3,
+   8
+  ],
+  "face_toward": [
+   101.4,
+   1877.5,
+   70.9
+  ]
+ },
+ "activators": {
+  "at": [
+   531,
+   2223,
+   65
+  ],
+  "size": [
+   9,
+   3,
+   6
+  ],
+  "face_toward": [
+   300,
+   -1180,
+   70
+  ]
+ },
+ "finish": {
+  "at": [
+   300,
+   -1180,
+   70
+  ],
+  "size": [
+   4,
+   3,
+   4
+  ],
+  "yaw": 0
+ },
+ "end": {
+  "runners": {
+   "at": [
+    300,
+    -1120,
+    70
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ],
+   "yaw": 180
+  },
+  "activators": {
+   "at": [
+    300,
+    -1180,
+    70
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ],
+   "yaw": 0
+  }
+ },
+ "route": [
+  {
+   "at": [
+    18.7,
+    2042.9,
+    70.9
+   ]
+  },
+  {
+   "at": [
+    101.4,
+    1877.5,
+    70.9
+   ]
+  },
+  {
+   "at": [
+    101.4,
+    1511.4,
+    55.1
+   ]
+  },
+  {
+   "at": [
+    148.6,
+    1157.0,
+    70.9
+   ]
+  },
+  {
+   "at": [
+    148.6,
+    790.9,
+    70.9
+   ]
+  },
+  {
+   "at": [
+    148.6,
+    424.7,
+    70.9
+   ]
+  },
+  {
+   "at": [
+    160.4,
+    70.4,
+    86.6
+   ]
+  },
+  {
+   "at": [
+    172.3,
+    -283.9,
+    70.9
+   ]
+  },
+  {
+   "at": [
+    172.3,
+    -650.1,
+    70.9
+   ]
+  },
+  {
+   "at": [
+    207.7,
+    -1004.4,
+    70.9
+   ]
+  },
+  {
+   "at": [
+    302.2,
+    -1181.6,
+    70.9
+   ]
+  }
+ ],
+ "traps": [
+  {
+   "button": "*3",
+   "id": "t3",
+   "name": "Trap 1",
+   "skip": "does not kill once rebuilt from brushes",
+   "keep": true
+  },
+  {
+   "button": "*9",
+   "id": "t9",
+   "name": "Trap 2"
+  },
+  {
+   "button": "*11",
+   "id": "t11",
+   "name": "Trap 3"
+  },
+  {
+   "button": "*12",
+   "id": "t12",
+   "name": "Trap 4",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  },
+  {
+   "button": "*17",
+   "id": "t17",
+   "name": "Trap 5",
+   "skip": "does not kill once rebuilt from brushes",
+   "keep": true
+  },
+  {
+   "button": "*21",
+   "id": "t21",
+   "name": "Trap 6",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  },
+  {
+   "button": "*31",
+   "id": "t31",
+   "name": "Trap 7",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  },
+  {
+   "button": "*32",
+   "id": "t32",
+   "name": "Trap 8",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  },
+  {
+   "button": "*33",
+   "id": "t33",
+   "name": "Trap 9",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  },
+  {
+   "button": "*37",
+   "id": "t37",
+   "name": "Trap 10",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  },
+  {
+   "button": "*38",
+   "id": "t38",
+   "name": "Trap 11"
+  },
+  {
+   "button": "*55",
+   "id": "t55",
+   "name": "Trap 12",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  },
+  {
+   "button": "*56",
+   "id": "t56",
+   "name": "Trap 13",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  },
+  {
+   "button": "*57",
+   "id": "t57",
+   "name": "Trap 14",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  },
+  {
+   "button": "*62",
+   "id": "t62",
+   "name": "Trap 15",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  },
+  {
+   "button": "*103",
+   "id": "t103",
+   "name": "Trap 16",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  },
+  {
+   "button": "*104",
+   "id": "t104",
+   "name": "Trap 17"
+  },
+  {
+   "button": "*105",
+   "id": "t105",
+   "name": "Trap 18"
+  },
+  {
+   "button": "*106",
+   "id": "t106",
+   "name": "Trap 19"
+  },
+  {
+   "button": "*107",
+   "id": "t107",
+   "name": "Trap 20"
+  },
+  {
+   "button": "*113",
+   "id": "t113",
+   "name": "Trap 21",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  },
+  {
+   "button": "*118",
+   "id": "t118",
+   "name": "Trap 22",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  },
+  {
+   "button": "*119",
+   "id": "t119",
+   "name": "Trap 23",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  },
+  {
+   "button": "*120",
+   "id": "t120",
+   "name": "Trap 24",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  },
+  {
+   "button": "*121",
+   "id": "t121",
+   "name": "Trap 25",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  },
+  {
+   "button": "*139",
+   "id": "t139",
+   "name": "Trap 26",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  },
+  {
+   "button": "*140",
+   "id": "t140",
+   "name": "Trap 27",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  },
+  {
+   "button": "*156",
+   "id": "t156",
+   "name": "Trap 28",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  },
+  {
+   "button": "*191",
+   "id": "t191",
+   "name": "Trap 29",
+   "skip": "button is on a floor the activator cannot walk to from this part of the map",
+   "keep": true
+  }
+ ],
+ "toys": [
+  {
+   "toy": "football",
+   "at": [
+    -47,
+    2269,
+    73
+   ]
+  },
+  {
+   "toy": "football",
+   "at": [
+    240,
+    -1060,
+    70
+   ]
+  },
+  {
+   "toy": "football",
+   "at": [
+    360,
+    -1020,
+    70
+   ]
+  }
+ ],
+ "remove_sheets": true,
+ "static_classes": [
+  "func_breakable"
+ ],
+ "walkway": [
+  {
+   "at": [
+    455.7,
+    1995.6,
+    70.9
+   ]
+  },
+  {
+   "at": [
+    455.7,
+    1747.6,
+    70.9
+   ]
+  },
+  {
+   "at": [
+    455.7,
+    1499.6,
+    70.9
+   ]
+  },
+  {
+   "at": [
+    455.7,
+    1251.5,
+    70.9
+   ]
+  },
+  {
+   "at": [
+    384.9,
+    1015.3,
+    70.9
+   ]
+  },
+  {
+   "at": [
+    349.4,
+    779.1,
+    70.9
+   ],
+   "button": "t9"
+  }
+ ],
+ "unwalkable": [],
+ "fill": [
+  [
+   215,
+   385,
+   -1194,
+   -1166,
+   210,
+   52,
+   "ghost"
+  ],
+  [
+   160,
+   440,
+   -1330,
+   -1030,
+   68,
+   12,
+   "ghost"
+  ]
+ ]
+}

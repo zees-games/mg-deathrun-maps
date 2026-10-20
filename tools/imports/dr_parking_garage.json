@@ -1,0 +1,579 @@
+{
+ "id": "dr_parking_garage",
+ "name": "Parking Garage",
+ "author_line": "Bloodhunter4rc (GameBanana)",
+ "attribution": "Converted from deathrun_parking_garage.bsp by Bloodhunter4rc (https://gamebanana.com/mods/127127, CC BY-NC-ND 4.0 as listed there). Geometry only: boxes and traps rebuilt from the map's brushes and entities, none of the author's textures, models or sounds. Shipped on the strength of credit and removal on request: tell the repository owner and the map is taken out.",
+ "blurb": "A classic deathrun: a course of traps, and the activator watching them.",
+ "origin": [
+  676,
+  -1538,
+  263
+ ],
+ "kill_z": -80.0,
+ "kill_hurts": true,
+ "theme": {
+  "sky": [
+   0.55,
+   0.68,
+   0.85
+  ],
+  "horizon": [
+   0.86,
+   0.9,
+   0.95
+  ],
+  "void": [
+   0.08,
+   0.1,
+   0.16
+  ],
+  "sun": [
+   1.0,
+   0.95,
+   0.85
+  ],
+  "deck": [
+   0.74,
+   0.78,
+   0.86
+  ]
+ },
+ "start": {
+  "at": [
+   676,
+   -1538,
+   263
+  ],
+  "size": [
+   9,
+   3,
+   8
+  ],
+  "face_toward": [
+   684.5,
+   -831.8,
+   259.4
+  ]
+ },
+ "activators": {
+  "at": [
+   814,
+   -483,
+   570
+  ],
+  "size": [
+   9,
+   3,
+   6
+  ],
+  "face_toward": [
+   1224.0,
+   864.0,
+   256.0
+  ]
+ },
+ "finish": {
+  "at": [
+   1224.0,
+   864.0,
+   256.0
+  ],
+  "size": [
+   4,
+   3,
+   4
+  ],
+  "yaw": 0
+ },
+ "end": {
+  "runners": {
+   "at": [
+    1224.0,
+    864.0,
+    256.0
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ],
+   "yaw": 180
+  },
+  "activators": {
+   "at": [
+    1224.0,
+    864.0,
+    256.0
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ],
+   "yaw": 0
+  }
+ },
+ "route": [
+  {
+   "at": [
+    672.7,
+    -1186.1,
+    259.4
+   ]
+  },
+  {
+   "at": [
+    684.5,
+    -831.8,
+    259.4
+   ]
+  },
+  {
+   "at": [
+    720.0,
+    -477.5,
+    259.4
+   ]
+  },
+  {
+   "at": [
+    838.1,
+    -264.9,
+    259.4
+   ]
+  },
+  {
+   "at": [
+    838.1,
+    101.3,
+    259.4
+   ]
+  },
+  {
+   "at": [
+    849.9,
+    455.6,
+    259.4
+   ]
+  },
+  {
+   "at": [
+    885.3,
+    798.1,
+    259.4
+   ]
+  },
+  {
+   "at": [
+    1216.0,
+    869.0,
+    259.4
+   ]
+  }
+ ],
+ "traps": [
+  {
+   "button": "*8",
+   "id": "t8",
+   "name": "Trap 1"
+  },
+  {
+   "button": "*9",
+   "id": "t9",
+   "name": "Trap 2"
+  },
+  {
+   "button": "*12",
+   "id": "t12",
+   "name": "Trap 3",
+   "skip": "button stands on a lower floor the activator cannot walk to from the gallery"
+  },
+  {
+   "button": "*13",
+   "id": "t13",
+   "name": "Trap 4",
+   "skip": "button stands on a lower floor the activator cannot walk to from the gallery"
+  },
+  {
+   "button": "*15",
+   "id": "t15",
+   "name": "Trap 5",
+   "skip": "button stands on a lower floor the activator cannot walk to from the gallery"
+  },
+  {
+   "button": "*31",
+   "id": "t31",
+   "name": "Trap 6",
+   "skip": "button stands on a lower floor the activator cannot walk to from the gallery"
+  },
+  {
+   "button": "*33",
+   "id": "t33",
+   "name": "Trap 7"
+  },
+  {
+   "button": "*36",
+   "id": "t36",
+   "name": "Trap 8"
+  },
+  {
+   "button": "*37",
+   "id": "t37",
+   "name": "Trap 9",
+   "skip": "does not kill on its own once rebuilt from brushes (the floor or wall it moves is flattened or its kill relied on the map's scripts)"
+  },
+  {
+   "button": "*41",
+   "id": "t41",
+   "name": "Trap 10",
+   "skip": "does not kill on its own once rebuilt from brushes (the floor or wall it moves is flattened or its kill relied on the map's scripts)"
+  },
+  {
+   "button": "*43",
+   "id": "t43",
+   "name": "Trap 11",
+   "skip": "does not kill on its own once rebuilt from brushes (the floor or wall it moves is flattened or its kill relied on the map's scripts)"
+  },
+  {
+   "button": "*44",
+   "id": "t44",
+   "name": "Trap 12"
+  },
+  {
+   "button": "*47",
+   "id": "t47",
+   "name": "Trap 13",
+   "skip": "button stands on a lower floor the activator cannot walk to from the gallery"
+  },
+  {
+   "button": "*52",
+   "id": "t52",
+   "name": "Trap 14",
+   "skip": "button stands on a lower floor the activator cannot walk to from the gallery"
+  },
+  {
+   "button": "*53",
+   "id": "t53",
+   "name": "Trap 15"
+  },
+  {
+   "button": "*55",
+   "id": "t55",
+   "name": "Trap 16"
+  },
+  {
+   "button": "*64",
+   "id": "t64",
+   "name": "Trap 17",
+   "skip": "does not kill on its own once rebuilt from brushes (the floor or wall it moves is flattened or its kill relied on the map's scripts)"
+  },
+  {
+   "button": "*65",
+   "id": "t65",
+   "name": "Trap 18",
+   "skip": "does not kill on its own once rebuilt from brushes (the floor or wall it moves is flattened or its kill relied on the map's scripts)"
+  },
+  {
+   "button": "*66",
+   "id": "t66",
+   "name": "Trap 19",
+   "skip": "button stands on a lower floor the activator cannot walk to from the gallery"
+  },
+  {
+   "button": "*87",
+   "id": "t87",
+   "name": "Trap 20"
+  },
+  {
+   "button": "*97",
+   "id": "t97",
+   "name": "Trap 21",
+   "skip": "button stands on a lower floor the activator cannot walk to from the gallery"
+  }
+ ],
+ "toys": [
+  {
+   "toy": "football",
+   "at": [
+    736,
+    -1538,
+    263
+   ]
+  },
+  {
+   "toy": "football",
+   "at": [
+    1264.0,
+    864.0,
+    256.0
+   ]
+  },
+  {
+   "toy": "football",
+   "at": [
+    1184.0,
+    864.0,
+    256.0
+   ]
+  }
+ ],
+ "remove": [
+  [
+   830,
+   1220,
+   0,
+   6
+  ],
+  [
+   -100,
+   100,
+   704,
+   768
+  ]
+ ],
+ "fill": [
+  [
+   -1024,
+   700,
+   704,
+   768,
+   512,
+   256
+  ],
+  [
+   900,
+   1024,
+   704,
+   768,
+   512,
+   256
+  ]
+ ],
+ "walkway": [
+  {
+   "at": [
+    814.5,
+    -477.5,
+    550.8
+   ],
+   "button": "t33"
+  },
+  {
+   "at": [
+    578.2,
+    -477.5,
+    550.8
+   ]
+  },
+  {
+   "at": [
+    566.4,
+    -477.5,
+    550.8
+   ],
+   "button": "t36"
+  },
+  {
+   "at": [
+    330.2,
+    -477.5,
+    550.8
+   ]
+  },
+  {
+   "at": [
+    82.2,
+    -477.5,
+    550.8
+   ]
+  },
+  {
+   "at": [
+    -118.6,
+    -477.5,
+    550.8
+   ],
+   "button": "t37"
+  },
+  {
+   "at": [
+    -295.8,
+    -323.9,
+    550.8
+   ]
+  },
+  {
+   "at": [
+    -496.6,
+    -194.0,
+    550.8
+   ]
+  },
+  {
+   "at": [
+    -626.5,
+    -75.9,
+    550.8
+   ],
+   "button": "t43"
+  },
+  {
+   "at": [
+    -579.2,
+    -300.3,
+    550.8
+   ]
+  },
+  {
+   "at": [
+    -484.7,
+    -477.5,
+    550.8
+   ],
+   "button": "t55"
+  },
+  {
+   "at": [
+    -626.5,
+    -442.1,
+    550.8
+   ],
+   "button": "t64"
+  },
+  {
+   "at": [
+    -614.7,
+    -217.6,
+    550.8
+   ]
+  },
+  {
+   "at": [
+    -484.7,
+    -16.9,
+    550.8
+   ]
+  },
+  {
+   "at": [
+    -331.2,
+    172.1,
+    550.8
+   ]
+  },
+  {
+   "at": [
+    -224.9,
+    384.7,
+    550.8
+   ]
+  },
+  {
+   "at": [
+    -213.1,
+    396.5,
+    550.8
+   ],
+   "button": "t44"
+  },
+  {
+   "at": [
+    -449.3,
+    396.5,
+    550.8
+   ]
+  },
+  {
+   "at": [
+    -650.1,
+    337.5,
+    550.8
+   ],
+   "button": "t65"
+  },
+  {
+   "at": [
+    -413.9,
+    337.5,
+    550.8
+   ]
+  },
+  {
+   "at": [
+    -165.9,
+    337.5,
+    550.8
+   ]
+  },
+  {
+   "at": [
+    82.2,
+    337.5,
+    550.8
+   ]
+  },
+  {
+   "at": [
+    330.2,
+    337.5,
+    550.8
+   ]
+  },
+  {
+   "at": [
+    542.8,
+    396.5,
+    550.8
+   ],
+   "button": "t87"
+  },
+  {
+   "at": [
+    767.2,
+    408.3,
+    550.8
+   ]
+  },
+  {
+   "at": [
+    1003.4,
+    479.2,
+    550.8
+   ]
+  },
+  {
+   "at": [
+    1027.1,
+    715.4,
+    550.8
+   ]
+  },
+  {
+   "at": [
+    979.8,
+    809.9,
+    550.8
+   ],
+   "button": "t41"
+  }
+ ],
+ "unwalkable": [
+  "t37",
+  "t55",
+  "t64",
+  "t97",
+  "t33",
+  "t36",
+  "t15",
+  "t43",
+  "t12",
+  "t13",
+  "t44",
+  "t47",
+  "t65",
+  "t87",
+  "t31",
+  "t41",
+  "t52"
+ ]
+}

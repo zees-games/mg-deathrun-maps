@@ -12,7 +12,7 @@ What it does, and why:
 - The world's brushes become BOXES (a course document has no meshes). `brush_boxes` and its
   helpers are copied from mg-prop-hunt-maps/tools/import_bsp.py: a brush that is not a box is
   a turned box, a vertical prism, or cut into slabs. Boxes that touch end to end are then
-  merged, because a document is capped at MAX_PIECES (600) and a ceiling is a hundred slats.
+  merged, because a document is capped at MAX_PIECES (2400) and a ceiling is a hundred slats.
 - Scale: 1 unit = 0.0254 m (a true inch, a 72 unit player is 1.83 m), not the 0.01905 of the
   prop-hunt importer: deathrun's buttons need to stay 2.6 m apart and its jumps are measured
   against a 1.2 m standing jump.  Axes: godot = (x, z, -y), as in the other importers.
@@ -25,6 +25,17 @@ What it does, and why:
   under `not portable` and left out. The game has ONE timeline per trap, so a button that fires
   the same door three times, or several doors on different delays, becomes one simultaneous
   motion; `--report` lists what was flattened.
+
+Spec keys beyond the basics (each exists because a real map needed it):
+  static / static_classes  brush entities that are only floor or wall (func_breakable floors)
+  drop                     per trap, entity names that become trapdoors falling 8 units
+  skip + keep              skip a trap and say why; "keep" leaves its brushes at rest as geometry
+  skip_targets/skip_why    per trap, targets left out (a wall shut over the finish until the last button)
+  lethal_all               per trap, every part lethal (a swinging blade)
+  remove / remove_sheets   world boxes deleted by source rectangle, or every one-unit doorway sheet
+  fill                     [x0,x1,y0,y1,top,thickness(,"ghost")]: a floor patch, or an invisible collider
+  kill_boxes / kill_hurts  kill volumes; hurts of 50 or more that are always on become kill pieces
+tools/plan_route.py fills `route`, `walkway` and `unwalkable` from the converted geometry.
 """
 import json
 import math
@@ -353,6 +364,10 @@ class Importer:
         for target, inp, delay, ents in events:
             per_target.setdefault(target, []).append((inp, delay, ents))
         for target, evs in per_target.items():
+            if target in ts.get("skip_targets", []):
+                # e.g. a gate the map holds shut until the LAST button: a runner could never pass it unaided
+                self.notes["not portable"].append("%s: %s left out (%s)" % (ts["id"], target, ts.get("skip_why", "a gate")))
+                continue
             ents = evs[0][2]
             classes = {e["classname"] for e in ents}
             opens = [(i, d) for i, d, _ in evs if i in ("Open", "Toggle", "Start", "Enable", "TurnOn", "Trigger", "Break")]
@@ -487,6 +502,14 @@ class Importer:
                     continue
             if first_delay is None:
                 first_delay = delay
+        for nm in ts.get("drop", []):
+            # a trapdoor the map built out of a teleport or a colour change: the floor itself drops away here
+            for e in self.named(nm):
+                for b in self.model_boxes_godot(e):
+                    b.update({"move": [0.0, -8.0, 0.0], "lethal": False})
+                    parts.append(b)
+                timing.setdefault("out", 0.25)
+                self.notes["flattened"].append("%s: %s drops away (the map teleports whoever stands on it)" % (ts["id"], nm))
         timing.setdefault("delay", ts.get("delay", 0.0))
         for k, v in (("out", 0.3), ("hold", 2.0), ("back", 1.0)):
             timing.setdefault(k, v)
@@ -494,6 +517,11 @@ class Importer:
             self.notes["flattened"].append("%s: %s" % (ts["id"], f))
         if not parts:
             return None
+        if ts.get("lethal_all"):
+            # the map hurts through a trigger_hurt beside a spinner that is itself harmless; the game has no such pair
+            for q in parts:
+                q["lethal"] = True
+                q.setdefault("look", "block")
         if len(parts) > 32:
             parts = parts[:32]
             self.notes["flattened"].append("%s: only the first 32 parts kept" % ts["id"])
@@ -534,6 +562,18 @@ class Importer:
         for nm in spec.get("static", []):    # brush entities that are only floor here (never fired)
             for e in self.named(nm):
                 extra += [dict(b, tint=None, invisible=False, top=(b["at"][1] + b["size"][1] / 2) / S + self.o[2]) for b in self.model_boxes_godot(e)]
+        for cls in spec.get("static_classes", []):   # every brush entity of these classes is floor or wall
+            for e in self.bsp.entities:
+                if e["classname"] == cls and e.get("model", "").startswith("*"):
+                    extra += [dict(b, tint=None, invisible=False, top=(b["at"][1] + b["size"][1] / 2) / S + self.o[2])
+                              for b in self.model_boxes_godot(e)]
+        for ts in spec["traps"]:             # a skipped trap with "keep": its brushes stay, at rest, as floor or wall
+            if ts.get("skip") and ts.get("keep"):
+                btn = next(e for e in self.bsp.entities if e.get("model") == ts["button"] and e["classname"] == "func_button")
+                for _t, _i, _d, ents in self.resolve(self.parse_outputs(btn)):
+                    for e in ents:
+                        if e.get("model", "").startswith("*") and e["classname"].startswith("func_") and e["classname"] != "func_button":
+                            extra += [dict(b, tint=None, invisible=False, top=(b["at"][1] + b["size"][1] / 2) / S + self.o[2]) for b in self.model_boxes_godot(e)]
         for f in spec.get("fill", []):       # floor patches for shafts whose fan or push trap is not portable
             x0, x1, y0, y1, top, th = f[:6]
             ghost = len(f) > 6                # a 7th value: an invisible collider (under the drawn finish arch)
@@ -554,6 +594,21 @@ class Importer:
                 return False
             return any(abs(b["at"][0] - self.g(o)[0]) < 1.0 and abs(b["at"][2] - self.g(o)[2]) < 1.0
                        and abs(b["at"][1] - self.g(o)[1]) < 0.9 for o in spots)
+        # `remove`: [x0, x1, y0, y1] in source units; a box whose centre is inside goes. A wall that only closes a
+        # room the map leaves by teleport would shut the way the `fill` patch opens.
+        gone = spec.get("remove", [])
+        def removed(b):
+            sx, sy = b["at"][0] / S + self.o[0], -b["at"][2] / S + self.o[1]
+            return any(x0 <= sx <= x1 and y0 <= sy <= y1 for x0, x1, y0, y1 in gone)
+        if gone:
+            boxes = [b for b in boxes if not removed(b)]
+        if spec.get("remove_sheets"):
+            # one-unit sheets across a doorway (a pane the map breaks or opens by script) are walls here: every one goes
+            def sheet(b):
+                return min(b["size"][0], b["size"][2]) <= 2.5 * S and 20 * S <= b["size"][1] <= 130 * S
+            n1 = len(boxes)
+            boxes = [b for b in boxes if not sheet(b)]
+            self.notes["dropped"].append("%d one-unit sheets across doorways" % (n1 - len(boxes)))
         n0 = len(boxes)
         boxes = [b for b in boxes if not panel(b)]
         if n0 != len(boxes):
@@ -570,6 +625,24 @@ class Importer:
             if b["invisible"]:
                 p["visible"] = False
             pieces.append(p)
+        # a trigger_hurt that is never switched off (no StartDisabled flag) is lava, water, a pit's
+        # floor: a `kill` piece. One a button enables starts disabled and belongs to that trap.
+        if spec.get("kill_hurts", False):
+            for e in self.bsp.entities:
+                if e["classname"] != "trigger_hurt" or int(e.get("spawnflags", 0)) & 1:
+                    continue
+                if float(e.get("damage", 0) or 0) < 50:
+                    continue
+                for b in self.model_boxes_godot(e):
+                    if b.get("yaw"):
+                        continue
+                    pieces.append({"kind": "kill", "at": b["at"], "size": b["size"], "look": spec.get("kill_look", "none")})
+            self.notes["dropped"].append("%d kill volumes" % sum(1 for p in pieces if p["kind"] == "kill"))
+        for kb in spec.get("kill_boxes", []):
+            # [x0, x1, y0, y1, z0, z1] in source units: a pit the map fills with water or a teleport
+            x0, x1, y0, y1, z0, z1 = kb
+            pieces.append({"kind": "kill", "at": self.gv(((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2)),
+                           "size": [r((x1 - x0) * S), r((z1 - z0) * S), r((y1 - y0) * S)], "look": spec.get("kill_look", "none")})
         traps = []
         for ts in spec["traps"]:
             if ts.get("skip"):
@@ -603,6 +676,8 @@ class Importer:
             "toys": [dict(t, at=self.gv(t["at"])) for t in spec.get("toys", [])],
             "route": [{"at": self.gv(p["at"]), **{k: v for k, v in p.items() if k != "at"}} for p in spec["route"]],
         }
+        if spec.get("walkway"):
+            doc["walkway"] = [{"at": self.gv(p["at"]), **{k: v for k, v in p.items() if k != "at"}} for p in spec["walkway"]]
         return doc
 
 

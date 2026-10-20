@@ -1,0 +1,355 @@
+{
+ "id": "dr_fogtown",
+ "name": "Fog Town",
+ "author_line": "Krypt (GameBanana)",
+ "attribution": "Converted from the map by Krypt (https://gamebanana.com/mods/127180, CC BY-NC-ND 4.0 as listed there). The first stretch of the map only (the course continues on a floor below). Geometry only: boxes and traps rebuilt from the map's brushes and entities, none of the author's textures, models or sounds. Shipped on the strength of credit and removal on request: tell the repository owner and the map is taken out.",
+ "blurb": "A classic deathrun: a course of traps, and the activator watching them.",
+ "origin": [
+  460,
+  -88,
+  44
+ ],
+ "kill_z": -900.0,
+ "kill_hurts": true,
+ "theme": {
+  "sky": [
+   0.55,
+   0.68,
+   0.85
+  ],
+  "horizon": [
+   0.86,
+   0.9,
+   0.95
+  ],
+  "void": [
+   0.08,
+   0.1,
+   0.16
+  ],
+  "sun": [
+   1.0,
+   0.95,
+   0.85
+  ],
+  "deck": [
+   0.74,
+   0.78,
+   0.86
+  ]
+ },
+ "start": {
+  "at": [
+   460,
+   -88,
+   44
+  ],
+  "size": [
+   9,
+   3,
+   8
+  ],
+  "face_toward": [
+   1156.2,
+   -180.6,
+   44.1
+  ]
+ },
+ "activators": {
+  "at": [
+   876,
+   -330,
+   41
+  ],
+  "size": [
+   9,
+   3,
+   6
+  ],
+  "face_toward": [
+   1600,
+   -1700,
+   40
+  ]
+ },
+ "finish": {
+  "at": [
+   1600,
+   -1700,
+   40
+  ],
+  "size": [
+   4,
+   3,
+   4
+  ],
+  "yaw": 0
+ },
+ "end": {
+  "runners": {
+   "at": [
+    1600,
+    -1700,
+    40
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ],
+   "yaw": 180
+  },
+  "activators": {
+   "at": [
+    1600,
+    -1700,
+    40
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ],
+   "yaw": 0
+  }
+ },
+ "route": [
+  {
+   "at": [
+    801.9,
+    -109.7,
+    44.1
+   ]
+  },
+  {
+   "at": [
+    1156.2,
+    -180.6,
+    44.1
+   ]
+  },
+  {
+   "at": [
+    1522.4,
+    -180.6,
+    44.1
+   ]
+  },
+  {
+   "at": [
+    1640.5,
+    -369.5,
+    44.1
+   ]
+  },
+  {
+   "at": [
+    1640.5,
+    -735.7,
+    44.1
+   ]
+  },
+  {
+   "at": [
+    1675.9,
+    -1090.0,
+    44.1
+   ]
+  },
+  {
+   "at": [
+    1664.1,
+    -1444.3,
+    44.1
+   ]
+  },
+  {
+   "at": [
+    1605.0,
+    -1704.2,
+    44.1
+   ]
+  }
+ ],
+ "traps": [
+  {
+   "button": "*3",
+   "id": "t3",
+   "name": "Trap 1",
+   "skip": "does not kill once rebuilt from brushes",
+   "keep": true
+  },
+  {
+   "button": "*4",
+   "id": "t4",
+   "name": "Trap 2",
+   "skip": "button is on the lower floor the course drops to after this stretch, which is not part of this conversion",
+   "keep": true
+  },
+  {
+   "button": "*5",
+   "id": "t5",
+   "name": "Trap 3",
+   "skip": "button is on the lower floor the course drops to after this stretch, which is not part of this conversion",
+   "keep": true
+  },
+  {
+   "button": "*16",
+   "id": "t16",
+   "name": "Trap 4",
+   "skip": "button is on the lower floor the course drops to after this stretch, which is not part of this conversion",
+   "keep": true
+  },
+  {
+   "button": "*33",
+   "id": "t33",
+   "name": "Trap 5"
+  },
+  {
+   "button": "*34",
+   "id": "t34",
+   "name": "Trap 6"
+  },
+  {
+   "button": "*49",
+   "id": "t49",
+   "name": "Trap 7"
+  },
+  {
+   "button": "*50",
+   "id": "t50",
+   "name": "Trap 8"
+  },
+  {
+   "button": "*51",
+   "id": "t51",
+   "name": "Trap 9",
+   "skip": "button is on the lower floor the course drops to after this stretch, which is not part of this conversion",
+   "keep": true
+  },
+  {
+   "button": "*59",
+   "id": "t59",
+   "name": "Trap 10",
+   "skip": "button is on the lower floor the course drops to after this stretch, which is not part of this conversion",
+   "keep": true
+  },
+  {
+   "button": "*60",
+   "id": "t60",
+   "name": "Trap 11"
+  },
+  {
+   "button": "*72",
+   "id": "t72",
+   "name": "Trap 12",
+   "skip": "button is on the lower floor the course drops to after this stretch, which is not part of this conversion",
+   "keep": true
+  },
+  {
+   "button": "*73",
+   "id": "t73",
+   "name": "Trap 13",
+   "skip": "button is on the lower floor the course drops to after this stretch, which is not part of this conversion",
+   "keep": true
+  },
+  {
+   "button": "*93",
+   "id": "t93",
+   "name": "Trap 14"
+  },
+  {
+   "button": "*96",
+   "id": "t96",
+   "name": "Trap 15"
+  },
+  {
+   "button": "*97",
+   "id": "t97",
+   "name": "Trap 16"
+  },
+  {
+   "button": "*105",
+   "id": "t105",
+   "name": "Trap 17",
+   "skip": "button is on the lower floor the course drops to after this stretch, which is not part of this conversion",
+   "keep": true
+  },
+  {
+   "button": "*106",
+   "id": "t106",
+   "name": "Trap 18",
+   "skip": "button is on the lower floor the course drops to after this stretch, which is not part of this conversion",
+   "keep": true
+  }
+ ],
+ "toys": [
+  {
+   "toy": "football",
+   "at": [
+    460,
+    -88,
+    44
+   ]
+  },
+  {
+   "toy": "football",
+   "at": [
+    1480,
+    -1480,
+    40
+   ]
+  },
+  {
+   "toy": "football",
+   "at": [
+    1740,
+    -1500,
+    40
+   ]
+  }
+ ],
+ "static_classes": [
+  "func_breakable"
+ ],
+ "remove": [],
+ "remove_sheets": true,
+ "fill": [
+  [
+   1600,
+   1800,
+   -985,
+   -695,
+   40,
+   8
+  ]
+ ],
+ "walkway": [
+  {
+   "at": [
+    1109.0,
+    -334.1,
+    44.1
+   ]
+  },
+  {
+   "at": [
+    1345.2,
+    -275.0,
+    44.1
+   ],
+   "button": "t49"
+  }
+ ],
+ "unwalkable": [
+  "t72",
+  "t73",
+  "t51",
+  "t4",
+  "t5",
+  "t16",
+  "t59",
+  "t105",
+  "t106"
+ ]
+}

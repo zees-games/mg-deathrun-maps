@@ -1,0 +1,404 @@
+{
+ "id": "dr_aztecan",
+ "name": "Aztecan",
+ "author_line": "n1be (GameBanana)",
+ "attribution": "Converted from deathrun_aztecan_finalb3.bsp by n1be (https://gamebanana.com/mods/126828, CC BY-NC-ND 4.0 as listed there). Geometry only: boxes and traps rebuilt from the map's brushes and entities, none of the author's textures, models or sounds. Shipped on the strength of credit and removal on request: tell the repository owner and the map is taken out.",
+ "blurb": "A classic deathrun: a course of traps, and the activator watching them.",
+ "origin": [
+  376,
+  -914,
+  17
+ ],
+ "kill_z": -800.0,
+ "kill_hurts": true,
+ "theme": {
+  "sky": [
+   0.55,
+   0.68,
+   0.85
+  ],
+  "horizon": [
+   0.86,
+   0.9,
+   0.95
+  ],
+  "void": [
+   0.08,
+   0.1,
+   0.16
+  ],
+  "sun": [
+   1.0,
+   0.95,
+   0.85
+  ],
+  "deck": [
+   0.74,
+   0.78,
+   0.86
+  ]
+ },
+ "start": {
+  "at": [
+   376,
+   -914,
+   17
+  ],
+  "size": [
+   9,
+   3,
+   8
+  ],
+  "face_toward": [
+   396.9,
+   -382.5,
+   19.4
+  ]
+ },
+ "activators": {
+  "at": [
+   541,
+   69,
+   221
+  ],
+  "size": [
+   9,
+   3,
+   6
+  ],
+  "face_toward": [
+   520.0,
+   -420.0,
+   0.0
+  ]
+ },
+ "finish": {
+  "at": [
+   680,
+   -320,
+   16
+  ],
+  "size": [
+   3,
+   3,
+   3
+  ],
+  "yaw": 90
+ },
+ "end": {
+  "runners": {
+   "at": [
+    500,
+    69,
+    221
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ],
+   "yaw": 180
+  },
+  "activators": {
+   "at": [
+    560,
+    69,
+    221
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ],
+   "yaw": 0
+  }
+ },
+ "route": [
+  {
+   "at": [
+    373.2,
+    -559.7,
+    19.4
+   ]
+  },
+  {
+   "at": [
+    396.9,
+    -382.5,
+    19.4
+   ]
+  },
+  {
+   "at": [
+    444.1,
+    -394.4,
+    19.4
+   ]
+  }
+ ],
+ "traps": [
+  {
+   "button": "*1",
+   "id": "t1",
+   "name": "Trap 1"
+  },
+  {
+   "button": "*3",
+   "id": "t3",
+   "name": "Trap 2"
+  },
+  {
+   "button": "*7",
+   "id": "t7",
+   "name": "Trap 3"
+  },
+  {
+   "button": "*9",
+   "id": "t9",
+   "name": "Trap 4"
+  },
+  {
+   "button": "*15",
+   "id": "t15",
+   "name": "Trap 5"
+  },
+  {
+   "button": "*20",
+   "id": "t20",
+   "name": "Trap 6"
+  },
+  {
+   "button": "*22",
+   "id": "t22",
+   "name": "Trap 7"
+  },
+  {
+   "button": "*25",
+   "id": "t25",
+   "name": "Trap 8"
+  },
+  {
+   "button": "*28",
+   "id": "t28",
+   "name": "Trap 9"
+  },
+  {
+   "button": "*34",
+   "id": "t34",
+   "name": "Trap 10"
+  },
+  {
+   "button": "*36",
+   "id": "t36",
+   "name": "Trap 11"
+  },
+  {
+   "button": "*39",
+   "id": "t39",
+   "name": "Trap 12"
+  },
+  {
+   "button": "*42",
+   "id": "t42",
+   "name": "Trap 13"
+  },
+  {
+   "button": "*44",
+   "id": "t44",
+   "name": "Trap 14"
+  },
+  {
+   "button": "*49",
+   "id": "t49",
+   "name": "Trap 15"
+  },
+  {
+   "button": "*52",
+   "id": "t52",
+   "name": "Trap 16"
+  }
+ ],
+ "toys": [],
+ "static": [
+  "breakable1",
+  "breakable1.1",
+  "breakable10",
+  "breakable11",
+  "breakable12",
+  "breakable13",
+  "breakable14",
+  "breakable15",
+  "breakable16",
+  "breakable17",
+  "breakable18",
+  "breakable2",
+  "breakable3",
+  "breakable3.1",
+  "breakable4",
+  "breakable5",
+  "breakable6",
+  "breakable7",
+  "breakable7.1",
+  "breakable8",
+  "breakable8.1",
+  "breakable9",
+  "spawndoor",
+  "end_wall1",
+  "end_wall2",
+  "end_wall3"
+ ],
+ "walkway": [
+  {
+   "at": [
+    302.4,
+    -122.7,
+    192.6
+   ]
+  },
+  {
+   "at": [
+    54.3,
+    -122.7,
+    192.6
+   ]
+  },
+  {
+   "at": [
+    -193.7,
+    -122.7,
+    192.6
+   ]
+  },
+  {
+   "at": [
+    -441.7,
+    -122.7,
+    192.6
+   ]
+  },
+  {
+   "at": [
+    -689.7,
+    -122.7,
+    192.6
+   ]
+  },
+  {
+   "at": [
+    -890.5,
+    -122.7,
+    192.6
+   ],
+   "button": "t1"
+  },
+  {
+   "at": [
+    -654.3,
+    -122.7,
+    192.6
+   ]
+  },
+  {
+   "at": [
+    -406.3,
+    -122.7,
+    192.6
+   ]
+  },
+  {
+   "at": [
+    -359.0,
+    -122.7,
+    192.6
+   ],
+   "button": "t3"
+  },
+  {
+   "at": [
+    -122.8,
+    -122.7,
+    192.6
+   ]
+  },
+  {
+   "at": [
+    125.2,
+    -122.7,
+    192.6
+   ]
+  },
+  {
+   "at": [
+    373.2,
+    -122.7,
+    192.6
+   ]
+  },
+  {
+   "at": [
+    621.3,
+    -122.7,
+    192.6
+   ]
+  },
+  {
+   "at": [
+    869.3,
+    -122.7,
+    192.6
+   ]
+  },
+  {
+   "at": [
+    1117.3,
+    -122.7,
+    192.6
+   ]
+  },
+  {
+   "at": [
+    1259.1,
+    -122.7,
+    192.6
+   ],
+   "button": "t49"
+  },
+  {
+   "at": [
+    1022.9,
+    -122.7,
+    192.6
+   ]
+  },
+  {
+   "at": [
+    774.8,
+    -122.7,
+    192.6
+   ]
+  },
+  {
+   "at": [
+    727.6,
+    -122.7,
+    192.6
+   ],
+   "button": "t52"
+  }
+ ],
+ "unwalkable": [
+  "t7",
+  "t9",
+  "t15",
+  "t20",
+  "t22",
+  "t25",
+  "t39",
+  "t28",
+  "t34",
+  "t36",
+  "t42",
+  "t44"
+ ],
+ "remove_sheets": true
+}
