@@ -27,18 +27,22 @@ What it does, and why:
   motion; `--report` lists what was flattened.
 
 Spec keys beyond the basics (each exists because a real map needed it):
-  static / static_classes  brush entities that are only floor or wall (func_breakable floors)
+  static / static_classes  brush entities that are only floor or wall (func_breakable floors); a class member a live trap moves stays the trap's
   drop                     per trap, entity names that become trapdoors falling 8 units
+  drop_min_m               per trap, leave out drop boxes whose longest side is under this (a round pad's rim)
   skip + keep              skip a trap and say why; "keep" leaves its brushes at rest as geometry
   skip_targets/skip_why    per trap, targets left out (a wall shut over the finish until the last button)
   lethal_all               per trap, every part lethal (a swinging blade)
+  harmless                 per trap, no part lethal (a turning floor whose map gave it hinge damage; a killer is not solid)
+  push_reach               (spec or trap) grow push zones by a player height, so a knee-high wind reaches somebody on the floor
   nodraw_floors            [x0,x1,y0,y1] source rectangles: all-nodraw brushes centred inside are invisible floors, kept
   min_box_m                drop every box whose longest side is under this many metres (rubble, carved blocks), to stay under the piece cap
   remove / remove_sheets   world boxes deleted by source rectangle, or every one-unit doorway sheet
   fill                     [x0,x1,y0,y1,top,thickness(,"ghost")]: a floor patch, or an invisible collider
   stairs                   [sx,sy,ex,ey,top_from,top_to,width]: a flight along one axis where the map teleports
   teleports                [{"model": "*7"} | {"rect": [x0,x1,y0,y1], "to": [x,y,z], "yaw": a}, "top", "thickness"]: a pad that sends on, as the map's trigger_teleport does
-  kill_boxes / kill_hurts  kill volumes; hurts of 50 or more that are always on become kill pieces
+  kill_boxes / kill_hurts  kill volumes; hurts of 50 or more that are always on become kill pieces ("clients": the
+                           spawnflags test read right; `true` is the older, inverted test, see build())
 tools/plan_route.py fills `route`, `walkway` and `unwalkable` from the converted geometry.
 """
 import json
@@ -51,6 +55,7 @@ sys.path.insert(0, HERE)
 import bsp_read  # noqa: E402
 
 S = 0.0254
+PLAYER_H = 1.8  # the game's standing capsule (DrCourse.PLAYER_HEIGHT), for push_reach
 SLAB = 28.0
 
 # author material keyword -> pastel tint (the game draws its own grid under it)
@@ -491,6 +496,11 @@ class Importer:
                     pv = [r(d[0] * sp), r(d[2] * sp), r(-d[1] * sp)]
                     for b in self.model_boxes_godot(e):
                         b.update({"push": pv, "look": "wind"})
+                        if ts.get("push_reach", self.spec.get("push_reach", False)):
+                            # Source pushes whoever's box touches the zone; the game pushes whoever's capsule
+                            # middle is in it. Growing the zone by a player height (half up, half down) makes
+                            # the two the same, so a knee-high wind over a floor still reaches somebody on it.
+                            b["size"][1] = r(b["size"][1] + PLAYER_H)
                         parts.append(b)
                     if closes:
                         timing.setdefault("hold", max(0.5, min(closes) - delay))
@@ -529,6 +539,8 @@ class Importer:
             # a trapdoor the map built out of a teleport or a colour change: the floor itself drops away here
             for e in self.named(nm):
                 for b in self.model_boxes_godot(e):
+                    if max(b["size"]) < ts.get("drop_min_m", 0):
+                        continue   # a round pad's rim of slivers would use up the 32 parts; its square core drops
                     b.update({"move": [0.0, -8.0, 0.0], "lethal": False})
                     parts.append(b)
                 timing.setdefault("out", 0.25)
@@ -545,6 +557,12 @@ class Importer:
             for q in parts:
                 q["lethal"] = True
                 q.setdefault("look", "block")
+        if ts.get("harmless"):
+            # a floor that turns or flips to drop people, whose map gave it crush damage only for
+            # somebody caught in the hinge: lethal parts are not solid here, so it would be no floor at all
+            for q in parts:
+                if not q.get("push"):
+                    q["lethal"] = False
         if len(parts) > 32:
             parts = parts[:32]
             self.notes["flattened"].append("%s: only the first 32 parts kept" % ts["id"])
@@ -585,9 +603,20 @@ class Importer:
         for nm in spec.get("static", []):    # brush entities that are only floor here (never fired)
             for e in self.named(nm):
                 extra += [dict(b, tint=None, invisible=False, top=(b["at"][1] + b["size"][1] / 2) / S + self.o[2]) for b in self.model_boxes_godot(e)]
+        moved = set()                        # a breakable floor a live trap drops is that trap's part; a static copy held the victim up
+        if spec.get("static_classes"):
+            for ts in spec["traps"]:
+                if ts.get("skip"):
+                    continue
+                btn = next((e for e in self.bsp.entities if e.get("model") == ts["button"] and e["classname"] == "func_button"), None)
+                if btn is not None:
+                    for target, inp, _d, ents in self.resolve(self.parse_outputs(btn)):
+                        if target in ts.get("skip_targets", []) or inp not in ("Open", "Toggle", "Start", "Enable", "TurnOn", "Trigger", "Break"):
+                            continue
+                        moved.update(e["model"] for e in ents if e["classname"] == "func_breakable" and e.get("model", "").startswith("*"))
         for cls in spec.get("static_classes", []):   # every brush entity of these classes is floor or wall
             for e in self.bsp.entities:
-                if e["classname"] == cls and e.get("model", "").startswith("*"):
+                if e["classname"] == cls and e.get("model", "").startswith("*") and e["model"] not in moved:
                     extra += [dict(b, tint=None, invisible=False, top=(b["at"][1] + b["size"][1] / 2) / S + self.o[2])
                               for b in self.model_boxes_godot(e)]
         for ts in spec["traps"]:             # a skipped trap with "keep": its brushes stay, at rest, as floor or wall
@@ -682,12 +711,23 @@ class Importer:
         # floor: a `kill` piece. One a button enables starts disabled and belongs to that trap.
         if spec.get("kill_hurts", False):
             for e in self.bsp.entities:
-                if e["classname"] != "trigger_hurt" or int(e.get("spawnflags", 0)) & 1:
+                # spawnflags bit 1 is "clients": a hurt without it kills only physics props (a box the map
+                # drops), and StartDisabled is a key, not a flag. `true` (every map converted before
+                # 2026-10-20's Helix) tests the bit the wrong way round and so keeps almost no hurts;
+                # "clients" reads it right. The older maps keep `true` until each is re-checked.
+                if e["classname"] != "trigger_hurt":
+                    continue
+                flags = int(e.get("spawnflags", 0))
+                if spec["kill_hurts"] == "clients":
+                    if not flags & 1 or e.get("StartDisabled") == "1":
+                        continue
+                elif flags & 1:
                     continue
                 if float(e.get("damage", 0) or 0) < 50:
                     continue
                 for b in self.model_boxes_godot(e):
-                    if b.get("yaw"):
+                    # one wholly under the kill height never meets anybody alive, and only stretches the course's bounds
+                    if b.get("yaw") or b["at"][1] + b["size"][1] / 2 < (spec.get("kill_z", -1e9) - self.o[2]) * S:
                         continue
                     pieces.append({"kind": "kill", "at": b["at"], "size": b["size"], "look": spec.get("kill_look", "none")})
             self.notes["dropped"].append("%d kill volumes" % sum(1 for p in pieces if p["kind"] == "kill"))

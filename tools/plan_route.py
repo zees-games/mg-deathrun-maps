@@ -19,7 +19,7 @@ and searches over them:
 
 Both are written to the spec in SOURCE units (the importer converts them), as hand-editable lists,
 so a path the planner got wrong is a spec edit, not a re-run. A spec whose `route` already says
-`"planned": false` is left alone.
+`"planned": false` is left alone. A spec's `via` (source points) makes the route pass them in order.
 """
 import heapq
 import json
@@ -324,6 +324,23 @@ def compress(grid, path, max_leg=9.0):
     return out
 
 
+def via_points(grid, legs):
+    """Waypoints leg by leg, so every via point is one. A via that lies just past a jump's landing
+    becomes the landing: the first node across a gap is the far floor's edge, and a bot that comes
+    down on the edge of a small pad slides off it, where one aimed at the pad's middle does not."""
+    out = []
+    for leg in legs:
+        pts = compress(grid, leg)
+        if len(pts) >= 2 and pts[-1][0] == leg[-1][0] and not pts[-1][1] and pts[-2][1]:
+            a, b = pts[-2][0], pts[-1][0]
+            if math.hypot(b[0] - a[0], b[1] - a[1]) * H < 2.0 and abs(b[2] - a[2]) <= 1:
+                pts[-2:] = [(b, True)]
+        for p in pts:
+            if not out or out[-1][0] != p[0]:
+                out.append(p)
+    return out
+
+
 def self_line(grid, path, i, j, max_leg):
     a, b = path[i][0], path[j][0]
     d = math.hypot(b[0] - a[0], b[1] - a[1]) * H
@@ -382,7 +399,33 @@ def main(argv):
     if not start or not fin or not act:
         print("start/finish/activators not on a walkable surface:", start, fin, act)
         return 1
-    path = astar(grid, start, fin, False)
+    # `via`: source points the route must pass in order. A map whose runners loop round a hub they
+    # could cut straight across (the activators' plaza is the same floor) is planned leg by leg.
+    # A via written {"at": [x, y, z], "jump": true} is a hand-placed jump: the route runs straight
+    # from the point before it and jumps at the edge, for a take-off the grid search would take
+    # from a corner it had to turn on (no run-up, and the bot falls short).
+    path, cur, legs = [], start, []
+    for v in spec.get("via", []):
+        hand = isinstance(v, dict)
+        node = grid.nearest(imp.gv(v["at"] if hand else v), radius=8)
+        if node is None:
+            print("via point %s is not on a walkable surface" % (v,))
+            return 1
+        if hand and v.get("jump"):
+            path.append((cur, 0))
+            legs.append([(cur, 0), (node, 1)])
+            cur = node
+            continue
+        leg = astar(grid, cur, node, False)
+        if leg is None:
+            print("NO ROUTE to via point %s: %d nodes reachable" % (v, len(astar.last)))
+            return 1
+        path += leg[:-1]
+        legs.append(leg)
+        cur = node
+    leg = astar(grid, cur, fin, False)
+    path = None if leg is None else path + leg
+    legs.append(leg)
     if path is None:
         print("NO ROUTE start -> finish: %d nodes reachable" % len(astar.last))
         w = grid.world(fin)
@@ -405,7 +448,7 @@ def main(argv):
             plt.savefig(os.environ["PLAN_PLOT"], dpi=70)
         print("closest reachable to the finish: source %s (finish %s)" % (to_source(grid, imp, near), to_source(grid, imp, fin)))
         return 1
-    pts = compress(grid, path)
+    pts = compress(grid, path) if len(legs) < 2 else via_points(grid, legs)
     jumps = sum(1 for p in pts if p[1])
     print("route: %d nodes -> %d points, %d jumps, length %.0f m" % (
         len(path), len(pts), jumps, len(path) * H))
