@@ -5,7 +5,7 @@
 	"name": "Internet II",
 	"author": "tuomas (GameBanana)",
 	"attribution": "Converted from deathrun_internet.bsp (the second stage) by tuomas (https://gamebanana.com/mods/127024, CC BY-NC-ND 4.0 as listed there). Geometry only: boxes and traps rebuilt from the map's brushes and entities, none of the author's textures, models or sounds. Shipped on the strength of credit and removal on request: tell the repository owner and the map is taken out.",
-	"blurb": "The second corridor of the space and internet run: the same straight dash, four traps worked from the walkway beside it.",
+	"blurb": "The second corridor of the space and internet run: the same straight dash, two traps worked from the walkway beside it.",
 	"kill_height": -3.124,
 	"round_seconds": 0,
 	"theme": {
