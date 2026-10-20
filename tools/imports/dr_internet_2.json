@@ -1,0 +1,359 @@
+{
+ "id": "dr_internet_2",
+ "name": "Internet II",
+ "author_line": "tuomas (GameBanana)",
+ "attribution": "Converted from deathrun_internet.bsp (the second stage) by tuomas (https://gamebanana.com/mods/127024, CC BY-NC-ND 4.0 as listed there). Geometry only: boxes and traps rebuilt from the map's brushes and entities, none of the author's textures, models or sounds. Shipped on the strength of credit and removal on request: tell the repository owner and the map is taken out.",
+ "blurb": "The second corridor of the space and internet run: the same straight dash, four traps worked from the walkway beside it.",
+ "origin": [
+  -51,
+  764,
+  13
+ ],
+ "kill_z": -110.0,
+ "kill_hurts": true,
+ "theme": {
+  "sky": [
+   0.55,
+   0.68,
+   0.85
+  ],
+  "horizon": [
+   0.86,
+   0.9,
+   0.95
+  ],
+  "void": [
+   0.08,
+   0.1,
+   0.16
+  ],
+  "sun": [
+   1.0,
+   0.95,
+   0.85
+  ],
+  "deck": [
+   0.74,
+   0.78,
+   0.86
+  ]
+ },
+ "start": {
+  "at": [
+   -51,
+   764,
+   13
+  ],
+  "size": [
+   9,
+   3,
+   8
+  ],
+  "face_toward": [
+   664.6,
+   769.4,
+   15.9
+  ]
+ },
+ "activators": {
+  "at": [
+   -62,
+   546,
+   15
+  ],
+  "size": [
+   9,
+   3,
+   6
+  ],
+  "face_toward": [
+   1900,
+   729,
+   4.7
+  ]
+ },
+ "finish": {
+  "at": [
+   1900,
+   734,
+   17
+  ],
+  "size": [
+   4,
+   3,
+   4
+  ],
+  "yaw": 90
+ },
+ "end": {
+  "runners": {
+   "at": [
+    1900,
+    734,
+    17
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ],
+   "yaw": 180
+  },
+  "activators": {
+   "at": [
+    1900,
+    734,
+    17
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ],
+   "yaw": 0
+  }
+ },
+ "route": [
+  {
+   "at": [
+    298.4,
+    769.4,
+    15.9
+   ]
+  },
+  {
+   "at": [
+    664.6,
+    769.4,
+    15.9
+   ]
+  },
+  {
+   "at": [
+    1030.7,
+    769.4,
+    15.9
+   ]
+  },
+  {
+   "at": [
+    1385.0,
+    734.0,
+    23.7
+   ]
+  },
+  {
+   "at": [
+    1751.2,
+    734.0,
+    15.9
+   ]
+  },
+  {
+   "at": [
+    1904.7,
+    734.0,
+    15.9
+   ]
+  }
+ ],
+ "traps": [
+  {
+   "button": "*6",
+   "id": "t6",
+   "name": "Trap 1",
+   "skip": "belongs to another stage of the map"
+  },
+  {
+   "button": "*7",
+   "id": "t7",
+   "name": "Trap 2",
+   "skip": "belongs to another stage of the map"
+  },
+  {
+   "button": "*9",
+   "id": "t9",
+   "name": "Trap 3",
+   "skip": "belongs to another stage of the map"
+  },
+  {
+   "button": "*11",
+   "id": "t11",
+   "name": "Trap 4",
+   "skip": "belongs to another stage of the map"
+  },
+  {
+   "button": "*17",
+   "id": "t17",
+   "name": "Trap 5",
+   "skip": "belongs to another stage of the map"
+  },
+  {
+   "button": "*23",
+   "id": "t23",
+   "name": "Trap 6",
+   "skip": "an updraft with no roof and no hurt volume in this part: the victim is flung kilometres up and never dies (the map's own kill zone is not read)",
+   "keep": true
+  },
+  {
+   "button": "*27",
+   "id": "t27",
+   "name": "Trap 7"
+  },
+  {
+   "button": "*32",
+   "id": "t32",
+   "name": "Trap 8",
+   "skip": "a sideways gust along the floor, and its two lethal rotors turn about a horizontal axis the importer cannot move: the gust alone never kills"
+  },
+  {
+   "button": "*37",
+   "id": "t37",
+   "name": "Trap 9"
+  },
+  {
+   "button": "*39",
+   "id": "t39",
+   "name": "Trap 10",
+   "skip": "belongs to another stage of the map"
+  },
+  {
+   "button": "*42",
+   "id": "t42",
+   "name": "Trap 11",
+   "skip": "belongs to another stage of the map"
+  },
+  {
+   "button": "*45",
+   "id": "t45",
+   "name": "Trap 12",
+   "skip": "belongs to another stage of the map"
+  },
+  {
+   "button": "*48",
+   "id": "t48",
+   "name": "Trap 13",
+   "skip": "belongs to another stage of the map"
+  },
+  {
+   "button": "*52",
+   "id": "t52",
+   "name": "Trap 14",
+   "skip": "belongs to another stage of the map"
+  },
+  {
+   "button": "*57",
+   "id": "t57",
+   "name": "Trap 15",
+   "skip": "belongs to another stage of the map"
+  },
+  {
+   "button": "*58",
+   "id": "t58",
+   "name": "Trap 16",
+   "skip": "belongs to another stage of the map"
+  },
+  {
+   "button": "*59",
+   "id": "t59",
+   "name": "Trap 17",
+   "skip": "belongs to another stage of the map"
+  },
+  {
+   "button": "*60",
+   "id": "t60",
+   "name": "Trap 18",
+   "skip": "belongs to another stage of the map"
+  }
+ ],
+ "toys": [
+  {
+   "toy": "football",
+   "at": [
+    1800,
+    745,
+    24
+   ]
+  },
+  {
+   "toy": "football",
+   "at": [
+    1800,
+    715,
+    24
+   ]
+  }
+ ],
+ "walkway": [
+  {
+   "at": [
+    168.5,
+    545.0,
+    15.9
+   ]
+  },
+  {
+   "at": [
+    227.5,
+    580.4,
+    15.9
+   ],
+   "button": "t37"
+  },
+  {
+   "at": [
+    452.0,
+    545.0,
+    15.9
+   ]
+  },
+  {
+   "at": [
+    700.0,
+    545.0,
+    15.9
+   ]
+  },
+  {
+   "at": [
+    948.0,
+    545.0,
+    15.9
+   ]
+  },
+  {
+   "at": [
+    1054.3,
+    580.4,
+    15.9
+   ],
+   "button": "t27"
+  }
+ ],
+ "fill": [
+  [
+   1882,
+   1918,
+   650,
+   808,
+   159.2,
+   52,
+   "ghost"
+  ]
+ ],
+ "remove": [
+  [
+   -500,
+   3000,
+   -1000,
+   400
+  ],
+  [
+   -500,
+   3000,
+   1000,
+   6000
+  ]
+ ],
+ "unwalkable": []
+}

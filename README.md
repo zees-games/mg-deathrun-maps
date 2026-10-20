@@ -16,6 +16,7 @@ Every course is a **JSON document**, not a scene. A server reads the documents i
 | `dr_sections` (Sections) | Converted from the community map `deathrun_sections_fix` (see below): six rooms in a row, lasers, a falling floor and a sinking floor, a very long run |
 | `dr_aztecan` (Sunstone Causeway) | A sandstone causeway over a pit: a ring of deck tiles with four traps, converted from the community map `deathrun_aztecan_finalb3` by n1be ([GameBanana 126828](https://gamebanana.com/mods/126828)); credit and removal on request, as below |
 | `dr_internet` (Internet) | A space and internet themed run down one long straight corridor with four traps worked from the walkway beside it, converted from the community map `deathrun_internet` by tuomas ([GameBanana 127024](https://gamebanana.com/mods/127024), CC BY-NC-ND 4.0 as listed); credit and removal on request, as below |
+| `dr_internet_2` (Internet II) | The second corridor of the same community map `deathrun_internet` by tuomas ([GameBanana 127024](https://gamebanana.com/mods/127024), CC BY-NC-ND 4.0 as listed): the same straight dash with two traps worked from the walkway beside it; credit and removal on request, as below |
 
 ### Converted community maps
 
