@@ -2,8 +2,8 @@
  "id": "dr_fogtown",
  "name": "Fog Town",
  "author_line": "Krypt (GameBanana)",
- "attribution": "Converted from the map by Krypt (https://gamebanana.com/mods/127180, CC BY-NC-ND 4.0 as listed there). The first stretch of the map only (the course continues on a floor below). Geometry only: boxes and traps rebuilt from the map's brushes and entities, none of the author's textures, models or sounds. Shipped on the strength of credit and removal on request: tell the repository owner and the map is taken out.",
- "blurb": "A classic deathrun: a course of traps, and the activator watching them.",
+ "attribution": "Converted from the map by Krypt (https://gamebanana.com/mods/127180, CC BY-NC-ND 4.0 as listed there). The whole run, shaft and lower floor included; the water pits and ladders became plank floors, and the cage of the activators beside the start was dropped for a seat at the shaft. Geometry only: boxes and traps rebuilt from the map's brushes and entities, none of the author's textures, models or sounds. Shipped on the strength of credit and removal on request: tell the repository owner and the map is taken out.",
+ "blurb": "A foggy town of traps: drop down the shaft and run the lower floor, the activator working axes, lasers and falling floors behind you.",
  "origin": [
   460,
   -88,
@@ -51,16 +51,16 @@
    8
   ],
   "face_toward": [
-   1156.2,
-   -180.6,
+   1179.8,
+   -86.1,
    44.1
   ]
  },
  "activators": {
   "at": [
-   876,
-   -330,
-   41
+   1676,
+   -1860,
+   40
   ],
   "size": [
    9,
@@ -68,110 +68,52 @@
    6
   ],
   "face_toward": [
-   1600,
-   -1700,
-   40
+   -1590,
+   -805,
+   -597
   ]
  },
  "finish": {
   "at": [
-   1600,
-   -1700,
-   40
+   -1590,
+   -805,
+   -597
   ],
   "size": [
-   4,
+   3.4,
    3,
-   4
+   3
   ],
-  "yaw": 0
+  "yaw": 90
  },
  "end": {
   "runners": {
    "at": [
-    1600,
-    -1700,
-    40
+    435,
+    -3040,
+    -35
    ],
    "size": [
+    8,
     3,
-    3,
-    8
+    3
    ],
-   "yaw": 180
+   "yaw": 0
   },
   "activators": {
    "at": [
-    1600,
-    -1700,
-    40
+    441,
+    -2300,
+    -35
    ],
    "size": [
+    8,
     3,
-    3,
-    8
+    3
    ],
-   "yaw": 0
+   "yaw": 180
   }
  },
- "route": [
-  {
-   "at": [
-    801.9,
-    -109.7,
-    44.1
-   ]
-  },
-  {
-   "at": [
-    1156.2,
-    -180.6,
-    44.1
-   ]
-  },
-  {
-   "at": [
-    1522.4,
-    -180.6,
-    44.1
-   ]
-  },
-  {
-   "at": [
-    1640.5,
-    -369.5,
-    44.1
-   ]
-  },
-  {
-   "at": [
-    1640.5,
-    -735.7,
-    44.1
-   ]
-  },
-  {
-   "at": [
-    1675.9,
-    -1090.0,
-    44.1
-   ]
-  },
-  {
-   "at": [
-    1664.1,
-    -1444.3,
-    44.1
-   ]
-  },
-  {
-   "at": [
-    1605.0,
-    -1704.2,
-    44.1
-   ]
-  }
- ],
  "traps": [
   {
    "button": "*3",
@@ -183,23 +125,17 @@
   {
    "button": "*4",
    "id": "t4",
-   "name": "Trap 2",
-   "skip": "button is on the lower floor the course drops to after this stretch, which is not part of this conversion",
-   "keep": true
+   "name": "Trap 2"
   },
   {
    "button": "*5",
    "id": "t5",
-   "name": "Trap 3",
-   "skip": "button is on the lower floor the course drops to after this stretch, which is not part of this conversion",
-   "keep": true
+   "name": "Trap 3"
   },
   {
    "button": "*16",
    "id": "t16",
-   "name": "Trap 4",
-   "skip": "button is on the lower floor the course drops to after this stretch, which is not part of this conversion",
-   "keep": true
+   "name": "Trap 4"
   },
   {
    "button": "*33",
@@ -214,7 +150,8 @@
   {
    "button": "*49",
    "id": "t49",
-   "name": "Trap 7"
+   "name": "Trap 7",
+   "skip": "its button is in the activators cage beside the start, which cannot be left on foot here"
   },
   {
    "button": "*50",
@@ -225,15 +162,12 @@
    "button": "*51",
    "id": "t51",
    "name": "Trap 9",
-   "skip": "button is on the lower floor the course drops to after this stretch, which is not part of this conversion",
-   "keep": true
+   "skip": "its button is on a balcony above the shaft that cannot be reached on foot"
   },
   {
    "button": "*59",
    "id": "t59",
-   "name": "Trap 10",
-   "skip": "button is on the lower floor the course drops to after this stretch, which is not part of this conversion",
-   "keep": true
+   "name": "Trap 10"
   },
   {
    "button": "*60",
@@ -243,16 +177,12 @@
   {
    "button": "*72",
    "id": "t72",
-   "name": "Trap 12",
-   "skip": "button is on the lower floor the course drops to after this stretch, which is not part of this conversion",
-   "keep": true
+   "name": "Trap 12"
   },
   {
    "button": "*73",
    "id": "t73",
-   "name": "Trap 13",
-   "skip": "button is on the lower floor the course drops to after this stretch, which is not part of this conversion",
-   "keep": true
+   "name": "Trap 13"
   },
   {
    "button": "*93",
@@ -273,14 +203,14 @@
    "button": "*105",
    "id": "t105",
    "name": "Trap 17",
-   "skip": "button is on the lower floor the course drops to after this stretch, which is not part of this conversion",
+   "skip": "a ladder rung that breaks; the course has no ladders",
    "keep": true
   },
   {
    "button": "*106",
    "id": "t106",
    "name": "Trap 18",
-   "skip": "button is on the lower floor the course drops to after this stretch, which is not part of this conversion",
+   "skip": "a ladder rung that breaks; the course has no ladders",
    "keep": true
   }
  ],
@@ -311,9 +241,41 @@
   }
  ],
  "static_classes": [
-  "func_breakable"
+  "func_breakable",
+  "func_physbox"
  ],
- "remove": [],
+ "remove": [
+  [
+   1600,
+   1800,
+   -1913,
+   -1900
+  ],
+  [
+   -700,
+   -650,
+   -2090,
+   -2045
+  ],
+  [
+   -860,
+   -620,
+   -1060,
+   -1030
+  ],
+  [
+   1597,
+   1605,
+   -2750,
+   -2300
+  ],
+  [
+   -258,
+   -238,
+   -3898,
+   -3878
+  ]
+ ],
  "remove_sheets": true,
  "fill": [
   [
@@ -323,34 +285,604 @@
    -695,
    40,
    8
+  ],
+  [
+   -215,
+   215,
+   -4300,
+   -4040,
+   -574,
+   8
+  ],
+  [
+   -1100,
+   -150,
+   -2125,
+   -2030,
+   -586,
+   8
+  ],
+  [
+   -1010,
+   -480,
+   -2060,
+   -1015,
+   -586,
+   8
+  ],
+  [
+   -1480,
+   -1240,
+   -880,
+   -735,
+   -586,
+   8
   ]
  ],
- "walkway": [
+ "unwalkable": [],
+ "max_drop_m": 24,
+ "walkway_drops": true,
+ "route": [
   {
    "at": [
-    1109.0,
-    -334.1,
+    813.7,
+    -86.1,
     44.1
    ]
   },
   {
    "at": [
-    1345.2,
-    -275.0,
+    1179.8,
+    -86.1,
     44.1
-   ],
-   "button": "t49"
+   ]
+  },
+  {
+   "at": [
+    1498.7,
+    -133.3,
+    44.1
+   ]
+  },
+  {
+   "at": [
+    1640.5,
+    -357.7,
+    44.1
+   ]
+  },
+  {
+   "at": [
+    1640.5,
+    -723.9,
+    44.1
+   ]
+  },
+  {
+   "at": [
+    1675.9,
+    -1078.2,
+    44.1
+   ]
+  },
+  {
+   "at": [
+    1675.9,
+    -1444.3,
+    44.1
+   ]
+  },
+  {
+   "at": [
+    1675.9,
+    -1810.5,
+    44.1
+   ]
+  },
+  {
+   "at": [
+    1675.9,
+    -1940.4,
+    44.1
+   ]
+  },
+  {
+   "at": [
+    1664.1,
+    -2294.7,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    1664.1,
+    -2660.9,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    1664.1,
+    -3027.0,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    1664.1,
+    -3393.2,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    1664.1,
+    -3759.3,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    1652.3,
+    -4113.6,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    1557.8,
+    -4149.1,
+    -577.9
+   ]
+  },
+  {
+   "at": [
+    1191.7,
+    -4149.1,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    825.5,
+    -4149.1,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    459.4,
+    -4149.1,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    105.0,
+    -4125.4,
+    -570.0
+   ]
+  },
+  {
+   "at": [
+    -131.2,
+    -4078.2,
+    -554.3
+   ]
+  },
+  {
+   "at": [
+    -202.0,
+    -4019.1,
+    -554.3
+   ]
+  },
+  {
+   "at": [
+    -438.3,
+    -3948.3,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -792.6,
+    -3912.8,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -804.4,
+    -3546.7,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -804.4,
+    -3180.6,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -816.2,
+    -2979.8,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -887.1,
+    -2932.5,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -887.1,
+    -2566.4,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -851.7,
+    -2212.1,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -721.7,
+    -2046.7,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    -816.2,
+    -1822.3,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    -816.2,
+    -1456.1,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    -816.2,
+    -1090.0,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    -863.5,
+    -818.4,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -1229.6,
+    -818.4,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -1583.9,
+    -818.4,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -1595.7,
+    -806.5,
+    -593.7
+   ]
   }
  ],
- "unwalkable": [
-  "t72",
-  "t73",
-  "t51",
-  "t4",
-  "t5",
-  "t16",
-  "t59",
-  "t105",
-  "t106"
+ "walkway": [
+  {
+   "at": [
+    1675.9,
+    -1940.4,
+    44.1
+   ]
+  },
+  {
+   "at": [
+    1628.7,
+    -2176.6,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    1581.4,
+    -2259.3,
+    -585.8
+   ],
+   "button": "t4"
+  },
+  {
+   "at": [
+    1581.4,
+    -2495.5,
+    -585.8
+   ],
+   "button": "t5"
+  },
+  {
+   "at": [
+    1581.4,
+    -2731.7,
+    -585.8
+   ],
+   "button": "t59"
+  },
+  {
+   "at": [
+    1664.1,
+    -2944.3,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    1664.1,
+    -3192.4,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    1664.1,
+    -3440.4,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    1664.1,
+    -3688.4,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    1664.1,
+    -3936.5,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    1616.9,
+    -4149.1,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    1368.8,
+    -4149.1,
+    -577.9
+   ]
+  },
+  {
+   "at": [
+    1120.8,
+    -4149.1,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    872.8,
+    -4149.1,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    624.7,
+    -4149.1,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    376.7,
+    -4149.1,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    140.5,
+    -4137.3,
+    -570.0
+   ]
+  },
+  {
+   "at": [
+    -95.7,
+    -4113.6,
+    -554.3
+   ]
+  },
+  {
+   "at": [
+    -202.0,
+    -4019.1,
+    -554.3
+   ]
+  },
+  {
+   "at": [
+    -414.6,
+    -3912.8,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -509.1,
+    -3865.6,
+    -593.7
+   ],
+   "button": "t16"
+  },
+  {
+   "at": [
+    -721.7,
+    -3948.3,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -804.4,
+    -3842.0,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -804.4,
+    -3593.9,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -804.4,
+    -3345.9,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -804.4,
+    -3097.9,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -816.2,
+    -2979.8,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -887.1,
+    -2932.5,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -887.1,
+    -2684.5,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -887.1,
+    -2436.5,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -839.8,
+    -2200.2,
+    -593.7
+   ]
+  },
+  {
+   "at": [
+    -733.5,
+    -2046.7,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    -733.5,
+    -1798.7,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    -733.5,
+    -1550.6,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    -733.5,
+    -1302.6,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    -721.7,
+    -1066.4,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    -674.5,
+    -1042.8,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    -615.4,
+    -1066.4,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    -603.6,
+    -1314.4,
+    -585.8
+   ]
+  },
+  {
+   "at": [
+    -639.1,
+    -1550.6,
+    -585.8
+   ],
+   "button": "t72"
+  },
+  {
+   "at": [
+    -639.1,
+    -1527.0,
+    -585.8
+   ],
+   "button": "t73"
+  }
  ]
 }

@@ -39,7 +39,8 @@ V = 0.2            # vertical layer, m
 HEAD = 9           # layers a standing person needs free (1.8 m)
 STEP = 2           # walk step in layers (0.4 m)
 JUMP_UP = 5        # jump-up in layers (1.0 m)
-DROP = 21          # drop in layers (4.2 m; there is no fall damage)
+DROP = 21          # drop in layers (4.2 m; there is no fall damage); a spec's `max_drop_m` raises it (a shaft the map hands people down by teleport)
+WALK_DROPS = False  # a spec's `walkway_drops`: the activators fall down the same shaft (walking off a ledge is a walk)
 GAP = 14           # a running jump over a gap, in cells (4.2 m; a flat jump carries about 4.8 m)
 DIRS = [(1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)]
 
@@ -172,9 +173,17 @@ class Grid:
                 else:
                     yield (x2, z2, step), (math.hypot(dx, dz) * H + abs(step - y) * V + (0.6 if self.edge[x2, z2, step] else 0.0)), 0
                     continue
-            if walk_only:
-                continue
             dist = math.hypot(dx, dz) * H
+            if walk_only and not WALK_DROPS:
+                continue
+            if walk_only:
+                lo = max(1, y - DROP)
+                ys = np.nonzero(self.node[x2, z2, lo:y - STEP])[0] if 0 <= x2 < self.nx and 0 <= z2 < self.nz else []
+                if len(ys) and not diag:
+                    land = int(ys[-1] + lo)
+                    if not self.occ[x2, z2, land:y + HEAD].any():
+                        yield (x2, z2, land), dist + 1.0 + (y - land) * V * 0.8, 0
+                continue
             # jump up
             up = self.column_node(x2, z2, y + STEP + 1, y + JUMP_UP)
             if up is not None and not self.occ[x2, z2, y + 1:y + HEAD + 1].any():
@@ -314,6 +323,9 @@ def main(argv):
     bsp = bsp_read.Bsp(args[0]).load()
     spec_path = args[1]
     spec = json.load(open(spec_path))
+    global DROP, WALK_DROPS
+    DROP = int(spec.get("max_drop_m", DROP * V) / V)
+    WALK_DROPS = bool(spec.get("walkway_drops", False))
     imp = C.Importer(bsp, spec)
     doc = imp.build()
     grid = Grid(doc, doc["kill_height"])

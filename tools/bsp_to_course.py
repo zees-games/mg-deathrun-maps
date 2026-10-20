@@ -34,6 +34,7 @@ Spec keys beyond the basics (each exists because a real map needed it):
   lethal_all               per trap, every part lethal (a swinging blade)
   remove / remove_sheets   world boxes deleted by source rectangle, or every one-unit doorway sheet
   fill                     [x0,x1,y0,y1,top,thickness(,"ghost")]: a floor patch, or an invisible collider
+  stairs                   [sx,sy,ex,ey,top_from,top_to,width]: a flight along one axis where the map teleports
   kill_boxes / kill_hurts  kill volumes; hurts of 50 or more that are always on become kill pieces
 tools/plan_route.py fills `route`, `walkway` and `unwalkable` from the converted geometry.
 """
@@ -581,6 +582,29 @@ class Importer:
                           "size": [r((x1 - x0) * S), r(th * S), r((y1 - y0) * S)],
                           "tint": None, "invisible": ghost, "top": top})
             self.notes["flattened"].append("%s over %d..%d" % ("collider" if ghost else "floor patch", y0, y1))
+        for st in spec.get("stairs", []):     # a flight the map does not have (it teleports): [sx, sy, ex, ey, top_from, top_to, width]
+            sx, sy, ex, ey, t0, t1, wd = st[:7]
+            assert sx == ex or sy == ey, "stairs run along one axis"
+            run = abs(ex - sx) + abs(ey - sy)
+            n = max(1, int(math.ceil(abs(t1 - t0) * S / 0.3)))       # 0.3 m risers: the controller steps 0.4 m
+            tread = run / n
+            if tread * S < 0.45:
+                self.notes["not portable"].append("stairs %s: treads of %.2f m are too short to walk" % (st[:4], tread * S))
+            ux, uy = ((ex > sx) - (ex < sx), (ey > sy) - (ey < sy))
+            for i in range(n):
+                top = t0 + (t1 - t0) * (i + 1) / n
+                a0, a1 = i * tread, (i + 1) * tread
+                if ux:
+                    xa, xb = sorted((sx + ux * a0, sx + ux * a1))
+                    ya, yb = sy - wd / 2, sy + wd / 2
+                else:
+                    ya, yb = sorted((sy + uy * a0, sy + uy * a1))
+                    xa, xb = sx - wd / 2, sx + wd / 2
+                th = 0.5 / S
+                extra.append({"at": self.gv(((xa + xb) / 2, (ya + yb) / 2, top - th / 2)),
+                              "size": [r((xb - xa) * S), r(th * S), r((yb - ya) * S)],
+                              "tint": None, "invisible": False, "top": top})
+            self.notes["flattened"].append("stairs of %d steps" % n)
         boxes = self.merge(self.world_boxes() + extra)
         # the panel a button is bolted to: small world brushes right around it. The activator walks
         # straight at the button and the game draws its own, so a panel only gets in the way.
