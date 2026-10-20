@@ -379,7 +379,7 @@ def to_source(grid, imp, node):
     sx, sy, sz = round(gx / C.S + o[0], 1), round(-gz / C.S + o[1], 1), round(gy / C.S + o[2], 1)
     for f in imp.spec.get("folds", []):         # a folded level's points go back where the map has them
         x0, x1, y0, y1 = f["xy"]
-        if x0 <= sx <= x1 and y0 <= sy <= y1:
+        if x0 <= sx <= x1 and y0 <= sy <= y1 and sz >= f.get("min_z", -1e9):    # `min_z` (after the move): a level stacked ABOVE another shares its footprint
             return [sx, sy, round(sz - f["dz"], 1)]
     return [sx, sy, sz]
 

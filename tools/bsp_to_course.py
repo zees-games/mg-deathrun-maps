@@ -43,7 +43,7 @@ Spec keys beyond the basics (each exists because a real map needed it):
   stairs                   [sx,sy,ex,ey,top_from,top_to,width]: a flight along one axis where the map teleports
   teleports                [{"model": "*7"} | {"rect": [x0,x1,y0,y1], "to": [x,y,z], "yaw": a}, "top", "thickness"]: a pad that sends on, as the map's trigger_teleport does;
                            an entry may add "volume": true (the trigger's own box, not a floor pad), "keep": true (velocity goes through), "for": "runners"|"activators"
-  folds                    [{"below_z": -1500, "dz": 3000, "xy": [x0,x1,y0,y1]}]: levels stacked kilometres apart (reached by teleport) are moved onto one
+  folds                    [{"below_z": -1500, "dz": 3000, "xy": [x0,x1,y0,y1], "min_z": z}]: levels stacked kilometres apart (reached by teleport) are moved onto one
                            height, so the planner's grid is a floor plan and not a tower; see Importer.fold
   teleports_auto           true: every trigger_teleport with a brush model and an info_teleport_destination becomes a trigger volume (`teleport`, solid false) at the
                            trigger's own bounds, destination origin and yaw read from the entities; "teleports_skip" ["*7", ...] leaves models out (the trap floors
@@ -214,7 +214,8 @@ class Importer:
         one height so the planner's voxel grid is a floor plan and not a tower. Each is {"below_z": z, "dz": d, "xy": [x0,x1,y0,y1]}:
         a source point lower than below_z moves up by d; `xy` is that level's footprint after the move, which is how the
         planner tells which level a point of the grid belongs to when it writes its route back in source units (the
-        footprints must not overlap). Teleports, buttons, routes and every box go through g(), so they move together."""
+        footprints must not overlap, or the folded level is stacked clear above the other, a big `dz`, and says `min_z`, the lowest
+        height it has after the move). Teleports, buttons, routes and every box go through g(), so they move together."""
         for f in self.spec.get("folds", []):
             if p[2] < f["below_z"]:
                 return (p[0], p[1], p[2] + f["dz"])
@@ -702,7 +703,12 @@ class Importer:
             # source z: a skybox model, a hidden room or a bonus level parked high above the course would otherwise
             # stretch the planner's grid (and the overview's bounds) by kilometres
             ceiling = (spec["drop_above_z"] - self.o[2]) * S
-            boxes = [b for b in boxes if b["at"][1] <= ceiling]
+            # a folded level that is stacked above (`min_z`) is the map's own, not a skybox: it stays
+            floors = [f for f in spec.get("folds", []) if "min_z" in f]
+            def own_level(b):
+                x, y, z = b["at"][0] / S + self.o[0], -b["at"][2] / S + self.o[1], b["at"][1] / S + self.o[2]
+                return any(f["xy"][0] <= x <= f["xy"][1] and f["xy"][2] <= y <= f["xy"][3] and z >= f["min_z"] for f in floors)
+            boxes = [b for b in boxes if b["at"][1] <= ceiling or own_level(b)]
         if spec.get("remove_sheets"):
             # one-unit sheets across a doorway (a pane the map breaks or opens by script) are walls here: every one goes
             def sheet(b):
