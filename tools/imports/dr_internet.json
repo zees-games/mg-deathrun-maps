@@ -3,7 +3,7 @@
  "name": "Internet",
  "author_line": "tuomas (GameBanana)",
  "attribution": "Converted from deathrun_internet.bsp by tuomas (https://gamebanana.com/mods/127024, CC BY-NC-ND 4.0 as listed there). Geometry only: boxes and traps rebuilt from the map's brushes and entities, none of the author's textures, models or sounds. Shipped on the strength of credit and removal on request: tell the repository owner and the map is taken out.",
- "blurb": "A space and internet themed run down one long straight corridor, five traps worked from the activator walkway beside it.",
+ "blurb": "A space and internet themed run down one long straight corridor, four traps worked from the activator walkway beside it.",
  "origin": [
   55,
   -6,
