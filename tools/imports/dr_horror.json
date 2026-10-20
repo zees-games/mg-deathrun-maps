@@ -10,7 +10,7 @@
   66
  ],
  "kill_z": -300.0,
- "kill_hurts": true,
+ "kill_hurts": "clients",
  "theme": {
   "sky": [
    0.2,

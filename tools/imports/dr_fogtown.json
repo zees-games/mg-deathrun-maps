@@ -10,7 +10,7 @@
   44
  ],
  "kill_z": -900.0,
- "kill_hurts": true,
+ "kill_hurts": "clients",
  "theme": {
   "sky": [
    0.42,
@@ -884,5 +884,8 @@
    ],
    "button": "t73"
   }
+ ],
+ "skip_hurts": [
+  "*70"
  ]
 }

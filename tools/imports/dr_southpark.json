@@ -10,7 +10,7 @@
   73
  ],
  "kill_z": 0.0,
- "kill_hurts": true,
+ "kill_hurts": "clients",
  "theme": {
   "sky": [
    0.5,
@@ -479,5 +479,8 @@
    12,
    "ghost"
   ]
+ ],
+ "skip_hurts": [
+  "*1"
  ]
 }

@@ -37,10 +37,13 @@ Spec keys beyond the basics (each exists because a real map needed it):
   push_reach               (spec or trap) grow push zones by a player height, so a knee-high wind reaches somebody on the floor
   nodraw_floors            [x0,x1,y0,y1] source rectangles: all-nodraw brushes centred inside are invisible floors, kept
   min_box_m                drop every box whose longest side is under this many metres (rubble, carved blocks), to stay under the piece cap
+  drop_above_z             source z: boxes whose centre is higher are dropped (a skybox or bonus level parked far above)
   remove / remove_sheets   world boxes deleted by source rectangle, or every one-unit doorway sheet
   fill                     [x0,x1,y0,y1,top,thickness(,"ghost")]: a floor patch, or an invisible collider
   stairs                   [sx,sy,ex,ey,top_from,top_to,width]: a flight along one axis where the map teleports
   teleports                [{"model": "*7"} | {"rect": [x0,x1,y0,y1], "to": [x,y,z], "yaw": a}, "top", "thickness"]: a pad that sends on, as the map's trigger_teleport does
+  skip_hurts               ["*1", ...]: trigger_hurt models not to make kill pieces (one that lies along the path the map
+                           walks, because the map's own entities never let it fire there)
   kill_boxes / kill_hurts  kill volumes; hurts of 50 or more that are always on become kill pieces ("clients": the
                            spawnflags test read right; `true` is the older, inverted test, see build())
 tools/plan_route.py fills `route`, `walkway` and `unwalkable` from the converted geometry.
@@ -677,6 +680,11 @@ class Importer:
             return any(x0 <= sx <= x1 and y0 <= sy <= y1 for x0, x1, y0, y1 in gone)
         if gone:
             boxes = [b for b in boxes if not removed(b)]
+        if "drop_above_z" in spec:
+            # source z: a skybox model, a hidden room or a bonus level parked high above the course would otherwise
+            # stretch the planner's grid (and the overview's bounds) by kilometres
+            ceiling = (spec["drop_above_z"] - self.o[2]) * S
+            boxes = [b for b in boxes if b["at"][1] <= ceiling]
         if spec.get("remove_sheets"):
             # one-unit sheets across a doorway (a pane the map breaks or opens by script) are walls here: every one goes
             def sheet(b):
@@ -715,7 +723,7 @@ class Importer:
                 # drops), and StartDisabled is a key, not a flag. `true` (every map converted before
                 # 2026-10-20's Helix) tests the bit the wrong way round and so keeps almost no hurts;
                 # "clients" reads it right. The older maps keep `true` until each is re-checked.
-                if e["classname"] != "trigger_hurt":
+                if e["classname"] != "trigger_hurt" or e.get("model") in spec.get("skip_hurts", []):
                     continue
                 flags = int(e.get("spawnflags", 0))
                 if spec["kill_hurts"] == "clients":

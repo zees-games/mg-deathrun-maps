@@ -1,0 +1,411 @@
+{
+	"id": "dr_family_guy",
+	"name": "Quahog Run",
+	"author_line": "Severn7 and Matasume (GameBanana)",
+	"attribution": "Converted from deathrun_family_guy_final2.bsp by Severn7 and Matasume (https://gamebanana.com/mods/126959, CC BY-NC-ND 4.0 as listed there). Geometry only: boxes and traps rebuilt from the map's brushes and entities, none of the author's textures, models or sounds. Shipped on the strength of credit and removal on request: tell the repository owner and the map is taken out.",
+	"blurb": "A classic deathrun: a course of traps, and the activator watching them.",
+	"origin": [
+		-120,
+		39,
+		16
+	],
+	"kill_z": -300.0,
+	"kill_hurts": "clients",
+	"theme": {
+		"sky": [
+			0.55,
+			0.68,
+			0.85
+		],
+		"horizon": [
+			0.86,
+			0.9,
+			0.95
+		],
+		"void": [
+			0.08,
+			0.1,
+			0.16
+		],
+		"sun": [
+			1.0,
+			0.95,
+			0.85
+		],
+		"deck": [
+			0.74,
+			0.78,
+			0.86
+		]
+	},
+	"start": {
+		"at": [
+			-120,
+			39,
+			16
+		],
+		"size": [
+			9,
+			3,
+			8
+		],
+		"face_toward": [
+			15.0,
+			-644.9,
+			7.1
+		]
+	},
+	"activators": {
+		"at": [
+			160,
+			-608,
+			80
+		],
+		"size": [
+			9,
+			3,
+			6
+		],
+		"face_toward": [
+			2282,
+			-2330,
+			7.1
+		]
+	},
+	"finish": {
+		"at": [
+			2282,
+			-2330,
+			7.1
+		],
+		"size": [
+			4,
+			3,
+			4
+		],
+		"yaw": 0
+	},
+	"end": {
+		"runners": {
+			"at": [
+				2282,
+				-2270,
+				7.1
+			],
+			"size": [
+				3,
+				3,
+				8
+			],
+			"yaw": 180
+		},
+		"activators": {
+			"at": [
+				2282,
+				-2330,
+				7.1
+			],
+			"size": [
+				3,
+				3,
+				8
+			],
+			"yaw": 0
+		}
+	},
+	"route": [
+		{
+			"at": [
+				15.0,
+				-278.8,
+				7.1
+			]
+		},
+		{
+			"at": [
+				15.0,
+				-644.9,
+				7.1
+			]
+		},
+		{
+			"at": [
+				15.0,
+				-1011.0,
+				7.1
+			]
+		},
+		{
+			"at": [
+				15.0,
+				-1377.2,
+				7.1
+			]
+		},
+		{
+			"at": [
+				251.2,
+				-1637.0,
+				7.1
+			]
+		},
+		{
+			"at": [
+				511.0,
+				-1896.9,
+				7.1
+			]
+		},
+		{
+			"at": [
+				770.9,
+				-2074.0,
+				7.1
+			]
+		},
+		{
+			"at": [
+				1137.0,
+				-2074.0,
+				7.1
+			]
+		},
+		{
+			"at": [
+				1491.3,
+				-2097.7,
+				7.1
+			]
+		},
+		{
+			"at": [
+				1845.7,
+				-2109.5,
+				7.1
+			]
+		},
+		{
+			"at": [
+				2164.6,
+				-2274.8,
+				7.1
+			]
+		},
+		{
+			"at": [
+				2282.7,
+				-2333.9,
+				7.1
+			]
+		}
+	],
+	"traps": [
+		{
+			"button": "*22",
+			"id": "t22",
+			"name": "Trap 1",
+			"skip": "its bar swings above head height once ported",
+			"keep": true
+		},
+		{
+			"button": "*28",
+			"id": "t28",
+			"name": "Trap 2"
+		},
+		{
+			"button": "*39",
+			"id": "t39",
+			"name": "Trap 3",
+			"lethal_all": true
+		},
+		{
+			"button": "*54",
+			"id": "t54",
+			"name": "Trap 4"
+		},
+		{
+			"button": "*76",
+			"id": "t76",
+			"name": "Trap 6"
+		},
+		{
+			"button": "*82",
+			"id": "t82",
+			"name": "Trap 7"
+		}
+	],
+	"toys": [
+		{
+			"toy": "football",
+			"at": [
+				2282,
+				-2270,
+				7.1
+			]
+		},
+		{
+			"toy": "football",
+			"at": [
+				2200,
+				-2300,
+				7.1
+			]
+		}
+	],
+	"min_box_m": 0.5,
+	"kill_boxes": [
+		[
+			2304,
+			3456,
+			-2432,
+			-1920,
+			-100,
+			-4
+		]
+	],
+	"walkway": [
+		{
+			"at": [
+				156.7,
+				-845.7,
+				70.1
+			]
+		},
+		{
+			"at": [
+				156.7,
+				-1093.7,
+				70.1
+			]
+		},
+		{
+			"at": [
+				156.7,
+				-1341.7,
+				70.1
+			]
+		},
+		{
+			"at": [
+				263.0,
+				-1554.3,
+				70.1
+			]
+		},
+		{
+			"at": [
+				286.6,
+				-1589.8,
+				70.1
+			],
+			"button": "t28"
+		},
+		{
+			"at": [
+				487.4,
+				-1696.1,
+				70.1
+			]
+		},
+		{
+			"at": [
+				652.8,
+				-1790.6,
+				70.1
+			]
+		},
+		{
+			"at": [
+				889.0,
+				-1861.4,
+				70.1
+			]
+		},
+		{
+			"at": [
+				924.4,
+				-1885.1,
+				70.1
+			],
+			"button": "t39"
+		},
+		{
+			"at": [
+				1148.8,
+				-1861.4,
+				70.1
+			]
+		},
+		{
+			"at": [
+				1396.9,
+				-1861.4,
+				70.1
+			]
+		},
+		{
+			"at": [
+				1644.9,
+				-1861.4,
+				70.1
+			]
+		},
+		{
+			"at": [
+				1892.9,
+				-1861.4,
+				70.1
+			]
+		},
+		{
+			"at": [
+				2140.9,
+				-1861.4,
+				70.1
+			]
+		},
+		{
+			"at": [
+				2389.0,
+				-1861.4,
+				70.1
+			]
+		},
+		{
+			"at": [
+				2637.0,
+				-1861.4,
+				70.1
+			]
+		},
+		{
+			"at": [
+				2849.6,
+				-1885.1,
+				70.1
+			],
+			"button": "t54"
+		}
+	],
+	"unwalkable": [],
+	"fill": [
+		[
+			2200,
+			2370,
+			-2420,
+			-2200,
+			7.1,
+			12,
+			"ghost"
+		],
+		[
+			2182,
+			2382,
+			-2360,
+			-2300,
+			137,
+			8,
+			"ghost"
+		]
+	]
+}
