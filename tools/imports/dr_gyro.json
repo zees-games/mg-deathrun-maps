@@ -1,0 +1,245 @@
+{
+ "id": "dr_gyro",
+ "name": "Gyre Tower",
+ "author_line": "Hink (GameBanana)",
+ "attribution": "Converted from Deathrun_gyro_Final_v3.bsp by Hink (https://gamebanana.com/mods/126984, CC BY-NC-ND 4.0 as listed there). Geometry only: boxes and traps rebuilt from the map's brushes and entities, none of the author's textures, models or sounds. Shipped on the strength of credit and removal on request: tell the repository owner and the map is taken out.",
+ "blurb": "A classic deathrun: a course of traps, and the activator watching them.",
+ "origin": [
+  -450,
+  -1652,
+  80
+ ],
+ "kill_z": -200.0,
+ "kill_hurts": true,
+ "theme": {
+  "sky": [
+   0.55,
+   0.68,
+   0.85
+  ],
+  "horizon": [
+   0.86,
+   0.9,
+   0.95
+  ],
+  "void": [
+   0.08,
+   0.1,
+   0.16
+  ],
+  "sun": [
+   1.0,
+   0.95,
+   0.85
+  ],
+  "deck": [
+   0.74,
+   0.78,
+   0.86
+  ]
+ },
+ "start": {
+  "at": [
+   -450,
+   -1652,
+   80
+  ],
+  "size": [
+   9,
+   3,
+   8
+  ],
+  "face_toward": [
+   1086.0,
+   -533.0,
+   3422.0
+  ]
+ },
+ "activators": {
+  "at": [
+   706,
+   -368,
+   111
+  ],
+  "size": [
+   9,
+   3,
+   6
+  ],
+  "face_toward": [
+   1086.0,
+   -533.0,
+   3422.0
+  ]
+ },
+ "finish": {
+  "at": [
+   1086.0,
+   -533.0,
+   3422.0
+  ],
+  "size": [
+   4,
+   3,
+   4
+  ],
+  "yaw": 0
+ },
+ "end": {
+  "runners": {
+   "at": [
+    1086.0,
+    -533.0,
+    3422.0
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ],
+   "yaw": 180
+  },
+  "activators": {
+   "at": [
+    1086.0,
+    -533.0,
+    3422.0
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ],
+   "yaw": 0
+  }
+ },
+ "route": [],
+ "traps": [
+  {
+   "button": "*52",
+   "id": "t52",
+   "name": "Trap 1"
+  },
+  {
+   "button": "*54",
+   "id": "t54",
+   "name": "Trap 2"
+  },
+  {
+   "button": "*59",
+   "id": "t59",
+   "name": "Trap 3"
+  },
+  {
+   "button": "*60",
+   "id": "t60",
+   "name": "Trap 4"
+  },
+  {
+   "button": "*61",
+   "id": "t61",
+   "name": "Trap 5"
+  },
+  {
+   "button": "*62",
+   "id": "t62",
+   "name": "Trap 6"
+  },
+  {
+   "button": "*63",
+   "id": "t63",
+   "name": "Trap 7"
+  },
+  {
+   "button": "*64",
+   "id": "t64",
+   "name": "Trap 8"
+  },
+  {
+   "button": "*65",
+   "id": "t65",
+   "name": "Trap 9"
+  },
+  {
+   "button": "*66",
+   "id": "t66",
+   "name": "Trap 10"
+  },
+  {
+   "button": "*68",
+   "id": "t68",
+   "name": "Trap 11"
+  },
+  {
+   "button": "*75",
+   "id": "t75",
+   "name": "Trap 12"
+  },
+  {
+   "button": "*79",
+   "id": "t79",
+   "name": "Trap 13"
+  },
+  {
+   "button": "*80",
+   "id": "t80",
+   "name": "Trap 14"
+  },
+  {
+   "button": "*81",
+   "id": "t81",
+   "name": "Trap 15"
+  },
+  {
+   "button": "*82",
+   "id": "t82",
+   "name": "Trap 16"
+  },
+  {
+   "button": "*83",
+   "id": "t83",
+   "name": "Trap 17"
+  },
+  {
+   "button": "*90",
+   "id": "t90",
+   "name": "Trap 18"
+  },
+  {
+   "button": "*93",
+   "id": "t93",
+   "name": "Trap 19"
+  },
+  {
+   "button": "*96",
+   "id": "t96",
+   "name": "Trap 20"
+  },
+  {
+   "button": "*108",
+   "id": "t108",
+   "name": "Trap 21"
+  },
+  {
+   "button": "*109",
+   "id": "t109",
+   "name": "Trap 22"
+  },
+  {
+   "button": "*146",
+   "id": "t146",
+   "name": "Trap 23"
+  },
+  {
+   "button": "*158",
+   "id": "t158",
+   "name": "Trap 24"
+  },
+  {
+   "button": "*164",
+   "id": "t164",
+   "name": "Trap 25"
+  }
+ ],
+ "toys": []
+}
