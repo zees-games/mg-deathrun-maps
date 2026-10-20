@@ -49,7 +49,7 @@ class Grid:
     def __init__(self, doc, kill_y):
         boxes = []
         for p in doc["pieces"]:
-            if p.get("kind") in ("box", "teleport"):
+            if p.get("kind") == "box" or (p.get("kind") == "teleport" and p.get("solid", True)):
                 boxes.append((p["at"], p["size"], p.get("yaw", 0.0), False))
         for t in doc["traps"]:
             for pt in t["parts"]:
@@ -100,7 +100,11 @@ class Grid:
         for i, p in enumerate(q for q in doc["pieces"] if q.get("kind") == "teleport"):
             top = p["at"][1] + p["size"][1] / 2
             zone = np.zeros_like(occ)
-            self._raster(zone, (p["at"][0], top + 0.35, p["at"][2]), (p["size"][0], 1.3, p["size"][2]), p.get("yaw", 0.0), True)
+            if p.get("solid", True):
+                self._raster(zone, (p["at"][0], top + 0.35, p["at"][2]), (p["size"][0], 1.3, p["size"][2]), p.get("yaw", 0.0), True)
+            else:
+                # a trigger volume catches feet inside the box grown by the body (DrCourseDoc.pad_contains)
+                self._raster(zone, (p["at"][0], p["at"][1] - 0.9, p["at"][2]), (p["size"][0] + 0.8, p["size"][1] + 1.8, p["size"][2] + 0.8), p.get("yaw", 0.0), True)
             side = p.get("for", "")
             for walk_only in (False, True):
                 if side == "" or side == ("activators" if walk_only else "runners"):
@@ -372,7 +376,12 @@ def self_line(grid, path, i, j, max_leg):
 def to_source(grid, imp, node):
     gx, gy, gz = grid.world(node)
     o = imp.o
-    return [round(gx / C.S + o[0], 1), round(-gz / C.S + o[1], 1), round(gy / C.S + o[2], 1)]
+    sx, sy, sz = round(gx / C.S + o[0], 1), round(-gz / C.S + o[1], 1), round(gy / C.S + o[2], 1)
+    for f in imp.spec.get("folds", []):         # a folded level's points go back where the map has them
+        x0, x1, y0, y1 = f["xy"]
+        if x0 <= sx <= x1 and y0 <= sy <= y1:
+            return [sx, sy, round(sz - f["dz"], 1)]
+    return [sx, sy, sz]
 
 
 def main(argv):

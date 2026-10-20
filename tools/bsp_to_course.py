@@ -41,7 +41,13 @@ Spec keys beyond the basics (each exists because a real map needed it):
   remove / remove_sheets   world boxes deleted by source rectangle, or every one-unit doorway sheet
   fill                     [x0,x1,y0,y1,top,thickness(,"ghost")]: a floor patch, or an invisible collider
   stairs                   [sx,sy,ex,ey,top_from,top_to,width]: a flight along one axis where the map teleports
-  teleports                [{"model": "*7"} | {"rect": [x0,x1,y0,y1], "to": [x,y,z], "yaw": a}, "top", "thickness"]: a pad that sends on, as the map's trigger_teleport does
+  teleports                [{"model": "*7"} | {"rect": [x0,x1,y0,y1], "to": [x,y,z], "yaw": a}, "top", "thickness"]: a pad that sends on, as the map's trigger_teleport does;
+                           an entry may add "volume": true (the trigger's own box, not a floor pad), "keep": true (velocity goes through), "for": "runners"|"activators"
+  folds                    [{"below_z": -1500, "dz": 3000, "xy": [x0,x1,y0,y1]}]: levels stacked kilometres apart (reached by teleport) are moved onto one
+                           height, so the planner's grid is a floor plan and not a tower; see Importer.fold
+  teleports_auto           true: every trigger_teleport with a brush model and an info_teleport_destination becomes a trigger volume (`teleport`, solid false) at the
+                           trigger's own bounds, destination origin and yaw read from the entities; "teleports_skip" ["*7", ...] leaves models out (the trap floors
+                           that drop people into a death room); `teleports` entries with the same model replace the automatic one
   skip_hurts               ["*1", ...]: trigger_hurt models not to make kill pieces (one that lies along the path the map
                            walks, because the map's own entities never let it fire there)
   kill_boxes / kill_hurts  kill volumes; hurts of 50 or more that are always on become kill pieces ("clients": the
@@ -203,7 +209,19 @@ class Importer:
         self.o = spec.get("origin", [0.0, 0.0, 0.0])       # source point that becomes godot 0,0,0
         self.notes = {"not portable": [], "flattened": [], "dropped": []}
 
+    def fold(self, p):
+        """`folds` (spec key): levels the map stacks thousands of units apart, reached by teleport, are lowered or raised onto
+        one height so the planner's voxel grid is a floor plan and not a tower. Each is {"below_z": z, "dz": d, "xy": [x0,x1,y0,y1]}:
+        a source point lower than below_z moves up by d; `xy` is that level's footprint after the move, which is how the
+        planner tells which level a point of the grid belongs to when it writes its route back in source units (the
+        footprints must not overlap). Teleports, buttons, routes and every box go through g(), so they move together."""
+        for f in self.spec.get("folds", []):
+            if p[2] < f["below_z"]:
+                return (p[0], p[1], p[2] + f["dz"])
+        return p
+
     def g(self, p):
+        p = self.fold(p)
         return (r((p[0] - self.o[0]) * S), r((p[2] - self.o[2]) * S), r(-(p[1] - self.o[1]) * S))
 
     def gv(self, p):
@@ -744,7 +762,18 @@ class Importer:
             x0, x1, y0, y1, z0, z1 = kb
             pieces.append({"kind": "kill", "at": self.gv(((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2)),
                            "size": [r((x1 - x0) * S), r((z1 - z0) * S), r((y1 - y0) * S)], "look": spec.get("kill_look", "none")})
-        for tp in spec.get("teleports", []):
+        tps = list(spec.get("teleports", []))
+        if spec.get("teleports_auto"):
+            named_models = {t["model"] for t in tps if "model" in t}
+            skipped = set(spec.get("teleports_skip", []))
+            for e in self.bsp.entities:
+                if e["classname"] != "trigger_teleport" or "model" not in e or e["model"] in named_models | skipped:
+                    continue
+                if not any(x["classname"] == "info_teleport_destination" and x.get("targetname") == e.get("target") for x in self.bsp.entities):
+                    self.notes["not portable"].append("%s: trigger_teleport with no destination %s" % (e["model"], e.get("target")))
+                    continue
+                tps.append({"model": e["model"], "volume": True})
+        for tp in tps:
             # a pad where the map hands people on by teleport: {"model": "*7"} (the trigger's brush model; its
             # `target` names the destination) or {"rect": [x0,x1,y0,y1]} with "to" [x,y,z] and "yaw" in source units.
             # "top" is the pad's surface in source z (default the trigger's floor); "thickness" in units
@@ -758,12 +787,19 @@ class Importer:
                 x0, x1, y0, y1 = tp["rect"]
                 floor = tp.get("top", 0.0)
             top = tp.get("top", floor)
+            volume = bool(tp.get("volume"))
+            if volume:
+                # the trigger's own box: whoever is inside it is sent, as the map does
+                z0, z1 = (mins[2] + _og[2], maxs[2] + _og[2]) if e is not None else (floor, floor + tp.get("height", 72.0))
+                th = z1 - z0
+                top = z1
             # a trigger the map walks through is a thin wall: a pad wants a stride's width
-            if x1 - x0 < 48:
+            if not volume and x1 - x0 < 48:
                 x0, x1 = (x0 + x1) / 2 - 24, (x0 + x1) / 2 + 24
-            if y1 - y0 < 48:
+            if not volume and y1 - y0 < 48:
                 y0, y1 = (y0 + y1) / 2 - 24, (y0 + y1) / 2 + 24
-            th = tp.get("thickness", 6.0)
+            if not volume:
+                th = tp.get("thickness", 6.0)
             to, yaw_src = tp.get("to"), tp.get("yaw")
             if to is None:
                 d = next(x for x in self.bsp.entities if x["classname"] == "info_teleport_destination" and x.get("targetname") == e["target"])
@@ -774,6 +810,7 @@ class Importer:
             pad = {"kind": "teleport", "at": self.gv(((x0 + x1) / 2, (y0 + y1) / 2, top - th / 2)),
                    "size": [r((x1 - x0) * S), r(th * S), r((y1 - y0) * S)], "to": self.gv((to[0], to[1], to[2])),
                    **({"for": tp["for"]} if tp.get("for") else {}),
+                   **({"solid": False} if volume else {}), **({"keep": True} if tp.get("keep") else {}),
                    "heading": r(math.degrees(math.atan2(-math.cos(math.radians(yaw_src)), math.sin(math.radians(yaw_src)))))}
             pieces.append(pad)
         traps = []
