@@ -1,0 +1,1383 @@
+{
+ "id": "dr_helix",
+ "name": "Helix",
+ "author_line": "HyperCUBE (GameBanana)",
+ "attribution": "Converted from deathrun_helix_b8-1.bsp by HyperCUBE (https://gamebanana.com/mods/126992, CC BY-NC-ND 4.0 as listed there). Geometry only: boxes and traps rebuilt from the map's brushes and entities, none of the author's textures, models or sounds. Shipped on the strength of credit and removal on request: tell the repository owner and the map is taken out.",
+ "blurb": "A figure of eight in the clouds: the runners loop both lobes of a snow plaza on a narrow ring, and the activator crosses the plaza between them.",
+ "origin": [
+  -139,
+  -1344,
+  32
+ ],
+ "kill_z": -128.0,
+ "kill_hurts": "clients",
+ "theme": {
+  "sky": [
+   0.55,
+   0.68,
+   0.85
+  ],
+  "horizon": [
+   0.86,
+   0.9,
+   0.95
+  ],
+  "void": [
+   0.08,
+   0.1,
+   0.16
+  ],
+  "sun": [
+   1.0,
+   0.95,
+   0.85
+  ],
+  "deck": [
+   0.74,
+   0.78,
+   0.86
+  ]
+ },
+ "start": {
+  "at": [
+   -139,
+   -1344,
+   32
+  ],
+  "size": [
+   9,
+   3,
+   8
+  ],
+  "face_toward": [
+   337.9,
+   -1341.5,
+   23.4
+  ]
+ },
+ "activators": {
+  "at": [
+   0,
+   -1792,
+   48
+  ],
+  "size": [
+   9,
+   3,
+   6
+  ],
+  "face_toward": [
+   126.0,
+   -2240.0,
+   48.0
+  ]
+ },
+ "finish": {
+  "at": [
+   124,
+   -2240,
+   16
+  ],
+  "size": [
+   3.6,
+   3,
+   1
+  ],
+  "yaw": 90
+ },
+ "end": {
+  "runners": {
+   "at": [
+    -40,
+    -2240,
+    16
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ],
+   "yaw": 90
+  },
+  "activators": {
+   "at": [
+    -330,
+    -2240,
+    16
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ],
+   "yaw": -90
+  }
+ },
+ "route": [
+  {
+   "at": [
+    219.7,
+    -1341.5,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    337.9,
+    -1341.5,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    538.6,
+    -1211.6,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    526.8,
+    -1034.4,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    644.9,
+    -703.7,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    680.4,
+    -656.4,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    692.2,
+    -632.8,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    751.2,
+    -609.2,
+    23.4
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    774.9,
+    -597.4,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    833.9,
+    -585.6,
+    23.4
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    845.7,
+    -573.8,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    916.6,
+    -573.8,
+    23.4
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    940.2,
+    -585.6,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    999.3,
+    -597.4,
+    23.4
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    1011.1,
+    -621.0,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    1070.1,
+    -632.8,
+    23.4
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    1070.1,
+    -668.3,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    1141.0,
+    -680.1,
+    23.4
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    1223.7,
+    -1022.6,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    1235.5,
+    -1034.4,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    1294.5,
+    -1376.9,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    1353.6,
+    -1436.0,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    1530.8,
+    -1447.8,
+    23.4
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    1707.9,
+    -1447.8,
+    23.4
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    1837.9,
+    -1128.9,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    1755.2,
+    -951.7,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    1837.9,
+    -833.6,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    1814.2,
+    -774.6,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    2097.7,
+    -585.6,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    2144.9,
+    -514.7,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    2440.2,
+    -691.9,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    2463.8,
+    -715.5,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    2499.3,
+    -987.1,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    2581.9,
+    -1317.9,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    2818.2,
+    -1459.6,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    3160.7,
+    -1459.6,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    3243.4,
+    -1506.8,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    3349.7,
+    -1766.7,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    3337.9,
+    -1778.5,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    3314.2,
+    -1955.7,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    3172.5,
+    -2097.4,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    2818.2,
+    -2097.4,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    2617.4,
+    -2168.3,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    2522.9,
+    -2499.0,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    2558.3,
+    -2605.3,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    2369.3,
+    -2900.5,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    2144.9,
+    -3065.9,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    1908.7,
+    -2817.9,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    1790.6,
+    -2605.3,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    1814.2,
+    -2310.0,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    1648.9,
+    -2191.9,
+    23.4
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    1530.8,
+    -2191.9,
+    23.4
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    1424.5,
+    -2191.9,
+    23.4
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    1318.2,
+    -2262.7,
+    23.4
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    1235.5,
+    -2510.8,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    1282.7,
+    -2605.3,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    1176.4,
+    -2912.3,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    1034.7,
+    -2924.2,
+    15.5
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    893.0,
+    -2947.8,
+    15.5
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    751.2,
+    -2924.2,
+    15.5
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    621.3,
+    -2876.9,
+    23.4
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    526.8,
+    -2605.3,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    515.0,
+    -2345.4,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    290.6,
+    -2262.7,
+    23.4
+   ]
+  },
+  {
+   "at": [
+    125.3,
+    -2239.1,
+    23.4
+   ]
+  }
+ ],
+ "traps": [
+  {
+   "button": "*131",
+   "id": "t131",
+   "name": "Sweeper"
+  },
+  {
+   "button": "*157",
+   "id": "t157",
+   "name": "Ring Break"
+  },
+  {
+   "button": "*159",
+   "id": "t159",
+   "name": "Randomizer",
+   "drop": [
+    "trap1_block2a",
+    "trap1_block3b",
+    "trap1_block5a",
+    "trap1_block6b",
+    "trap1_block7a"
+   ],
+   "victim": [
+    461,
+    -1340,
+    16
+   ]
+  },
+  {
+   "button": "*164",
+   "id": "t164",
+   "name": "Bird"
+  },
+  {
+   "button": "*166",
+   "id": "t166",
+   "name": "Steam Engine",
+   "skip": "the steam engine is a func_tracktrain on a path; nothing here moves along a path"
+  },
+  {
+   "button": "*169",
+   "id": "t169",
+   "name": "Crush"
+  },
+  {
+   "button": "*173",
+   "id": "t173",
+   "name": "Sunbeam"
+  },
+  {
+   "button": "*221",
+   "id": "t221",
+   "name": "Snowplough",
+   "skip": "its doors are closed by a random logic_case and push people off with a 3000 u/s trigger_push nobody aims; not portable as one motion"
+  },
+  {
+   "button": "*250",
+   "id": "t250",
+   "name": "Turning Floor",
+   "harmless": true,
+   "victim": [
+    2496,
+    -912,
+    16
+   ]
+  },
+  {
+   "button": "*252",
+   "id": "t252",
+   "name": "Boiling Water",
+   "drop": [
+    "trap16_break1",
+    "trap16_break2",
+    "trap16_break3",
+    "trap16_break4",
+    "trap16_break5"
+   ],
+   "victim": [
+    1648,
+    -2192,
+    16
+   ],
+   "drop_min_m": 1.0
+  },
+  {
+   "button": "*256",
+   "id": "t256",
+   "name": "Spikes",
+   "skip": "random spikes are spawned from point_templates when somebody steps on a block; the game has no spawned parts"
+  },
+  {
+   "button": "*257",
+   "id": "t257",
+   "name": "Trap 12",
+   "skip": "the second button of the random-spike pair (see t256)"
+  },
+  {
+   "button": "*258",
+   "id": "t258",
+   "name": "Trap 13",
+   "skip": "random spikes (see t256)"
+  },
+  {
+   "button": "*259",
+   "id": "t259",
+   "name": "Trap 14",
+   "skip": "random spikes (see t256)"
+  },
+  {
+   "button": "*260",
+   "id": "t260",
+   "name": "Trap 15",
+   "skip": "random spikes (see t256)"
+  },
+  {
+   "button": "*261",
+   "id": "t261",
+   "name": "Trap 16",
+   "skip": "random spikes (see t256)"
+  },
+  {
+   "button": "*275",
+   "id": "t275",
+   "name": "Noob Box",
+   "skip": "the noob box's cage wall and the blocks that drop into it are spawned from point_templates on a random timer; the game has no spawned parts, so the box stays an open floor"
+  },
+  {
+   "button": "*316",
+   "id": "t316",
+   "name": "Ice"
+  },
+  {
+   "button": "*327",
+   "id": "t327",
+   "name": "Cage",
+   "skip": "teleports whoever stands on the strip after the east loop into a cage at the plaza's centre and burns them there; a pad here is always on, so the strip and the cage stay as floor",
+   "keep": true
+  },
+  {
+   "button": "*346",
+   "id": "t346",
+   "name": "Trap 20",
+   "skip": "the secret ending chain (buttons hidden round the course), not a trap"
+  },
+  {
+   "button": "*349",
+   "id": "t349",
+   "name": "Trap 21",
+   "skip": "the secret ending chain (buttons hidden round the course), not a trap"
+  },
+  {
+   "button": "*350",
+   "id": "t350",
+   "name": "Trap 22",
+   "skip": "the secret ending chain (buttons hidden round the course), not a trap"
+  },
+  {
+   "button": "*351",
+   "id": "t351",
+   "name": "Secret",
+   "skip": "the secret ending chain, not a trap"
+  },
+  {
+   "button": "*406",
+   "id": "t406",
+   "name": "Minigame",
+   "skip": "a minigame room reached by teleport, not part of the course"
+  },
+  {
+   "button": "*411",
+   "id": "t411",
+   "name": "Trap 25",
+   "skip": "a minigame room reached by teleport, not part of the course"
+  },
+  {
+   "button": "*479",
+   "id": "t479",
+   "name": "Wind"
+  },
+  {
+   "button": "*482",
+   "id": "t482",
+   "name": "Trap 27",
+   "skip": "the secret ending chain (buttons hidden round the course), not a trap"
+  }
+ ],
+ "toys": [
+  {
+   "toy": "football",
+   "at": [
+    -150,
+    -2180,
+    16
+   ]
+  },
+  {
+   "toy": "football",
+   "at": [
+    -150,
+    -2300,
+    16
+   ]
+  }
+ ],
+ "static": [
+  "afk_killer",
+  "snowman_left_break",
+  "snowman_right_break",
+  "trap6_break",
+  "trap6_break2",
+  "trap111BREAK",
+  "trap111X_dirka",
+  "trap17_block1",
+  "trap17_block2",
+  "trap17_block3",
+  "trap17_block4",
+  "trap17_block5",
+  "trap17_block6",
+  "trap1_block1a",
+  "trap1_block1b",
+  "trap1_block2b",
+  "trap1_block3a",
+  "trap1_block4a",
+  "trap1_block4b",
+  "trap1_block5b",
+  "trap1_block6a",
+  "trap1_block7b"
+ ],
+ "fill": [
+  [
+   166,
+   316,
+   -2304,
+   -2176,
+   16,
+   16
+  ],
+  [
+   768,
+   1024,
+   -2816,
+   -2432,
+   32,
+   48
+  ]
+ ],
+ "walkway": [
+  {
+   "at": [
+    219.7,
+    -1778.5,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    432.3,
+    -1660.4,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    633.1,
+    -1530.5,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    680.4,
+    -1471.4,
+    39.1
+   ],
+   "button": "t159"
+  },
+  {
+   "at": [
+    786.7,
+    -1270.6,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    798.5,
+    -1034.4,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    881.2,
+    -810.0,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    893.0,
+    -786.4,
+    39.1
+   ],
+   "button": "t131"
+  },
+  {
+   "at": [
+    904.8,
+    -1010.8,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    999.3,
+    -1235.2,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    1093.8,
+    -1447.8,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    1117.4,
+    -1471.4,
+    39.1
+   ],
+   "button": "t169"
+  },
+  {
+   "at": [
+    1282.7,
+    -1624.9,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    1519.0,
+    -1695.8,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    1530.8,
+    -1684.0,
+    39.1
+   ],
+   "button": "t164"
+  },
+  {
+   "at": [
+    1755.2,
+    -1636.8,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    1944.1,
+    -1483.2,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    2062.3,
+    -1270.6,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    2097.7,
+    -1034.4,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    2168.6,
+    -798.2,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    2180.4,
+    -786.4,
+    39.1
+   ],
+   "button": "t173"
+  },
+  {
+   "at": [
+    2263.0,
+    -999.0,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    2286.7,
+    -1022.6,
+    39.1
+   ],
+   "button": "t250"
+  },
+  {
+   "at": [
+    2274.9,
+    -1247.0,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    2381.2,
+    -1459.6,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    2558.3,
+    -1624.9,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    2794.5,
+    -1695.8,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    2818.2,
+    -1684.0,
+    39.1
+   ],
+   "button": "t479"
+  },
+  {
+   "at": [
+    3042.6,
+    -1719.4,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    3184.3,
+    -1790.3,
+    39.1
+   ],
+   "button": "t157"
+  },
+  {
+   "at": [
+    2959.9,
+    -1813.9,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    2711.9,
+    -1813.9,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    2463.8,
+    -1813.9,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    2263.0,
+    -1955.7,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    2026.8,
+    -1920.2,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    1778.8,
+    -1920.2,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    1542.6,
+    -1861.2,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    1519.0,
+    -1908.4,
+    39.1
+   ],
+   "button": "t252"
+  },
+  {
+   "at": [
+    1294.5,
+    -1955.7,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    1117.4,
+    -2109.2,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    952.0,
+    -2286.4,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    822.1,
+    -2499.0,
+    39.1
+   ]
+  },
+  {
+   "at": [
+    786.7,
+    -2569.8,
+    39.1
+   ],
+   "button": "t316"
+  }
+ ],
+ "unwalkable": [
+  "t406",
+  "t351"
+ ],
+ "via": [
+  [
+   333,
+   -1344,
+   16
+  ],
+  [
+   530,
+   -1029,
+   16
+  ],
+  [
+   685,
+   -656,
+   16
+  ],
+  [
+   755,
+   -609,
+   16
+  ],
+  [
+   833,
+   -583,
+   16
+  ],
+  [
+   917,
+   -577,
+   16
+  ],
+  [
+   999,
+   -594,
+   16
+  ],
+  [
+   1074,
+   -631,
+   16
+  ],
+  [
+   1136,
+   -685,
+   16
+  ],
+  [
+   1239,
+   -1029,
+   16
+  ],
+  [
+   1349,
+   -1431,
+   16
+  ],
+  {
+   "at": [
+    1534,
+    -1442,
+    16
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    1704,
+    -1446,
+    16
+   ],
+   "jump": true
+  },
+  [
+   1751,
+   -950,
+   16
+  ],
+  [
+   1770,
+   -753,
+   16
+  ],
+  [
+   2144,
+   -478,
+   16
+  ],
+  [
+   2459,
+   -714,
+   16
+  ],
+  [
+   2499,
+   -990,
+   16
+  ],
+  [
+   2814,
+   -1462,
+   16
+  ],
+  [
+   3247,
+   -1501,
+   16
+  ],
+  [
+   3326,
+   -1777,
+   16
+  ],
+  [
+   3168,
+   -2092,
+   16
+  ],
+  [
+   2617,
+   -2171,
+   16
+  ],
+  [
+   2578,
+   -2604,
+   16
+  ],
+  [
+   2144,
+   -3116,
+   16
+  ],
+  [
+   1751,
+   -2604,
+   16
+  ],
+  [
+   1814,
+   -2309,
+   16
+  ],
+  {
+   "at": [
+    1648,
+    -2192,
+    16
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    1536,
+    -2192,
+    16
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    1424,
+    -2192,
+    16
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    1314,
+    -2261,
+    16
+   ],
+   "jump": true
+  },
+  [
+   1278,
+   -2604,
+   16
+  ],
+  [
+   1172,
+   -2915,
+   16
+  ],
+  {
+   "at": [
+    1030,
+    -2919,
+    16
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    889,
+    -2946,
+    16
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    755,
+    -2919,
+    16
+   ],
+   "jump": true
+  },
+  {
+   "at": [
+    617,
+    -2879,
+    16
+   ],
+   "jump": true
+  },
+  [
+   530,
+   -2604,
+   16
+  ]
+ ],
+ "push_reach": true,
+ "remove": [
+  [
+   -20000,
+   -533,
+   -20000,
+   20000
+  ]
+ ]
+}
