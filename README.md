@@ -14,6 +14,7 @@ Every course is a **JSON document**, not a scene. A server reads the documents i
 | `dr_temple` (The Temple) | Stone halls where the blades swing instead of fall: stay off the middle, and jump the rest |
 | `dr_quarry` (The Quarry) | Two rolling bridges and a rockfall between them, then a blade over the last hops: the rhythm never lets up |
 | `dr_sections` (Sections) | Converted from the community map `deathrun_sections_fix` (see below): six rooms in a row, lasers, a falling floor and a sinking floor, a very long run |
+| `dr_aztecan` (Sunstone Causeway) | A sandstone causeway over a pit: a ring of deck tiles with four traps, converted from the community map `deathrun_aztecan_finalb3` by n1be ([GameBanana 126828](https://gamebanana.com/mods/126828)); credit and removal on request, as below |
 
 ### Converted community maps
 

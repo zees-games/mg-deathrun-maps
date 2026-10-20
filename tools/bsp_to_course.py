@@ -32,6 +32,7 @@ Spec keys beyond the basics (each exists because a real map needed it):
   skip + keep              skip a trap and say why; "keep" leaves its brushes at rest as geometry
   skip_targets/skip_why    per trap, targets left out (a wall shut over the finish until the last button)
   lethal_all               per trap, every part lethal (a swinging blade)
+  nodraw_floors            [x0,x1,y0,y1] source rectangles: all-nodraw brushes centred inside are invisible floors, kept
   remove / remove_sheets   world boxes deleted by source rectangle, or every one-unit doorway sheet
   fill                     [x0,x1,y0,y1,top,thickness(,"ghost")]: a floor patch, or an invisible collider
   stairs                   [sx,sy,ex,ey,top_from,top_to,width]: a flight along one axis where the map teleports
@@ -220,6 +221,20 @@ class Importer:
                 out.append(b.texnames[b.texdata[td][3]].upper())
         return out
 
+    def solid_nodraw(self, bi):
+        """`nodraw_floors` [x0, x1, y0, y1] (source units): a brush whose every face is nodraw is normally the map's own
+        tool geometry and goes; one the author stood players on (an invisible floor under a spawn) is named here and
+        kept as an invisible collider, the way a `fill` ghost is."""
+        rects = self.spec.get("nodraw_floors", [])
+        if not rects:
+            return False
+        pts = self.bsp.brush_hull(bi)
+        if not pts:
+            return False
+        cx = (min(p[0] for p in pts) + max(p[0] for p in pts)) / 2
+        cy = (min(p[1] for p in pts) + max(p[1] for p in pts)) / 2
+        return any(x0 <= cx <= x1 and y0 <= cy <= y1 for x0, x1, y0, y1 in rects)
+
     def world_boxes(self):
         spec = self.spec
         keep = spec.get("keep")
@@ -229,12 +244,15 @@ class Importer:
             invisible = False
             if names and all(n.startswith("TOOLS/") for n in names):
                 joined = " ".join(names)
-                if "TOOLSSKYBOX" in joined or "TOOLSNODRAW" in joined or "TRIGGER" in joined or "SKIP" in joined \
+                if self.solid_nodraw(bi):       # an all-nodraw brush the spec says is a floor the map stands on
+                    invisible = True
+                elif "TOOLSSKYBOX" in joined or "TOOLSNODRAW" in joined or "TRIGGER" in joined or "SKIP" in joined \
                         or "HINT" in joined or "BLOCKLIGHT" in joined or "TOOLSAREAPORTAL" in joined \
                         or "TOOLSOCCLUDER" in joined or "FOG" in joined:
                     skipped += 1
                     continue
-                invisible = True
+                else:
+                    invisible = True
             boxes, _sl = brush_boxes(self.bsp, bi)
             tint = None
             for key, t in MATERIAL_TINTS:
@@ -432,6 +450,8 @@ class Importer:
                     self.notes["flattened"].append("%s: %s breaks; here it drops away and comes back" % (ts["id"], target))
                 elif cls == "func_door_rotating":
                     mi, mins, maxs, origin = self.model_info(e)
+                    if e.get("targetname", "").startswith("button") and max(maxs[k] - mins[k] for k in range(3)) < 40:
+                        continue     # the map's own button cap swinging in when pressed: the game draws its button
                     fl = int(e.get("spawnflags", 0))
                     axis = "x" if fl & 64 else ("z" if fl & 128 else "y")
                     deg = float(e.get("distance", 90)) * (-1 if fl & 2 else 1)
