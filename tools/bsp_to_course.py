@@ -30,8 +30,10 @@ Spec keys beyond the basics (each exists because a real map needed it):
   static / static_classes  brush entities that are only floor or wall (func_breakable floors); a class member a live trap moves stays the trap's
   drop                     per trap, entity names that become trapdoors falling 8 units
   drop_min_m               per trap, leave out drop boxes whose longest side is under this (a round pad's rim)
+  parts_add                per trap, parts the importer cannot read (an explosion the map scripts): [{"box": [x0,x1,y0,y1,z0,z1], "lethal": true, "look": "fire"}], source units
   skip + keep              skip a trap and say why; "keep" leaves its brushes at rest as geometry
   skip_targets/skip_why    per trap, targets left out (a wall shut over the finish until the last button)
+  move_scale               per trap, every move lengthened by this factor (a slide the importer reads ending short of the path it sweeps)
   lethal_all               per trap, every part lethal (a swinging blade)
   harmless                 per trap, no part lethal (a turning floor whose map gave it hinge damage; a killer is not solid)
   push_reach               (spec or trap) grow push zones by a player height, so a knee-high wind reaches somebody on the floor
@@ -567,6 +569,14 @@ class Importer:
                     parts.append(b)
                 timing.setdefault("out", 0.25)
                 self.notes["flattened"].append("%s: %s drops away (the map teleports whoever stands on it)" % (ts["id"], nm))
+        for pa in ts.get("parts_add", []):
+            # a part the map makes by script and the importer cannot read (an explosion, a burst of steam): a box in
+            # source units, [x0, x1, y0, y1, z0, z1], with the part's own keys ("lethal", "look", "move", ...)
+            x0, x1, y0, y1, z0, z1 = pa["box"]
+            b = {"at": self.gv(((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2)),
+                 "size": [r((x1 - x0) * S), r((z1 - z0) * S), r((y1 - y0) * S)]}
+            b.update({k: v for k, v in pa.items() if k != "box"})
+            parts.append(b)
         timing.setdefault("delay", ts.get("delay", 0.0))
         for k, v in (("out", 0.3), ("hold", 2.0), ("back", 1.0)):
             timing.setdefault(k, v)
@@ -574,6 +584,12 @@ class Importer:
             self.notes["flattened"].append("%s: %s" % (ts["id"], f))
         if not parts:
             return None
+        if ts.get("move_scale"):
+            # a door whose stop the importer reads shorter than the map plays it (a slide that halts a metre from the
+            # path it is meant to sweep): lengthen every move by this factor
+            for q in parts:
+                if q.get("move"):
+                    q["move"] = [r(c * ts["move_scale"]) for c in q["move"]]
         if ts.get("lethal_all"):
             # the map hurts through a trigger_hurt beside a spinner that is itself harmless; the game has no such pair
             for q in parts:
@@ -585,6 +601,8 @@ class Importer:
             for q in parts:
                 if not q.get("push"):
                     q["lethal"] = False
+        if len(parts) > 32:
+            parts = self.merge_parts(parts)
         if len(parts) > 32:
             parts = parts[:32]
             self.notes["flattened"].append("%s: only the first 32 parts kept" % ts["id"])
@@ -604,6 +622,38 @@ class Importer:
         if "sound" in ts:
             trap["sound"] = ts["sound"]
         return trap
+
+    @staticmethod
+    def merge_parts(parts, tol=0.02):
+        """Slabs that touch end to end and agree on the other two axes become one (a sliced arch is forty brushes the
+        document's 32-part cap would cut off at the far end). Only parts that do not turn, spin or yaw."""
+        def key(p):
+            return json.dumps({k: v for k, v in p.items() if k not in ("at", "size")}, sort_keys=True)
+        parts = [dict(p) for p in parts]
+        for ax in (0, 1, 2):
+            others = [a for a in (0, 1, 2) if a != ax]
+            done = False
+            while not done:
+                done = True
+                parts.sort(key=lambda p: (key(p), p["at"][ax]))
+                for i in range(len(parts) - 1):
+                    a, b = parts[i], parts[i + 1]
+                    if any(k in a for k in ("turn", "spin", "yaw", "pivot")) or key(a) != key(b):
+                        continue
+                    if any(abs(a["at"][o] - b["at"][o]) > tol or abs(a["size"][o] - b["size"][o]) > tol for o in others):
+                        continue
+                    if abs((b["at"][ax] - a["at"][ax]) - (a["size"][ax] + b["size"][ax]) / 2) > tol:
+                        continue
+                    lo = a["at"][ax] - a["size"][ax] / 2
+                    hi = b["at"][ax] + b["size"][ax] / 2
+                    a["at"] = list(a["at"])
+                    a["size"] = list(a["size"])
+                    a["at"][ax] = r((lo + hi) / 2)
+                    a["size"][ax] = r(hi - lo)
+                    del parts[i + 1]
+                    done = False
+                    break
+        return parts
 
     @staticmethod
     def auto_victim(parts):

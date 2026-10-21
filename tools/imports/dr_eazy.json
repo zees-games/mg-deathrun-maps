@@ -3,7 +3,7 @@
 	"name": "Eazy",
 	"author_line": "Hakita (GameBanana)",
 	"attribution": "Converted from Deathrun_Eazy.bsp by Hakita (https://gamebanana.com/mods/126944, CC BY-NC-ND 4.0 as listed there). Geometry only: boxes and traps rebuilt from the map's brushes and entities, none of the author's textures, models or sounds. Shipped on the strength of credit and removal on request: tell the repository owner and the map is taken out.",
-	"blurb": "A hall of rooms over a pit: a bridge that drops out under the runners, a ceiling-high push over two platforms and a hammer, a first stretch of Eazy.",
+	"blurb": "A hall of rooms over a pit: a bridge that drops out under the runners, a ceiling-high push over two platforms and a hammer, a crusher, a slide of orange boxes, an explosion and a floor that rolls over, all of Eazy.",
 	"origin": [
 		-672,
 		0,
@@ -50,7 +50,7 @@
 			8
 		],
 		"face_toward": [
-			46.5,
+			34.7,
 			3.2,
 			259.3
 		]
@@ -74,8 +74,8 @@
 	},
 	"finish": {
 		"at": [
-			1540,
-			640,
+			5470,
+			575,
 			258
 		],
 		"size": [
@@ -88,8 +88,8 @@
 	"end": {
 		"runners": {
 			"at": [
-				1540,
-				640,
+				5470,
+				575,
 				258
 			],
 			"size": [
@@ -101,8 +101,8 @@
 		},
 		"activators": {
 			"at": [
-				1666,
-				640,
+				5530,
+				575,
 				258
 			],
 			"size": [
@@ -244,6 +244,163 @@
 				640,
 				259.3
 			]
+		},
+		{
+			"at": [
+				1700.1,
+				641.0,
+				259.3
+			]
+		},
+		{
+			"at": [
+				1877.3,
+				534.7,
+				259.3
+			],
+			"jump": true
+		},
+		{
+			"at": [
+				1959.9,
+				534.7,
+				259.3
+			]
+		},
+		{
+			"at": [
+				1995.4,
+				534.7,
+				275.1
+			]
+		},
+		{
+			"at": [
+				2113.5,
+				546.5,
+				385.3
+			]
+		},
+		{
+			"at": [
+				2196.1,
+				546.5,
+				385.3
+			]
+		},
+		{
+			"at": [
+				2396.9,
+				546.5,
+				385.3
+			],
+			"jump": true
+		},
+		{
+			"at": [
+				2456.0,
+				546.5,
+				369.6
+			]
+		},
+		{
+			"at": [
+				2574.1,
+				546.5,
+				259.3
+			]
+		},
+		{
+			"at": [
+				2585.9,
+				558.3,
+				259.3
+			]
+		},
+		{
+			"at": [
+				2798.5,
+				546.5,
+				259.3
+			]
+		},
+		{
+			"at": [
+				3141.0,
+				558.3,
+				259.3
+			]
+		},
+		{
+			"at": [
+				3294.6,
+				570.1,
+				259.3
+			]
+		},
+		{
+			"at": [
+				3530.8,
+				570.1,
+				259.3
+			],
+			"jump": true
+		},
+		{
+			"at": [
+				3554.4,
+				570.1,
+				259.3
+			]
+		},
+		{
+			"at": [
+				3908.7,
+				570.1,
+				259.3
+			]
+		},
+		{
+			"at": [
+				4003.2,
+				570.1,
+				259.3
+			]
+		},
+		{
+			"at": [
+				4357.6,
+				570.1,
+				259.3
+			]
+		},
+		{
+			"at": [
+				4723.7,
+				570.1,
+				259.3
+			]
+		},
+		{
+			"at": [
+				4794.6,
+				570.1,
+				259.3
+			]
+		},
+		{
+			"at": [
+				5101.7,
+				570.1,
+				259.3
+			]
+		},
+		{
+			"at": [
+				5470,
+				575,
+				259.3
+			]
 		}
 	],
 	"traps": [
@@ -278,29 +435,88 @@
 			"button": "*19",
 			"id": "t19",
 			"name": "Trap 4",
-			"skip": "beyond the first stretch: the later stages sit behind teleports, a 40 degree ramp and a thin glass sheet the importer cannot walk, so they are not converted",
-			"keep": true
+			"victim": [
+				3105,
+				578,
+				258
+			]
 		},
 		{
 			"button": "*29",
 			"id": "t29",
 			"name": "Trap 5",
-			"skip": "beyond the first stretch: the later stages sit behind teleports, a 40 degree ramp and a thin glass sheet the importer cannot walk, so they are not converted",
-			"keep": true
+			"move_scale": 1.2075,
+			"victim": [
+				4000,
+				575,
+				258
+			]
 		},
 		{
 			"button": "*30",
 			"id": "t30",
 			"name": "Trap 6",
-			"skip": "beyond the first stretch: the later stages sit behind teleports, a 40 degree ramp and a thin glass sheet the importer cannot walk, so they are not converted",
-			"keep": true
+			"parts_add": [
+				{
+					"box": [
+						4419,
+						4669,
+						511,
+						639,
+						256,
+						381
+					],
+					"lethal": true,
+					"look": "fire"
+				},
+				{
+					"box": [
+						4483,
+						4733,
+						511,
+						639,
+						256,
+						381
+					],
+					"lethal": true,
+					"look": "fire"
+				},
+				{
+					"box": [
+						4547,
+						4797,
+						511,
+						639,
+						256,
+						381
+					],
+					"lethal": true,
+					"look": "fire"
+				},
+				{
+					"box": [
+						4611,
+						4861,
+						511,
+						639,
+						256,
+						381
+					],
+					"lethal": true,
+					"look": "fire"
+				}
+			],
+			"victim": [
+				4640,
+				575,
+				258
+			]
 		},
 		{
 			"button": "*32",
 			"id": "t32",
 			"name": "Trap 7",
-			"skip": "beyond the first stretch: the later stages sit behind teleports, a 40 degree ramp and a thin glass sheet the importer cannot walk, so they are not converted",
-			"keep": true
+			"harmless": true
 		}
 	],
 	"toys": [
@@ -401,6 +617,88 @@
 				298.7
 			],
 			"button": "t14"
+		},
+		{
+			"at": [
+				1652.8,
+				369.3,
+				330.2
+			]
+		},
+		{
+			"at": [
+				1740,
+				416,
+				383
+			]
+		},
+		{
+			"at": [
+				2845.8,
+				357.5,
+				259.3
+			]
+		},
+		{
+			"at": [
+				3070.2,
+				440.2,
+				259.3
+			]
+		},
+		{
+			"at": [
+				3093.8,
+				463.8,
+				259.3
+			],
+			"button": "t19"
+		},
+		{
+			"at": [
+				3300,
+				352,
+				259.3
+			]
+		},
+		{
+			"at": [
+				3562,
+				352,
+				259.3
+			],
+			"reach": 0.5
+		},
+		{
+			"at": [
+				3760,
+				576,
+				515.3
+			]
+		},
+		{
+			"at": [
+				4122,
+				565,
+				515.3
+			],
+			"button": "t29"
+		},
+		{
+			"at": [
+				4591,
+				565,
+				515.3
+			],
+			"button": "t30"
+		},
+		{
+			"at": [
+				5039,
+				577,
+				515.3
+			],
+			"button": "t32"
 		}
 	],
 	"unwalkable": [
@@ -425,6 +723,310 @@
 			704,
 			258,
 			8
+		],
+		[
+			3648,
+			5183,
+			511,
+			639,
+			512,
+			8,
+			"ghost"
+		],
+		[
+			2816,
+			3648,
+			512,
+			516,
+			384,
+			128,
+			"ghost"
+		],
+		[
+			3592,
+			3648,
+			511,
+			639,
+			703,
+			191,
+			"ghost"
+		]
+	],
+	"via": [
+		{
+			"at": [
+				-319.6,
+				3.2,
+				259.3
+			]
+		},
+		{
+			"at": [
+				46.5,
+				3.2,
+				259.3
+			]
+		},
+		{
+			"at": [
+				412.7,
+				3.2,
+				259.3
+			]
+		},
+		{
+			"at": [
+				637.1,
+				74.1,
+				259.3
+			]
+		},
+		{
+			"at": [
+				719.8,
+				310.3,
+				259.3
+			]
+		},
+		{
+			"at": [
+				719.8,
+				676.4,
+				259.3
+			]
+		},
+		{
+			"at": [
+				719.8,
+				1042.6,
+				259.3
+			]
+		},
+		{
+			"at": [
+				719.8,
+				1472,
+				259.3
+			]
+		},
+		[
+			740,
+			1472,
+			259.3
+		],
+		{
+			"at": [
+				880,
+				1472,
+				259.3
+			],
+			"jump": true
+		},
+		[
+			1000,
+			1472,
+			259.3
+		],
+		{
+			"at": [
+				1250,
+				1472,
+				259.3
+			],
+			"jump": true
+		},
+		{
+			"at": [
+				1250,
+				1184,
+				259.3
+			],
+			"jump": true
+		},
+		{
+			"at": [
+				1250,
+				1000,
+				259.3
+			],
+			"jump": true
+		},
+		[
+			1250,
+			928,
+			259.3
+		],
+		{
+			"at": [
+				1250,
+				690,
+				259.3
+			],
+			"jump": true
+		},
+		[
+			1250,
+			640,
+			259.3
+		],
+		[
+			1540,
+			640,
+			259
+		],
+		{
+			"at": [
+				1700,
+				640,
+				259
+			]
+		},
+		{
+			"at": [
+				1875,
+				540,
+				259
+			],
+			"jump": true
+		},
+		[
+			1960,
+			540,
+			259
+		],
+		[
+			2200,
+			545,
+			385
+		],
+		{
+			"at": [
+				2400,
+				545,
+				385
+			],
+			"jump": true
+		},
+		[
+			2460,
+			545,
+			370
+		],
+		[
+			2590,
+			558,
+			259
+		],
+		[
+			2800,
+			546,
+			259
+		],
+		[
+			3300,
+			575,
+			259
+		],
+		{
+			"at": [
+				3535,
+				575,
+				259
+			],
+			"jump": true
+		},
+		[
+			3560,
+			575,
+			259
+		],
+		[
+			4000,
+			575,
+			259
+		],
+		[
+			4800,
+			575,
+			259
+		],
+		[
+			5100,
+			575,
+			259
+		],
+		[
+			5400,
+			575,
+			259
+		]
+	],
+	"teleports": [
+		{
+			"rect": [
+				1792,
+				1856,
+				384,
+				448
+			],
+			"to": [
+				2848,
+				352,
+				319.5
+			],
+			"volume": true,
+			"top": 384,
+			"height": 128,
+			"for": "activators"
+		},
+		{
+			"rect": [
+				3584,
+				3648,
+				320,
+				384
+			],
+			"to": [
+				3680,
+				576,
+				576
+			],
+			"volume": true,
+			"top": 256,
+			"height": 128,
+			"for": "activators"
+		}
+	],
+	"remove": [
+		[
+			1818,
+			1824,
+			414,
+			416
+		],
+		[
+			3610,
+			3620,
+			350,
+			354
+		],
+		[
+			2816,
+			3648,
+			482,
+			512
+		],
+		[
+			2300,
+			2306,
+			574,
+			576
+		],
+		[
+			3610,
+			3617,
+			570,
+			580
 		]
 	]
 }
