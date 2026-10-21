@@ -1,0 +1,430 @@
+{
+	"id": "dr_eazy",
+	"name": "Eazy",
+	"author_line": "Hakita (GameBanana)",
+	"attribution": "Converted from Deathrun_Eazy.bsp by Hakita (https://gamebanana.com/mods/126944, CC BY-NC-ND 4.0 as listed there). Geometry only: boxes and traps rebuilt from the map's brushes and entities, none of the author's textures, models or sounds. Shipped on the strength of credit and removal on request: tell the repository owner and the map is taken out.",
+	"blurb": "A hall of rooms over a pit: a bridge that drops out under the runners, a ceiling-high push over two platforms and a hammer, a first stretch of Eazy.",
+	"origin": [
+		-672,
+		0,
+		260
+	],
+	"kill_z": -32.0,
+	"kill_hurts": "clients",
+	"theme": {
+		"sky": [
+			0.55,
+			0.68,
+			0.85
+		],
+		"horizon": [
+			0.86,
+			0.9,
+			0.95
+		],
+		"void": [
+			0.08,
+			0.1,
+			0.16
+		],
+		"sun": [
+			1.0,
+			0.95,
+			0.85
+		],
+		"deck": [
+			0.74,
+			0.78,
+			0.86
+		]
+	},
+	"start": {
+		"at": [
+			-672,
+			0,
+			260
+		],
+		"size": [
+			9,
+			3,
+			8
+		],
+		"face_toward": [
+			46.5,
+			3.2,
+			259.3
+		]
+	},
+	"activators": {
+		"at": [
+			-468,
+			386,
+			388
+		],
+		"size": [
+			9,
+			3,
+			6
+		],
+		"face_toward": [
+			1700.0,
+			416.0,
+			320.0
+		]
+	},
+	"finish": {
+		"at": [
+			1540,
+			640,
+			258
+		],
+		"size": [
+			4,
+			3,
+			4
+		],
+		"yaw": 90
+	},
+	"end": {
+		"runners": {
+			"at": [
+				1540,
+				640,
+				258
+			],
+			"size": [
+				3,
+				3,
+				8
+			],
+			"yaw": -90
+		},
+		"activators": {
+			"at": [
+				1666,
+				640,
+				258
+			],
+			"size": [
+				3,
+				3,
+				8
+			],
+			"yaw": 90
+		}
+	},
+	"route": [
+		{
+			"at": [
+				-319.6,
+				3.2,
+				259.3
+			]
+		},
+		{
+			"at": [
+				46.5,
+				3.2,
+				259.3
+			]
+		},
+		{
+			"at": [
+				412.7,
+				3.2,
+				259.3
+			]
+		},
+		{
+			"at": [
+				637.1,
+				74.1,
+				259.3
+			]
+		},
+		{
+			"at": [
+				719.8,
+				310.3,
+				259.3
+			]
+		},
+		{
+			"at": [
+				719.8,
+				676.4,
+				259.3
+			]
+		},
+		{
+			"at": [
+				719.8,
+				1042.6,
+				259.3
+			]
+		},
+		{
+			"at": [
+				719.8,
+				1472,
+				259.3
+			]
+		},
+		{
+			"at": [
+				740,
+				1472,
+				259.3
+			]
+		},
+		{
+			"at": [
+				880,
+				1472,
+				259.3
+			],
+			"jump": true
+		},
+		{
+			"at": [
+				1000,
+				1472,
+				259.3
+			]
+		},
+		{
+			"at": [
+				1250,
+				1472,
+				259.3
+			],
+			"jump": true
+		},
+		{
+			"at": [
+				1250,
+				1184,
+				259.3
+			],
+			"jump": true
+		},
+		{
+			"at": [
+				1250,
+				1000,
+				259.3
+			],
+			"jump": true
+		},
+		{
+			"at": [
+				1250,
+				928,
+				259.3
+			]
+		},
+		{
+			"at": [
+				1250,
+				690,
+				259.3
+			],
+			"jump": true
+		},
+		{
+			"at": [
+				1250,
+				640,
+				259.3
+			]
+		},
+		{
+			"at": [
+				1540,
+				640,
+				259.3
+			]
+		}
+	],
+	"traps": [
+		{
+			"button": "*2",
+			"id": "t2",
+			"name": "Trap 1",
+			"button_floor": 381.0
+		},
+		{
+			"button": "*6",
+			"id": "t6",
+			"name": "Trap 2",
+			"push_scale": 0.1,
+			"victim": [
+				1248,
+				1184,
+				258
+			]
+		},
+		{
+			"button": "*14",
+			"id": "t14",
+			"name": "Trap 3",
+			"victim": [
+				1420,
+				640,
+				258
+			]
+		},
+		{
+			"button": "*19",
+			"id": "t19",
+			"name": "Trap 4",
+			"skip": "beyond the first stretch: the later stages sit behind teleports, a 40 degree ramp and a thin glass sheet the importer cannot walk, so they are not converted",
+			"keep": true
+		},
+		{
+			"button": "*29",
+			"id": "t29",
+			"name": "Trap 5",
+			"skip": "beyond the first stretch: the later stages sit behind teleports, a 40 degree ramp and a thin glass sheet the importer cannot walk, so they are not converted",
+			"keep": true
+		},
+		{
+			"button": "*30",
+			"id": "t30",
+			"name": "Trap 6",
+			"skip": "beyond the first stretch: the later stages sit behind teleports, a 40 degree ramp and a thin glass sheet the importer cannot walk, so they are not converted",
+			"keep": true
+		},
+		{
+			"button": "*32",
+			"id": "t32",
+			"name": "Trap 7",
+			"skip": "beyond the first stretch: the later stages sit behind teleports, a 40 degree ramp and a thin glass sheet the importer cannot walk, so they are not converted",
+			"keep": true
+		}
+	],
+	"toys": [
+		{
+			"toy": "football",
+			"at": [
+				1480,
+				610,
+				258.1
+			]
+		},
+		{
+			"toy": "football",
+			"at": [
+				1480,
+				670,
+				258.1
+			]
+		}
+	],
+	"walkway": [
+		{
+			"at": [
+				-455.0,
+				325.0,
+				381.0
+			],
+			"button": "t2"
+		},
+		{
+			"at": [
+				-142.4,
+				333.9,
+				243.6
+			]
+		},
+		{
+			"at": [
+				93.8,
+				345.7,
+				125.5
+			]
+		},
+		{
+			"at": [
+				330.0,
+				369.3,
+				7.4
+			]
+		},
+		{
+			"at": [
+				578.0,
+				369.3,
+				7.4
+			]
+		},
+		{
+			"at": [
+				826.1,
+				369.3,
+				7.4
+			]
+		},
+		{
+			"at": [
+				1062.3,
+				369.3,
+				23.1
+			]
+		},
+		{
+			"at": [
+				1310.3,
+				369.3,
+				157.0
+			]
+		},
+		{
+			"at": [
+				1534.7,
+				404.8,
+				267.2
+			],
+			"button": "t6"
+		},
+		{
+			"at": [
+				1582.0,
+				404.8,
+				298.7
+			]
+		},
+		{
+			"at": [
+				1593.8,
+				428.4,
+				298.7
+			],
+			"button": "t14"
+		}
+	],
+	"unwalkable": [
+		"t2",
+		"t6",
+		"t14"
+	],
+	"fill": [
+		[
+			1522,
+			1558,
+			560,
+			720,
+			398,
+			52,
+			"ghost"
+		],
+		[
+			1664,
+			1730,
+			576,
+			704,
+			258,
+			8
+		]
+	]
+}

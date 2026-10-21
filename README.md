@@ -18,6 +18,7 @@ Every course is a **JSON document**, not a scene. A server reads the documents i
 | `dr_internet` (Internet) | A space and internet themed run down one long straight corridor with four traps worked from the walkway beside it, converted from the community map `deathrun_internet` by tuomas ([GameBanana 127024](https://gamebanana.com/mods/127024), CC BY-NC-ND 4.0 as listed); credit and removal on request, as below |
 | `dr_internet_2` (Internet II) | The second corridor of the same community map `deathrun_internet` by tuomas ([GameBanana 127024](https://gamebanana.com/mods/127024), CC BY-NC-ND 4.0 as listed): the same straight dash with two traps worked from the walkway beside it; credit and removal on request, as below |
 | `dr_handicap` (Handicap) | A catwalk over a deadly floor, converted from the community map `deathrun_hadicap_v6` by Flawless1 ([GameBanana 126987](https://gamebanana.com/mods/126987), CC BY-NC-ND 4.0 as listed): a 4 m gap, a spinning door across the corner and two stretches of whirling blades on the long run west, three traps worked from the walkway beside it; credit and removal on request, as below |
+| `dr_eazy` (Eazy) | A hall of rooms over a pit, converted from the community map `Deathrun_Eazy` by Hakita ([GameBanana 126944](https://gamebanana.com/mods/126944), CC BY-NC-ND 4.0 as listed), first stretch only: a bridge that drops out under the runners, a ceiling-high push over two platforms and a hammer. Geometry only; credit to the author, and we remove it on request. |
 
 ### Converted community maps
 
