@@ -1,0 +1,405 @@
+{
+	"id": "dr_handicap",
+	"name": "Handicap",
+	"author_line": "Flawless1 (GameBanana)",
+	"attribution": "Converted from deathrun_hadicap_v6.bsp by Flawless1 (https://gamebanana.com/mods/126987, CC BY-NC-ND 4.0 as listed there). Geometry only: boxes and traps rebuilt from the map's brushes and entities, none of the author's textures, models or sounds. Shipped on the strength of credit and removal on request: tell the repository owner and the map is taken out.",
+	"blurb": "A catwalk over a deadly floor: a 4 m gap, a spinning door across the corner and two stretches of whirling blades on the long run west, three traps worked from the walkway beside it.",
+	"origin": [
+		775,
+		-1287,
+		57
+	],
+	"kill_z": -2.0,
+	"kill_hurts": "clients",
+	"theme": {
+		"sky": [
+			0.55,
+			0.68,
+			0.85
+		],
+		"horizon": [
+			0.86,
+			0.9,
+			0.95
+		],
+		"void": [
+			0.08,
+			0.1,
+			0.16
+		],
+		"sun": [
+			1.0,
+			0.95,
+			0.85
+		],
+		"deck": [
+			0.74,
+			0.78,
+			0.86
+		]
+	},
+	"start": {
+		"at": [
+			775,
+			-1287,
+			57
+		],
+		"size": [
+			9,
+			3,
+			8
+		],
+		"face_toward": [
+			758.8,
+			-578.8,
+			57.3
+		]
+	},
+	"activators": {
+		"at": [
+			218,
+			45,
+			66
+		],
+		"size": [
+			9,
+			3,
+			6
+		],
+		"face_toward": [
+			-1000.0,
+			956.0,
+			57.0
+		]
+	},
+	"finish": {
+		"at": [
+			-820.0,
+			956.0,
+			57.0
+		],
+		"size": [
+			4,
+			3,
+			4
+		],
+		"yaw": 90
+	},
+	"end": {
+		"runners": {
+			"at": [
+				-875.0,
+				956.0,
+				57.0
+			],
+			"size": [
+				3,
+				3,
+				8
+			],
+			"yaw": 90
+		},
+		"activators": {
+			"at": [
+				-1000.0,
+				956.0,
+				57.0
+			],
+			"size": [
+				3,
+				3,
+				8
+			],
+			"yaw": -90
+		}
+	},
+	"route": [
+		{
+			"at": [
+				758.8,
+				-944.9,
+				57.3
+			]
+		},
+		{
+			"at": [
+				758.8,
+				-578.8,
+				57.3
+			]
+		},
+		{
+			"at": [
+				758.8,
+				-212.6,
+				57.3
+			]
+		},
+		{
+			"at": [
+				758.8,
+				-130.0,
+				57.3
+			]
+		},
+		{
+			"at": [
+				758.8,
+				35.4,
+				57.3
+			],
+			"jump": true
+		},
+		{
+			"at": [
+				758.8,
+				401.5,
+				57.3
+			]
+		},
+		{
+			"at": [
+				758.8,
+				767.7,
+				57.3
+			]
+		},
+		{
+			"at": [
+				845.0,
+				940.0,
+				57.3
+			]
+		},
+		{
+			"at": [
+				735.0,
+				940.0,
+				57.3
+			]
+		},
+		{
+			"at": [
+				560.0,
+				940.0,
+				57.3
+			],
+			"jump": true
+		},
+		{
+			"at": [
+				191.9,
+				921.2,
+				57.3
+			]
+		},
+		{
+			"at": [
+				-174.3,
+				921.2,
+				57.3
+			]
+		},
+		{
+			"at": [
+				-540.4,
+				921.2,
+				57.3
+			]
+		},
+		{
+			"at": [
+				-906.6,
+				921.2,
+				57.3
+			]
+		},
+		{
+			"at": [
+				-1001.1,
+				956.7,
+				57.3
+			]
+		}
+	],
+	"traps": [
+		{
+			"button": "*4",
+			"id": "t4",
+			"name": "Trap 1",
+			"skip": "the fan only blows down over the pit and its blades are 4.6 m up; nobody is hurt by it"
+		},
+		{
+			"button": "*8",
+			"id": "t8",
+			"name": "Trap 2"
+		},
+		{
+			"button": "*11",
+			"id": "t11",
+			"name": "Trap 3"
+		},
+		{
+			"button": "*13",
+			"id": "t13",
+			"name": "Trap 4",
+			"skip": "a turning ledge with no damage: nobody dies on it",
+			"keep": true
+		},
+		{
+			"button": "*14",
+			"id": "t14",
+			"name": "Trap 5"
+		},
+		{
+			"button": "*16",
+			"id": "t16",
+			"name": "Trap 6",
+			"skip": "its button only blows up a barrel: nothing the game can move"
+		}
+	],
+	"toys": [
+		{
+			"toy": "football",
+			"at": [
+				-940.0,
+				925.0,
+				57.1
+			]
+		},
+		{
+			"toy": "football",
+			"at": [
+				-940.0,
+				990.0,
+				57.1
+			]
+		}
+	],
+	"max_gap_m": 4.5,
+	"walkway": [
+		{
+			"at": [
+				439.9,
+				-23.7,
+				65.1
+			]
+		},
+		{
+			"at": [
+				522.6,
+				-47.3,
+				65.1
+			],
+			"button": "t4"
+		},
+		{
+			"at": [
+				522.6,
+				188.9,
+				65.1
+			]
+		},
+		{
+			"at": [
+				522.6,
+				437.0,
+				65.1
+			]
+		},
+		{
+			"at": [
+				581.6,
+				673.2,
+				65.1
+			],
+			"button": "t14"
+		},
+		{
+			"at": [
+				345.4,
+				673.2,
+				65.1
+			]
+		},
+		{
+			"at": [
+				156.4,
+				732.3,
+				65.1
+			],
+			"button": "t8"
+		},
+		{
+			"at": [
+				-68.0,
+				720.4,
+				65.1
+			]
+		},
+		{
+			"at": [
+				-304.2,
+				720.4,
+				65.1
+			]
+		},
+		{
+			"at": [
+				-316.0,
+				732.3,
+				65.1
+			],
+			"button": "t11"
+		},
+		{
+			"at": [
+				-327.8,
+				507.8,
+				65.1
+			]
+		},
+		{
+			"at": [
+				-422.3,
+				283.4,
+				65.1
+			]
+		},
+		{
+			"at": [
+				-528.6,
+				70.8,
+				65.1
+			]
+		},
+		{
+			"at": [
+				-623.1,
+				-106.3,
+				65.1
+			],
+			"button": "t13"
+		}
+	],
+	"unwalkable": [],
+	"fill": [
+		[
+			544,
+			620,
+			888,
+			1024,
+			56,
+			8
+		],
+		[
+			-838,
+			-802,
+			877,
+			1035,
+			197,
+			52,
+			"ghost"
+		]
+	]
+}
