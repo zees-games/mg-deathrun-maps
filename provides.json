@@ -1,0 +1,145 @@
+{
+    "schema": 1,
+    "title": "Deathrun courses",
+    "kinds": [
+        "map"
+    ],
+    "games": [
+        "gamemann/mg-deathrun"
+    ],
+    "entries": [
+        {
+            "kind": "map",
+            "id": "dr_aztecan",
+            "name": "Sunstone Causeway",
+            "scene": "courses/dr_aztecan.json",
+            "map_kind": "deathrun"
+        },
+        {
+            "kind": "map",
+            "id": "dr_eazy",
+            "name": "Eazy",
+            "scene": "courses/dr_eazy.json",
+            "map_kind": "deathrun"
+        },
+        {
+            "kind": "map",
+            "id": "dr_family_guy",
+            "name": "Quahog Run",
+            "scene": "courses/dr_family_guy.json",
+            "map_kind": "deathrun"
+        },
+        {
+            "kind": "map",
+            "id": "dr_fogtown",
+            "name": "Fog Town",
+            "scene": "courses/dr_fogtown.json",
+            "map_kind": "deathrun"
+        },
+        {
+            "kind": "map",
+            "id": "dr_foundry",
+            "name": "The Foundry",
+            "scene": "courses/dr_foundry.json",
+            "map_kind": "deathrun"
+        },
+        {
+            "kind": "map",
+            "id": "dr_handicap",
+            "name": "Handicap",
+            "scene": "courses/dr_handicap.json",
+            "map_kind": "deathrun"
+        },
+        {
+            "kind": "map",
+            "id": "dr_helix",
+            "name": "Helix",
+            "scene": "courses/dr_helix.json",
+            "map_kind": "deathrun"
+        },
+        {
+            "kind": "map",
+            "id": "dr_horror",
+            "name": "Horror House",
+            "scene": "courses/dr_horror.json",
+            "map_kind": "deathrun"
+        },
+        {
+            "kind": "map",
+            "id": "dr_ice_works",
+            "name": "Ice Works",
+            "scene": "courses/dr_ice_works.json",
+            "map_kind": "deathrun"
+        },
+        {
+            "kind": "map",
+            "id": "dr_iceworld",
+            "name": "Ice World",
+            "scene": "courses/dr_iceworld.json",
+            "map_kind": "deathrun"
+        },
+        {
+            "kind": "map",
+            "id": "dr_internet",
+            "name": "Internet",
+            "scene": "courses/dr_internet.json",
+            "map_kind": "deathrun"
+        },
+        {
+            "kind": "map",
+            "id": "dr_internet_2",
+            "name": "Internet II",
+            "scene": "courses/dr_internet_2.json",
+            "map_kind": "deathrun"
+        },
+        {
+            "kind": "map",
+            "id": "dr_oreo",
+            "name": "Percolate Oreo",
+            "scene": "courses/dr_oreo.json",
+            "map_kind": "deathrun"
+        },
+        {
+            "kind": "map",
+            "id": "dr_parking_garage",
+            "name": "Parking Garage",
+            "scene": "courses/dr_parking_garage.json",
+            "map_kind": "deathrun"
+        },
+        {
+            "kind": "map",
+            "id": "dr_quarry",
+            "name": "The Quarry",
+            "scene": "courses/dr_quarry.json",
+            "map_kind": "deathrun"
+        },
+        {
+            "kind": "map",
+            "id": "dr_ramesses",
+            "name": "Pharaoh's Descent",
+            "scene": "courses/dr_ramesses.json",
+            "map_kind": "deathrun"
+        },
+        {
+            "kind": "map",
+            "id": "dr_sections",
+            "name": "Sections",
+            "scene": "courses/dr_sections.json",
+            "map_kind": "deathrun"
+        },
+        {
+            "kind": "map",
+            "id": "dr_southpark",
+            "name": "South Park",
+            "scene": "courses/dr_southpark.json",
+            "map_kind": "deathrun"
+        },
+        {
+            "kind": "map",
+            "id": "dr_temple",
+            "name": "The Temple",
+            "scene": "courses/dr_temple.json",
+            "map_kind": "deathrun"
+        }
+    ]
+}
