@@ -19,7 +19,7 @@ and searches over them:
 
 Both are written to the spec in SOURCE units (the importer converts them), as hand-editable lists,
 so a path the planner got wrong is a spec edit, not a re-run. A spec whose `route` already says
-`"planned": false` is left alone. A spec's `via` (source points) makes the route pass them in order. A spec's `walk_via` does the same for the activators' walk. A spec's `route_traps: true` makes it pass every trap's victim spot
+`"planned": false` is left alone. A spec's `via` (source points) makes the route pass them in order. A spec's `walk_via` does the same for the activators' walk. A spec's `route_traps: true` makes it pass every trap's victim spot (with `route_via`, hand corner points like `walk_via`, before a trap's victim)
 instead (those a runner can walk to and leave again; with `walk_limit_m`, buttons further than that on foot from the previous stop are skipped), for a map whose traps are not on the straight way from start to finish.
 """
 import heapq
@@ -410,6 +410,7 @@ def trap_vias(grid, doc, start, fin):
         found.append((along[k], node, t["id"]))
     found.sort(key=lambda f: f[0])
     print("route passes the victims of: %s" % ", ".join(f[2] for f in found))
+    trap_vias.ids = [f[2] for f in found]
     return [f[1] for f in found]
 
 
@@ -445,7 +446,13 @@ def main(argv):
     path, cur, legs = [], start, []
     vias = list(spec.get("via", []))
     if spec.get("route_traps") and not vias:
-        vias = [("node", n) for n in trap_vias(grid, doc, start, fin)]
+        nodes = trap_vias(grid, doc, start, fin)
+        corners = [v if isinstance(v, dict) else {"at": v} for v in spec.get("route_via", [])]
+        first = trap_vias.ids[0] if trap_vias.ids else None
+        vias = []
+        for n, tid in zip(nodes, trap_vias.ids):
+            vias += [c for c in corners if c.get("before", first) == tid]
+            vias.append(("node", n))
     for v in vias:
         if isinstance(v, tuple):
             leg = astar(grid, cur, v[1], False)
@@ -546,9 +553,11 @@ def main(argv):
             if not ok:
                 seg = None
         if seg is None:
+            print("walkway: %s: no walk from %s to its button %s" % (t["id"], to_source(grid, imp, cur), b))
             failed.append(t["id"])
             continue
         if limit and len(seg) * H > limit:       # spec `walk_limit_m`: a button that far on foot is pressed after the runners have passed
+            print("walkway: %s: %.0f m on foot, over walk_limit_m" % (t["id"], len(seg) * H))
             failed.append(t["id"])
             continue
         wp = wps if stops and seg is not None else compress(grid, seg, 6.0)
