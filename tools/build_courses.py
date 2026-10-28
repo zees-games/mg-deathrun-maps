@@ -179,6 +179,8 @@ class Course:
         self.doc["route"] = self.route
         if self.toys:
             self.doc["toys"] = self.toys
+        if self.doc["id"] in AMBIENT:
+            self.doc["ambient"] = ambient_block(self.doc["id"])
         path = os.path.join(directory, self.doc["id"] + ".json")
         return path, json.dumps(self.doc, indent="\t") + "\n"
 
@@ -649,8 +651,56 @@ def quarry():
     return c
 
 
+# Each course's `ambient` block for DotAmbienceDirector: bed level (1.0 is the stock 0.35 bed) and whether
+# the birdsong bed may play. Halls and mines sit under 1, open ground over. Courses this script does not
+# build (imported ones) are patched by `--ambient`.
+AMBIENT = {
+    "dr_aztecan": (1.0, False),
+    "dr_eazy": (0.8, False),
+    "dr_family_guy": (1.0, False),
+    "dr_fogtown": (1.2, False),
+    "dr_foundry": (0.8, False),
+    "dr_handicap": (1.0, False),
+    "dr_helix": (1.2, False),
+    "dr_horror": (0.7, False),
+    "dr_ice_works": (0.8, False),
+    "dr_iceworld": (1.0, False),
+    "dr_internet": (0.7, False),
+    "dr_internet_2": (0.7, False),
+    "dr_oreo": (1.0, False),
+    "dr_quarry": (1.2, False),
+    "dr_ramesses": (0.7, False),
+    "dr_sections": (0.7, False),
+    "dr_southpark": (1.2, False),
+    "dr_temple": (0.8, False),
+}
+
+
+def ambient_block(cid):
+    level, lively = AMBIENT[cid]
+    block = {"level": level}
+    if lively:
+        block["lively"] = True
+    return block
+
+
+def patch_ambient():
+    """Adds the block to every course in courses/ without touching the rest of its layout."""
+    root = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "courses")
+    for cid in AMBIENT:
+        path = os.path.join(root, cid + ".json")
+        with open(path) as f:
+            doc = json.load(f)
+        doc["ambient"] = ambient_block(cid)
+        with open(path, "w") as f:
+            f.write(json.dumps(doc, indent="\t") + "\n")
+
+
 def main():
     root = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "courses")
+    if "--ambient" in sys.argv:
+        patch_ambient()
+        return
     check = "--check" in sys.argv
     stale = []
 
