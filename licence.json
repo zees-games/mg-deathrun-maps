@@ -1,0 +1,176 @@
+[
+  {
+    "paths": [
+      ""
+    ],
+    "licence": "MIT",
+    "author": "TMC",
+    "url": "https://github.com/zees-games/mg-deathrun-maps",
+    "title": "mg-deathrun-maps (original content)"
+  },
+  {
+    "paths": [
+      "courses/dr_aztecan.json"
+    ],
+    "licence": "CC-BY-NC-ND-4.0",
+    "exception": "credited-community-map",
+    "title": "Sunstone Causeway",
+    "author": "n1be",
+    "source_url": "https://gamebanana.com/mods/126828",
+    "removal_contact": "https://github.com/zees-games/mg-deathrun-maps/issues"
+  },
+  {
+    "paths": [
+      "courses/dr_eazy.json"
+    ],
+    "licence": "CC-BY-NC-ND-4.0",
+    "exception": "credited-community-map",
+    "title": "Eazy",
+    "author": "Hakita",
+    "source_url": "https://gamebanana.com/mods/126944",
+    "removal_contact": "https://github.com/zees-games/mg-deathrun-maps/issues"
+  },
+  {
+    "paths": [
+      "courses/dr_family_guy.json"
+    ],
+    "licence": "CC-BY-NC-ND-4.0",
+    "exception": "credited-community-map",
+    "title": "Quahog Run",
+    "author": "Severn7 and Matasume",
+    "source_url": "https://gamebanana.com/mods/126959",
+    "removal_contact": "https://github.com/zees-games/mg-deathrun-maps/issues"
+  },
+  {
+    "paths": [
+      "courses/dr_fogtown.json"
+    ],
+    "licence": "CC-BY-NC-ND-4.0",
+    "exception": "credited-community-map",
+    "title": "Fog Town",
+    "author": "Krypt",
+    "source_url": "https://gamebanana.com/mods/127180",
+    "removal_contact": "https://github.com/zees-games/mg-deathrun-maps/issues"
+  },
+  {
+    "paths": [
+      "courses/dr_handicap.json"
+    ],
+    "licence": "CC-BY-NC-ND-4.0",
+    "exception": "credited-community-map",
+    "title": "Handicap",
+    "author": "Flawless1",
+    "source_url": "https://gamebanana.com/mods/126987",
+    "removal_contact": "https://github.com/zees-games/mg-deathrun-maps/issues"
+  },
+  {
+    "paths": [
+      "courses/dr_helix.json"
+    ],
+    "licence": "CC-BY-NC-ND-4.0",
+    "exception": "credited-community-map",
+    "title": "Helix",
+    "author": "HyperCUBE",
+    "source_url": "https://gamebanana.com/mods/126992",
+    "removal_contact": "https://github.com/zees-games/mg-deathrun-maps/issues"
+  },
+  {
+    "paths": [
+      "courses/dr_horror.json"
+    ],
+    "licence": "CC-BY-NC-ND-4.0",
+    "exception": "credited-community-map",
+    "title": "Horror House",
+    "author": "mgproductions",
+    "source_url": "https://gamebanana.com/mods/127000",
+    "removal_contact": "https://github.com/zees-games/mg-deathrun-maps/issues"
+  },
+  {
+    "paths": [
+      "courses/dr_iceworld.json"
+    ],
+    "licence": "CC-BY-NC-ND-4.0",
+    "exception": "credited-community-map",
+    "title": "Ice World",
+    "author": "metz10",
+    "source_url": "https://gamebanana.com/mods/127005",
+    "removal_contact": "https://github.com/zees-games/mg-deathrun-maps/issues"
+  },
+  {
+    "paths": [
+      "courses/dr_internet.json"
+    ],
+    "licence": "CC-BY-NC-ND-4.0",
+    "exception": "credited-community-map",
+    "title": "Internet",
+    "author": "tuomas",
+    "source_url": "https://gamebanana.com/mods/127024",
+    "removal_contact": "https://github.com/zees-games/mg-deathrun-maps/issues"
+  },
+  {
+    "paths": [
+      "courses/dr_internet_2.json"
+    ],
+    "licence": "CC-BY-NC-ND-4.0",
+    "exception": "credited-community-map",
+    "title": "Internet II",
+    "author": "tuomas",
+    "source_url": "https://gamebanana.com/mods/127024",
+    "removal_contact": "https://github.com/zees-games/mg-deathrun-maps/issues"
+  },
+  {
+    "paths": [
+      "courses/dr_oreo.json"
+    ],
+    "licence": "CC-BY-NC-ND-4.0",
+    "exception": "credited-community-map",
+    "title": "Percolate Oreo",
+    "author": "Loller Dan",
+    "source_url": "https://gamebanana.com/mods/127264",
+    "removal_contact": "https://github.com/zees-games/mg-deathrun-maps/issues"
+  },
+  {
+    "paths": [
+      "courses/dr_parking_garage.json"
+    ],
+    "licence": "CC-BY-NC-ND-4.0",
+    "exception": "credited-community-map",
+    "title": "Parking Garage",
+    "author": "Bloodhunter4rc",
+    "source_url": "https://gamebanana.com/mods/127127",
+    "removal_contact": "https://github.com/zees-games/mg-deathrun-maps/issues"
+  },
+  {
+    "paths": [
+      "courses/dr_ramesses.json"
+    ],
+    "licence": "CC-BY-NC-ND-4.0",
+    "exception": "credited-community-map",
+    "title": "Pharaoh's Descent",
+    "author": "RiddlerAJ",
+    "source_url": "https://gamebanana.com/mods/127386",
+    "removal_contact": "https://github.com/zees-games/mg-deathrun-maps/issues"
+  },
+  {
+    "paths": [
+      "courses/dr_sections.json"
+    ],
+    "licence": "CC-BY-NC-ND-4.0",
+    "exception": "credited-community-map",
+    "title": "Sections",
+    "author": "-[Element]- (map deathrun_sections_fix), from the Deathrun MapPack 2008",
+    "source_url": "https://gamebanana.com/mods/124076",
+    "removal_contact": "https://github.com/zees-games/mg-deathrun-maps/issues"
+  },
+  {
+    "paths": [
+      "courses/dr_southpark.json"
+    ],
+    "licence": "CC-BY-NC-ND-4.0",
+    "exception": "credited-community-map",
+    "title": "South Park",
+    "author": "Linoxi",
+    "source_url": "https://gamebanana.com/mods/127198",
+    "removal_contact": "https://github.com/zees-games/mg-deathrun-maps/issues"
+  }
+]
