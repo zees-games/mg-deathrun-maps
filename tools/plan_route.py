@@ -19,7 +19,7 @@ and searches over them:
 
 Both are written to the spec in SOURCE units (the importer converts them), as hand-editable lists,
 so a path the planner got wrong is a spec edit, not a re-run. A spec whose `route` already says
-`"planned": false` is left alone. A spec's `via` (source points) makes the route pass them in order. A spec's `route_traps: true` makes it pass every trap's victim spot
+`"planned": false` is left alone. A spec's `via` (source points) makes the route pass them in order. A spec's `walk_via` does the same for the activators' walk. A spec's `route_traps: true` makes it pass every trap's victim spot
 instead (those a runner can walk to and leave again; with `walk_limit_m`, buttons further than that on foot from the previous stop are skipped), for a map whose traps are not on the straight way from start to finish.
 """
 import heapq
@@ -520,6 +520,9 @@ def main(argv):
     order = sorted(doc["traps"], key=prog)
     walkway, cur, failed = [], act, []
     limit = float(spec.get("walk_limit_m", 0))
+    # `walk_via`: source points the activators pass on the way to a button ({"at": [x,y,z], "before": "<trap id>"},
+    # else before the first), where the grid's 0.3 m cell lets the search cut a corner past a wall thinner than a cell.
+    walk_via = [v if isinstance(v, dict) else {"at": v} for v in spec.get("walk_via", [])]
     for t in order:
         b = t["button"]["at"]
         goal = grid.nearest((b[0], b[1] + 0.1, b[2]), radius=8)
@@ -527,13 +530,27 @@ def main(argv):
             failed.append(t["id"])
             continue
         seg = astar(grid, cur, goal, True)
+        stops = [v for v in walk_via if v.get("before", order[0]["id"]) == t["id"]]
+        if stops and seg is not None:
+            seg, at, ok, wps = [], cur, True, []
+            for v in stops + [None]:
+                nxt = goal if v is None else grid.nearest(imp.gv(v["at"]), radius=8)
+                leg = astar(grid, at, nxt, True) if nxt is not None else None
+                if leg is None:
+                    ok = False
+                    break
+                seg += leg if not seg else leg[1:]
+                wps += compress(grid, leg, 6.0)     # per leg, so the smoothing cannot cut a via's corner
+                at = nxt
+            if not ok:
+                seg = None
         if seg is None:
             failed.append(t["id"])
             continue
         if limit and len(seg) * H > limit:       # spec `walk_limit_m`: a button that far on foot is pressed after the runners have passed
             failed.append(t["id"])
             continue
-        wp = compress(grid, seg, 6.0)
+        wp = wps if stops and seg is not None else compress(grid, seg, 6.0)
         for k, (node, _) in enumerate(wp):
             e = {"at": to_source(grid, imp, node)}
             if k == len(wp) - 1:
