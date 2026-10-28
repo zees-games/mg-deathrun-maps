@@ -174,7 +174,8 @@ def brush_boxes(bsp, index):
     corners = sum(1 for p in pts if (abs(p[0] - x0) < 0.5 or abs(p[0] - x1) < 0.5)
                   and (abs(p[1] - y0) < 0.5 or abs(p[1] - y1) < 0.5)
                   and (abs(p[2] - z0) < 0.5 or abs(p[2] - z1) < 0.5))
-    if corners == len(pts):
+    # a wedge's six corners are all box corners: only eight make a box, or a ramp becomes a block
+    if corners == len(pts) and len(pts) >= 8:
         return [((x0, x1), (y0, y1), (z0, z1), 0.0)], 0
     tb = turned_box(bsp, index, pts)
     if tb is not None:
