@@ -19,7 +19,8 @@ and searches over them:
 
 Both are written to the spec in SOURCE units (the importer converts them), as hand-editable lists,
 so a path the planner got wrong is a spec edit, not a re-run. A spec whose `route` already says
-`"planned": false` is left alone. A spec's `via` (source points) makes the route pass them in order.
+`"planned": false` is left alone. A spec's `via` (source points) makes the route pass them in order. A spec's `route_traps: true` makes it pass every trap's victim spot
+instead (those a runner can walk to and leave again; with `walk_limit_m`, buttons further than that on foot from the previous stop are skipped), for a map whose traps are not on the straight way from start to finish.
 """
 import heapq
 import json
@@ -384,6 +385,33 @@ def to_source(grid, imp, node):
     return [sx, sy, sz]
 
 
+def trap_vias(grid, doc, start, fin):
+    """Victim nodes the runners' route must pass (spec `route_traps`): a trap on another level than the route is never
+    stood in, so the planner follows the traps. Only victims a runner can walk to AND leave again; the rest are listed."""
+    base = astar(grid, start, fin, False)
+    if base is None:
+        return []
+    along = {n: k for k, (n, _) in enumerate(base)}
+    found = []
+    trap_vias.dead = []
+    for t in doc["traps"]:
+        v = t["victim"]
+        node = grid.nearest((v[0], v[1] + 0.1, v[2]), radius=8)
+        if node is None:
+            print("trap %s: victim %s is not on a walkable surface" % (t["id"], v))
+            trap_vias.dead.append(t["id"])
+            continue
+        if astar(grid, start, node, False) is None or astar(grid, node, fin, False) is None:
+            print("trap %s: victim %s is on a surface the runners cannot walk to and leave" % (t["id"], v))
+            trap_vias.dead.append(t["id"])
+            continue
+        k = min(along, key=lambda m: (m[0] - node[0]) ** 2 + (m[1] - node[1]) ** 2)
+        found.append((along[k], node, t["id"]))
+    found.sort(key=lambda f: f[0])
+    print("route passes the victims of: %s" % ", ".join(f[2] for f in found))
+    return [f[1] for f in found]
+
+
 def main(argv):
     args = [a for a in argv[1:] if not a.startswith("--")]
     dry = "--dry" in argv
@@ -414,7 +442,17 @@ def main(argv):
     # from the point before it and jumps at the edge, for a take-off the grid search would take
     # from a corner it had to turn on (no run-up, and the bot falls short).
     path, cur, legs = [], start, []
-    for v in spec.get("via", []):
+    vias = list(spec.get("via", []))
+    if spec.get("route_traps") and not vias:
+        vias = [("node", n) for n in trap_vias(grid, doc, start, fin)]
+    for v in vias:
+        if isinstance(v, tuple):
+            leg = astar(grid, cur, v[1], False)
+            if leg is not None:
+                path += leg[:-1]
+                legs.append(leg)
+                cur = v[1]
+            continue
         hand = isinstance(v, dict)
         node = grid.nearest(imp.gv(v["at"] if hand else v), radius=8)
         if node is None:
@@ -481,6 +519,7 @@ def main(argv):
 
     order = sorted(doc["traps"], key=prog)
     walkway, cur, failed = [], act, []
+    limit = float(spec.get("walk_limit_m", 0))
     for t in order:
         b = t["button"]["at"]
         goal = grid.nearest((b[0], b[1] + 0.1, b[2]), radius=8)
@@ -491,6 +530,9 @@ def main(argv):
         if seg is None:
             failed.append(t["id"])
             continue
+        if limit and len(seg) * H > limit:       # spec `walk_limit_m`: a button that far on foot is pressed after the runners have passed
+            failed.append(t["id"])
+            continue
         wp = compress(grid, seg, 6.0)
         for k, (node, _) in enumerate(wp):
             e = {"at": to_source(grid, imp, node)}
@@ -499,6 +541,13 @@ def main(argv):
             walkway.append(e)
         cur = goal
     print("walkway: %d points, buttons unreachable on foot: %s" % (len(walkway), failed or "none"))
+    if spec.get("route_traps"):
+        # a trap no runner can stand in or no activator can press only draws the stand-in activator to a button it cannot use
+        for t in spec["traps"]:
+            if t["id"] in failed or t["id"] in getattr(trap_vias, "dead", []):
+                t["skip"] = "planner: its victim spot is off the runners' way or its button off the activators' (route_traps)"
+                t["keep"] = True    # its brushes stay as the floor they were (a trapdoor over the runners' way is no loss)
+        failed = []
     spec["route"] = route
     if len(route) > 1:
         # runners and activators face the way the route first goes (the suite checks it), not the finish

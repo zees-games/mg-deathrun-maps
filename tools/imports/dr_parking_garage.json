@@ -58,9 +58,9 @@
  },
  "activators": {
   "at": [
-   814,
-   -483,
-   570
+   780,
+   -1190,
+   263
   ],
   "size": [
    9,
@@ -131,29 +131,36 @@
   },
   {
    "at": [
-    720.0,
-    -477.5,
+    767.2,
+    -619.2,
     259.4
    ]
   },
   {
    "at": [
-    838.1,
-    -264.9,
+    979.8,
+    -335.8,
     259.4
    ]
   },
   {
    "at": [
-    838.1,
-    101.3,
+    979.8,
+    30.4,
     259.4
    ]
   },
   {
    "at": [
-    849.9,
-    455.6,
+    1027.1,
+    384.7,
+    259.4
+   ]
+  },
+  {
+   "at": [
+    885.3,
+    561.9,
     259.4
    ]
   },
@@ -187,7 +194,8 @@
    "button": "*12",
    "id": "t12",
    "name": "Trap 3",
-   "skip": "button stands on a lower floor the activator cannot walk to from the gallery"
+   "skip": "planner: its victim spot is off the runners' way or its button off the activators' (route_traps)",
+   "keep": true
   },
   {
    "button": "*13",
@@ -210,12 +218,14 @@
   {
    "button": "*33",
    "id": "t33",
-   "name": "Trap 7"
+   "name": "Trap 7",
+   "skip": "planner: its victim spot is off the runners' way or its button off the activators' (route_traps)"
   },
   {
    "button": "*36",
    "id": "t36",
-   "name": "Trap 8"
+   "name": "Trap 8",
+   "skip": "planner: its victim spot is off the runners' way or its button off the activators' (route_traps)"
   },
   {
    "button": "*37",
@@ -238,7 +248,8 @@
   {
    "button": "*44",
    "id": "t44",
-   "name": "Trap 12"
+   "name": "Trap 12",
+   "skip": "planner: its victim spot is off the runners' way or its button off the activators' (route_traps)"
   },
   {
    "button": "*47",
@@ -249,8 +260,7 @@
   {
    "button": "*52",
    "id": "t52",
-   "name": "Trap 14",
-   "skip": "button stands on a lower floor the activator cannot walk to from the gallery"
+   "name": "Trap 14"
   },
   {
    "button": "*53",
@@ -260,7 +270,8 @@
   {
    "button": "*55",
    "id": "t55",
-   "name": "Trap 16"
+   "name": "Trap 16",
+   "skip": "planner: its victim spot is off the runners' way or its button off the activators' (route_traps)"
   },
   {
    "button": "*64",
@@ -283,13 +294,15 @@
   {
    "button": "*87",
    "id": "t87",
-   "name": "Trap 20"
+   "name": "Trap 20",
+   "skip": "planner: its victim spot is off the runners' way or its button off the activators' (route_traps)"
   },
   {
    "button": "*97",
    "id": "t97",
    "name": "Trap 21",
-   "skip": "button stands on a lower floor the activator cannot walk to from the gallery"
+   "skip": "planner: its victim spot is off the runners' way or its button off the activators' (route_traps)",
+   "keep": true
   }
  ],
  "toys": [
@@ -353,228 +366,77 @@
  "walkway": [
   {
    "at": [
-    814.5,
-    -477.5,
-    550.8
+    779.0,
+    -949.9,
+    259.4
+   ]
+  },
+  {
+   "at": [
+    779.0,
+    -701.9,
+    259.4
+   ]
+  },
+  {
+   "at": [
+    779.0,
+    -453.9,
+    259.4
+   ]
+  },
+  {
+   "at": [
+    779.0,
+    -205.8,
+    259.4
+   ]
+  },
+  {
+   "at": [
+    838.1,
+    30.4,
+    259.4
+   ]
+  },
+  {
+   "at": [
+    849.9,
+    278.4,
+    259.4
+   ]
+  },
+  {
+   "at": [
+    849.9,
+    526.4,
+    259.4
+   ]
+  },
+  {
+   "at": [
+    849.9,
+    762.7,
+    259.4
+   ]
+  },
+  {
+   "at": [
+    1086.1,
+    786.3,
+    259.4
+   ]
+  },
+  {
+   "at": [
+    1157.0,
+    750.9,
+    259.4
    ],
-   "button": "t33"
-  },
-  {
-   "at": [
-    578.2,
-    -477.5,
-    550.8
-   ]
-  },
-  {
-   "at": [
-    566.4,
-    -477.5,
-    550.8
-   ],
-   "button": "t36"
-  },
-  {
-   "at": [
-    330.2,
-    -477.5,
-    550.8
-   ]
-  },
-  {
-   "at": [
-    82.2,
-    -477.5,
-    550.8
-   ]
-  },
-  {
-   "at": [
-    -118.6,
-    -477.5,
-    550.8
-   ],
-   "button": "t37"
-  },
-  {
-   "at": [
-    -295.8,
-    -323.9,
-    550.8
-   ]
-  },
-  {
-   "at": [
-    -496.6,
-    -194.0,
-    550.8
-   ]
-  },
-  {
-   "at": [
-    -626.5,
-    -75.9,
-    550.8
-   ],
-   "button": "t43"
-  },
-  {
-   "at": [
-    -579.2,
-    -300.3,
-    550.8
-   ]
-  },
-  {
-   "at": [
-    -484.7,
-    -477.5,
-    550.8
-   ],
-   "button": "t55"
-  },
-  {
-   "at": [
-    -626.5,
-    -442.1,
-    550.8
-   ],
-   "button": "t64"
-  },
-  {
-   "at": [
-    -614.7,
-    -217.6,
-    550.8
-   ]
-  },
-  {
-   "at": [
-    -484.7,
-    -16.9,
-    550.8
-   ]
-  },
-  {
-   "at": [
-    -331.2,
-    172.1,
-    550.8
-   ]
-  },
-  {
-   "at": [
-    -224.9,
-    384.7,
-    550.8
-   ]
-  },
-  {
-   "at": [
-    -213.1,
-    396.5,
-    550.8
-   ],
-   "button": "t44"
-  },
-  {
-   "at": [
-    -449.3,
-    396.5,
-    550.8
-   ]
-  },
-  {
-   "at": [
-    -650.1,
-    337.5,
-    550.8
-   ],
-   "button": "t65"
-  },
-  {
-   "at": [
-    -413.9,
-    337.5,
-    550.8
-   ]
-  },
-  {
-   "at": [
-    -165.9,
-    337.5,
-    550.8
-   ]
-  },
-  {
-   "at": [
-    82.2,
-    337.5,
-    550.8
-   ]
-  },
-  {
-   "at": [
-    330.2,
-    337.5,
-    550.8
-   ]
-  },
-  {
-   "at": [
-    542.8,
-    396.5,
-    550.8
-   ],
-   "button": "t87"
-  },
-  {
-   "at": [
-    767.2,
-    408.3,
-    550.8
-   ]
-  },
-  {
-   "at": [
-    1003.4,
-    479.2,
-    550.8
-   ]
-  },
-  {
-   "at": [
-    1027.1,
-    715.4,
-    550.8
-   ]
-  },
-  {
-   "at": [
-    979.8,
-    809.9,
-    550.8
-   ],
-   "button": "t41"
+   "button": "t52"
   }
  ],
- "unwalkable": [
-  "t37",
-  "t55",
-  "t64",
-  "t97",
-  "t33",
-  "t36",
-  "t15",
-  "t43",
-  "t12",
-  "t13",
-  "t44",
-  "t47",
-  "t65",
-  "t87",
-  "t31",
-  "t41",
-  "t52"
- ]
+ "route_traps": true,
+ "unwalkable": [],
+ "walk_limit_m": 110
 }
