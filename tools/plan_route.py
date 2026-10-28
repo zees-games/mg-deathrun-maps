@@ -77,10 +77,11 @@ class Grid:
         # a node: free voxel with a solid one under it and HEAD free voxels above
         solid_below = np.zeros_like(occ)
         solid_below[:, :, 1:] = occ[:, :, :-1]
-        c = np.cumsum(np.pad(occ, ((0, 0), (0, 0), (1, 0))).astype(np.int32), axis=2)
-        top = np.minimum(np.arange(self.ny) + HEAD, self.ny)
-        blocked = c[:, :, top] - c[:, :, np.arange(self.ny)]
-        self.node = (~occ) & solid_below & (blocked == 0) & (~bad)
+        # HEAD shifted ORs instead of a cumsum: the int32 volume cost several GB
+        blocked = np.zeros_like(occ)
+        for dy in range(HEAD):
+            blocked[:, :, :self.ny - dy] |= occ[:, :, dy:]
+        self.node = (~occ) & solid_below & (~blocked) & (~bad)
         self.node[:, :, 0] = False
         # a node with floor missing within two cells (0.6 m) of it is an edge: costed, so a route keeps to the middle of a
         # strip instead of hugging its rim (a stand-in that runs the rim falls off it)
