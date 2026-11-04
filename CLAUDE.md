@@ -77,3 +77,5 @@ A level is **a course that plays differently from every other**, or a section ki
 ## Ambience level
 
 Every document carries `"ambient": {"level": n, "lively": true}` for dot-audio's `DotAmbienceDirector` (`level` multiplies the stock bed, 1.0 unchanged; `lively` lets the birdsong bed play): halls, tombs and corridors 0.7-0.8, open courses 1.0-1.2, never `lively` (the traps carry the sound). The table is `AMBIENT` in `tools/build_courses.py`, which writes it into built documents; `tools/build_courses.py --ambient` patches the imported ones, so a new map adds a row there.
+
+**Publishing the pack**: `tools/publish.sh --version V` (id `mg-deathrun-maps`, `tools` left out), dev then prod exactly as in mg-deathrun's CLAUDE.md; the prod run writes `content.lock.json`.
