@@ -1,0 +1,15 @@
+{
+	"format": 1,
+	"mirrors": [],
+	"origin": "https://dotgames.org/content",
+	"packs": [
+		{
+			"id": "gamemann/mg-deathrun-maps",
+			"into": "",
+			"kind": "pack",
+			"manifest_sha256": "e3781c9eca9beaee67c7b75230b5abcaff7a0bff3dd0aaba0dda015920c456d7",
+			"optional": false,
+			"version": "1.0.0"
+		}
+	]
+}
