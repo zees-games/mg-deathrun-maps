@@ -656,6 +656,7 @@ def quarry():
 # build (imported ones) are patched by `--ambient`.
 AMBIENT = {
     "dr_aztecan": (1.0, False),
+    "dr_death": (0.8, False),
     "dr_eazy": (0.8, False),
     "dr_family_guy": (1.0, False),
     "dr_fogtown": (1.2, False),
