@@ -17,6 +17,13 @@
         },
         {
             "kind": "map",
+            "id": "dr_death",
+            "name": "Death Row",
+            "scene": "courses/dr_death.json",
+            "map_kind": "deathrun"
+        },
+        {
+            "kind": "map",
             "id": "dr_eazy",
             "name": "Eazy",
             "scene": "courses/dr_eazy.json",
