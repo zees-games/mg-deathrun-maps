@@ -54,6 +54,17 @@
   },
   {
     "paths": [
+      "courses/dr_death.json"
+    ],
+    "licence": "CC-BY-NC-ND-4.0",
+    "exception": "credited-community-map",
+    "title": "Death Row",
+    "author": "Deathmaker192",
+    "source_url": "https://gamebanana.com/mods/127338",
+    "removal_contact": "https://github.com/zees-games/mg-deathrun-maps/issues"
+  },
+  {
+    "paths": [
       "courses/dr_handicap.json"
     ],
     "licence": "CC-BY-NC-ND-4.0",
