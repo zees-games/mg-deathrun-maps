@@ -234,24 +234,6 @@
 			"name": "Trap 7"
 		}
 	],
-	"toys": [
-		{
-			"toy": "football",
-			"at": [
-				2282,
-				-2270,
-				7.1
-			]
-		},
-		{
-			"toy": "football",
-			"at": [
-				2200,
-				-2300,
-				7.1
-			]
-		}
-	],
 	"min_box_m": 0.5,
 	"kill_boxes": [
 		[

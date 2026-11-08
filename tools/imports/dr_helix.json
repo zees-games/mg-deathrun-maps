@@ -772,24 +772,6 @@
    "skip": "the secret ending chain (buttons hidden round the course), not a trap"
   }
  ],
- "toys": [
-  {
-   "toy": "football",
-   "at": [
-    -150,
-    -2180,
-    16
-   ]
-  },
-  {
-   "toy": "football",
-   "at": [
-    -150,
-    -2300,
-    16
-   ]
-  }
- ],
  "static": [
   "afk_killer",
   "snowman_left_break",

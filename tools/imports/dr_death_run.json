@@ -304,32 +304,5 @@
  "static": [
   "spinner",
   "conayor"
- ],
- "toys": [
-  {
-   "toy": "football",
-   "at": [
-    1400,
-    -60,
-    193
-   ]
-  },
-  {
-   "toy": "football",
-   "at": [
-    1270,
-    -1030,
-    451
-   ]
-  },
-  {
-   "toy": "barrel",
-   "at": [
-    1290,
-    -960,
-    451
-   ],
-   "yaw": 20
-  }
  ]
 }

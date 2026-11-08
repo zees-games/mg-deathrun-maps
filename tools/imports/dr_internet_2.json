@@ -266,24 +266,6 @@
    "skip": "belongs to another stage of the map"
   }
  ],
- "toys": [
-  {
-   "toy": "football",
-   "at": [
-    1701.0,
-    638.0,
-    24
-   ]
-  },
-  {
-   "toy": "football",
-   "at": [
-    1701.0,
-    819.1,
-    24
-   ]
-  }
- ],
  "walkway": [
   {
    "at": [

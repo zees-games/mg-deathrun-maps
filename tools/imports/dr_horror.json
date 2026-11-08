@@ -436,32 +436,6 @@
    "name": "Trap 43"
   }
  ],
- "toys": [
-  {
-   "toy": "football",
-   "at": [
-    -513,
-    251,
-    66
-   ]
-  },
-  {
-   "toy": "football",
-   "at": [
-    2820,
-    -490,
-    -48
-   ]
-  },
-  {
-   "toy": "football",
-   "at": [
-    2740,
-    -490,
-    -48
-   ]
-  }
- ],
  "remove_sheets": true,
  "static_classes": [
   "func_breakable"

@@ -522,32 +522,6 @@
    "name": "Trap 16"
   }
  ],
- "toys": [
-  {
-   "toy": "football",
-   "at": [
-    -940,
-    -193,
-    -60
-   ]
-  },
-  {
-   "toy": "football",
-   "at": [
-    418,
-    1445,
-    -60
-   ]
-  },
-  {
-   "toy": "football",
-   "at": [
-    -15,
-    1366,
-    -60
-   ]
-  }
- ],
  "static": [
   "platform_1",
   "platform_2",

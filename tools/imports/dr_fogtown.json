@@ -214,32 +214,6 @@
    "keep": true
   }
  ],
- "toys": [
-  {
-   "toy": "football",
-   "at": [
-    460,
-    -88,
-    44
-   ]
-  },
-  {
-   "toy": "football",
-   "at": [
-    1480,
-    -1480,
-    40
-   ]
-  },
-  {
-   "toy": "football",
-   "at": [
-    1740,
-    -1500,
-    40
-   ]
-  }
- ],
  "static_classes": [
   "func_breakable",
   "func_physbox"
