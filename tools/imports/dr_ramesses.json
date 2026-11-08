@@ -786,24 +786,6 @@
    "keep": true
   }
  ],
- "toys": [
-  {
-   "toy": "football",
-   "at": [
-    35,
-    -4702,
-    -1474
-   ]
-  },
-  {
-   "toy": "football",
-   "at": [
-    310,
-    -4702,
-    -1474
-   ]
-  }
- ],
  "static_classes": [
   "func_breakable",
   "func_physbox"

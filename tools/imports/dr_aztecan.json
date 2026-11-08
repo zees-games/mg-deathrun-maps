@@ -293,24 +293,6 @@
    "keep": true
   }
  ],
- "toys": [
-  {
-   "toy": "football",
-   "at": [
-    330,
-    -900,
-    19
-   ]
-  },
-  {
-   "toy": "football",
-   "at": [
-    430,
-    -930,
-    19
-   ]
-  }
- ],
  "static": [
   "breakable1",
   "breakable1.1",

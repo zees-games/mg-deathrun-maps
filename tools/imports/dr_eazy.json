@@ -519,24 +519,6 @@
 			"harmless": true
 		}
 	],
-	"toys": [
-		{
-			"toy": "football",
-			"at": [
-				1480,
-				610,
-				258.1
-			]
-		},
-		{
-			"toy": "football",
-			"at": [
-				1480,
-				670,
-				258.1
-			]
-		}
-	],
 	"walkway": [
 		{
 			"at": [

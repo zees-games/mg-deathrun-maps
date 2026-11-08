@@ -52,7 +52,7 @@ A level is **a course that plays differently from every other**, or a section ki
 
 ## Toys
 
-`Course.toy()` puts one of dot-props' loose toys on the floor: a football in every start room (`_start`) and a pair in each end arena (balls on the ice, barrels on the foundry's banks, a ball each side of the altar), written as the document's `toys`. Loose only: a trampoline would be a way past a trap and anything solid cover in the showdown. mg-deathrun's `headless_courses` checks each stands clear and stays put.
+Courses carry no toys (owner 2026-11-08: physics props belong to the playground, prop hunt, murder mystery and hide n seek only).
 
 ## Publishing
 

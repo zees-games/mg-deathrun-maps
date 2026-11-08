@@ -376,32 +376,6 @@
    "keep": true
   }
  ],
- "toys": [
-  {
-   "toy": "football",
-   "at": [
-    -47,
-    2269,
-    73
-   ]
-  },
-  {
-   "toy": "football",
-   "at": [
-    240,
-    -1060,
-    70
-   ]
-  },
-  {
-   "toy": "football",
-   "at": [
-    360,
-    -1020,
-    70
-   ]
-  }
- ],
  "remove_sheets": true,
  "static_classes": [
   "func_breakable"
