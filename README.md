@@ -4,7 +4,7 @@ A course is a JSON document, not a scene. The server reads every `.json` file in
 
 ## Using it
 
-[dot-bootstrap](https://github.com/modcommunity/dot-bootstrap) clones this repository next to mg-deathrun and links it in as `courses/`. Run `./game.sh` in mg-deathrun and you play these courses. On a server they are delivered as one pack (`deathrun_maps`), which `./game.sh online` and `./game.sh server` build for you.
+[dot-bootstrap](https://github.com/gamespice-platform/bootstrap) clones this repository next to mg-deathrun and links it in as `courses/`. Run `./game.sh` in mg-deathrun and you play these courses. On a server they are delivered as one pack (`deathrun_maps`), which `./game.sh online` and `./game.sh server` build for you.
 
 ## Our courses
 
