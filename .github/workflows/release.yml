@@ -3,7 +3,7 @@
 # as gamemann/mg-deathrun-maps. mg-deathrun names that pack under server_dependencies, so a
 # server mounts it beside the game and a player never downloads it.
 #
-# It signs nothing and publishes nothing itself; see modcommunity/dot-ci.
+# It signs nothing and publishes nothing itself; see gamespice-platform/ci.
 name: Release
 
 on:
@@ -22,7 +22,7 @@ jobs:
 
     release:
         needs: check
-        uses: modcommunity/dot-ci/.github/workflows/release.yml@v1.3.14
+        uses: gamespice-platform/ci/.github/workflows/release.yml@v1.3.14
         permissions:
             contents: write
         with:
