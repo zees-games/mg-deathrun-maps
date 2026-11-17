@@ -52,7 +52,7 @@ A level is **a course that plays differently from every other**, or a section ki
 
 ## Toys
 
-Courses carry no toys (owner 2026-11-08: physics props belong to the playground, prop hunt, murder mystery and hide n seek only).
+Courses carry no toys (owner 2026-11-08: physics props belong to Playlot, prop hunt, murder mystery and hide n seek only).
 
 ## Publishing
 
