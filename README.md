@@ -1,3 +1,5 @@
+![Deathrun Maps banner](https://raw.githubusercontent.com/zees-games/mg-deathrun-maps/main/docs/banner.png)
+
 The courses for [mg-deathrun](https://github.com/zees-games/mg-deathrun): long corridors of traps, a walkway beside each with a button for every trap, and an end arena. 20 courses, plus a practice course built into the game.
 
 A course is a JSON document, not a scene. The server reads every `.json` file in its course directory and sends the current course to each client when a round begins, so players need no course files. To add a course, drop one file in the directory. The format is in [courses/README.md](courses/README.md).
