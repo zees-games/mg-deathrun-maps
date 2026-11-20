@@ -55,6 +55,10 @@ Converted courses come from `tools/bsp_to_course.py <map.bsp> tools/imports/<id>
 
 mg-deathrun's `examples/headless_courses.tscn` checks every course: a stand-in runs it to the end, every trap is sprung on its victim spot, an activator reaches every button, and both ends of the arena are stood in.
 
+## Quality and ongoing improvement
+
+The maps, models, textures and sounds in this pack are being improved over time, and some of them are low quality today. Improvement is driven by the Nightly queue, a work queue where agents pick up items, and by a visual judge loop that views rendered frames and files defects until each asset passes repeated clean reviews. Known defects are filed there and fixed in later releases, and the screenshots here are regenerated as the assets improve.
+
 ## Licence
 
 MIT, see [LICENSE](LICENSE). The converted courses keep the licences listed above.
