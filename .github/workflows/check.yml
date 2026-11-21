@@ -19,11 +19,11 @@ jobs:
             - uses: actions/checkout@v4
               with:
                   repository: gamespice-platform/map-convert
-                  path: dot-map-convert-src
+                  path: gs-map-convert-src
             - uses: actions/setup-python@v5
               with:
                   python-version: '3.12'
             - run: python3 tools/build_courses.py --check
             - run: python3 tools/build_provides.py --check
               env:
-                  DOT_MAP_CONVERT_PATH: dot-map-convert-src
+                  GS_MAP_CONVERT_PATH: gs-map-convert-src
