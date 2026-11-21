@@ -627,7 +627,7 @@ def quarry():
     return c
 
 
-# Each course's `ambient` block for DotAmbienceDirector: bed level (1.0 is the stock 0.35 bed) and whether
+# Each course's `ambient` block for GSAmbienceDirector: bed level (1.0 is the stock 0.35 bed) and whether
 # the birdsong bed may play. Halls and mines sit under 1, open ground over. Courses this script does not
 # build (imported ones) are patched by `--ambient`.
 AMBIENT = {
