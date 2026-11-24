@@ -22,11 +22,12 @@ jobs:
 
     release:
         needs: check
-        uses: gamespice-platform/ci/.github/workflows/release.yml@v1.3.14
+        uses: gamespice-platform/ci/.github/workflows/release.yml@v1.4.1
         permissions:
             contents: write
         with:
             pack: true
+            pack-deny: 'tmcdev(?:games)?\.net|x-tmc-dev'
             # Data, with no scripts and no addons: there is no requires.json to compare
             # against a server's addons.
             server-compat: false
