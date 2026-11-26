@@ -22,7 +22,7 @@ jobs:
 
     release:
         needs: check
-        uses: gamespice-platform/ci/.github/workflows/release.yml@v1.4.1
+        uses: gamespice-platform/ci/.github/workflows/release.yml@v1.4.3
         permissions:
             contents: write
         with:
